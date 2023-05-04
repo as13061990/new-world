@@ -4,8 +4,10 @@ import FourthSection from "../sections/FourthSection/FourthSection";
 import SecondSection from "../sections/SecondSection/SecondSection";
 import ThirdSection from "../sections/ThirdSection/ThirdSection";
 import './Main.css'
+import { observer } from "mobx-react-lite";
+import State from "../store/State";
 
-export const Main = () => {
+export const Main = observer(() => {
   // const isScrolling = useRef(false)
   // const blockRefs = [
   //     useRef(null),
@@ -39,27 +41,27 @@ export const Main = () => {
   //   }
   // }, [activeBlockIndex, blockRefs])
 
-  const [scrollPosition, setScrollPosition] = useState(0);
+
   const scroll = () => {
-    const element = document.querySelector('.main');
-    //@ts-ignore
-    const scrollTop = element.scrollTop;
-    //@ts-ignore
-    const scrollHeight = element.scrollHeight;
-    //@ts-ignore
-    const scrolledPercent = scrollTop / (scrollHeight - element.clientHeight) * 100;
-    setScrollPosition(scrolledPercent)
+    const main = document.querySelector('.main') as HTMLElement;
+    const section1 = document.getElementById('section1') as HTMLElement;
+
+    const scrollTop = main.scrollTop;
+
+    const precent = scrollTop / (section1.scrollHeight) * 100
+    State.setScrollPrecent(precent)
+    console.log(State.getScrollPrecent(), 'scroll section1')
 
   }
   return (
     <div className="main" onScroll={scroll}>
-      <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100 }}>Current scroll position: {scrollPosition}</p>
+      <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100 }}>Current scroll position: {State.getScrollPrecent()}</p>
       <FirstSection />
       <SecondSection />
       <ThirdSection />
       <FourthSection />
     </div>
   )
-};
+});
 
 export default Main

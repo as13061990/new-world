@@ -1,10 +1,7 @@
-import { useState, useEffect } from 'react';
 import styles from './SecondSection.module.css'
 
 export const SecondSection = ({ innerRef }: any) => {
-
-
-
+  
   return (
     <div ref={innerRef} className={"section " + styles.section} id='section2'>
       

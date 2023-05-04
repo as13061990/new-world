@@ -1,9 +1,20 @@
-import {makeAutoObservable} from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 class State {
-  public activeSection: number = 0
+  private _scrollPrecent: number = 0
+
   constructor() {
     makeAutoObservable(this);
+  }
+
+  getScrollPrecent(): number {
+    return this._scrollPrecent
+  }
+
+  setScrollPrecent(precent: number): void {
+    this._scrollPrecent = precent
+    if (precent < 0) this._scrollPrecent = 0
+    if (precent > 100) this._scrollPrecent = 100
   }
 }
 
