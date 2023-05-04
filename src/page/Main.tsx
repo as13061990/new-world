@@ -49,10 +49,21 @@ export const Main = () => {
     //@ts-ignore
     const scrolledPercent = scrollTop / (scrollHeight - element.clientHeight) * 100;
     setScrollPosition(scrolledPercent)
+
+
+    const element2 = document.getElementById('section2');
+    //@ts-ignore
+    const blockPosition = element2.getBoundingClientRect();
+    // проверяем, виден ли блок на странице
+    if (blockPosition.top >= 0 && blockPosition.bottom <= window.innerHeight) {
+      // если блок виден, то выводим его текущие координаты в консоль
+      console.log(`Блок находится на позиции (${blockPosition.left}, ${blockPosition.top})`);
+    }
+
   }
   return (
     <div className="main" onScroll={scroll}>
-      <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100}}>Current scroll position: {scrollPosition}</p>
+      <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100 }}>Current scroll position: {scrollPosition}</p>
       <FirstSection />
       <SecondSection />
       <ThirdSection />

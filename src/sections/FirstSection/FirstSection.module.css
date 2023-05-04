@@ -6,21 +6,45 @@
   color: #FFFFFF;
   overflow: hidden;
   padding: 0 30px;
+  height: 100vh;
+  scroll-snap-align: start;
 }
 
 .bg {
-    position: relative;
+  position: relative;
+}
+
+.blur_right {
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  width: 338px;
+  height: 438px;
+  background: #923DFF;
+  filter: blur(400px);
+}
+
+.blur_left {
+  position: absolute;
+  left: -100px;
+  z-index: 10;
+  top: -180px;
+  width: 438px;
+  height: 438px;
+  background: #3D8AFF;
+  filter: blur(400px);
 }
 
 .bg::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    background: inherit;
-    top: 0;
-    z-index: 0;
-    background: url('../../assets/images/section-one-stars-1.png')
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background: inherit;
+  top: 0;
+  z-index: 0;
+  background: url('../../assets/images/section-one-stars-1.png')
 }
 
 .bg::after {
