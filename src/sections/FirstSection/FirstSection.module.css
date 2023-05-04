@@ -6,8 +6,18 @@
   color: #FFFFFF;
   overflow: hidden;
   padding: 0 30px;
-  height: 300vh;
+  text-align: center;
   scroll-snap-align: start;
+  height: 300vh;
+  scroll-margin-bottom: 15vh;
+}
+
+.section_mobile {
+  height: 300vh;
+}
+
+.section_dekstop {
+  height: 500vh;
 }
 
 .bg {
@@ -94,7 +104,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
 .arrow {
@@ -116,7 +125,6 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 27px;
-  text-align: center;
 
   max-width: 980px;
   margin-bottom: 36px;

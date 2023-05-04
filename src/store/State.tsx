@@ -2,9 +2,17 @@ import { makeAutoObservable } from 'mobx';
 
 class State {
   private _scrollPrecent: number = 0
-
+  private _isMobile: boolean = false
   constructor() {
     makeAutoObservable(this);
+  }
+
+  getIsMobile(): boolean {
+    return this._isMobile
+  }
+
+  setIsMobile(mobile: boolean): void {
+    this._isMobile = mobile
   }
 
   getScrollPrecent(): number {
