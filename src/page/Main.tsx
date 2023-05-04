@@ -38,12 +38,25 @@ export const Main = () => {
   //     }, 400);
   //   }
   // }, [activeBlockIndex, blockRefs])
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const scroll = () => {
+    const element = document.querySelector('.main');
+    //@ts-ignore
+    const scrollTop = element.scrollTop;
+    //@ts-ignore
+    const scrollHeight = element.scrollHeight;
+    //@ts-ignore
+    const scrolledPercent = scrollTop / (scrollHeight - element.clientHeight) * 100;
+    setScrollPosition(scrolledPercent)
+  }
   return (
-    <div className="main" >
+    <div className="main" onScroll={scroll}>
+      <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100}}>Current scroll position: {scrollPosition}</p>
       <FirstSection />
       <SecondSection />
-      <ThirdSection  />
-      <FourthSection  />
+      <ThirdSection />
+      <FourthSection />
     </div>
   )
 };
