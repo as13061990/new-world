@@ -50,7 +50,7 @@ export const Main = observer(() => {
 
     const precent = scrollTop / (section1.scrollHeight) * 100
     State.setScrollPrecent(precent)
-    console.log(State.getScrollPrecent(), 'scroll section1')
+    console.log(State.getScrollPrecent())
 
   }
   return (
