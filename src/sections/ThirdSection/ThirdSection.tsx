@@ -10,6 +10,7 @@ import CountryItem from './CountryItem/CountryItem'
 import { useState, useCallback, useEffect } from "react";
 import { observer } from 'mobx-react-lite'
 import State from '../../store/State'
+import Footer from './Footer/Footer'
 
 const countries = [
   { img: BY, name: "беларусь" },
@@ -33,8 +34,11 @@ export const ThirdSection = observer(() => {
   } : {}
 
 
-  return (
+  return (<>
     <div className={"section " + styles.section} id='section3'>
+      <div className={styles.blur_right}></div>
+      <div className={styles.blur_left}></div>
+
       {countries.map((country, i) => {
         return (
           <CountryItem
@@ -45,6 +49,8 @@ export const ThirdSection = observer(() => {
           />
         )
       })}
+
+      <div className={styles.hr}></div>
 
       <div className={styles.content} style={stylesActiveContent}>
         <div className={styles.title}>
@@ -66,9 +72,9 @@ export const ThirdSection = observer(() => {
         </div>
       </div>
 
-
+      <Footer/>
     </div>
-  )
+  </>)
 });
 
 export default ThirdSection

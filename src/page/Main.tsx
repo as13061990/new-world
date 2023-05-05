@@ -1,6 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import FirstSection from "../sections/FirstSection/FirstSection";
-import FourthSection from "../sections/FourthSection/FourthSection";
 import SecondSection from "../sections/SecondSection/SecondSection";
 import ThirdSection from "../sections/ThirdSection/ThirdSection";
 import './Main.css'
@@ -59,7 +57,6 @@ export const Main = observer(() => {
       <FirstSection />
       <SecondSection />
       <ThirdSection />
-      <FourthSection />
     </div>
   )
 });

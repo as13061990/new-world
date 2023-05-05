@@ -2,9 +2,11 @@
   background-color: blue;
   height: 100vh;
   scroll-snap-align: start;
+  z-index: -1;
 }
 
 .img {
+  z-index: -1;
   width: 100%;
   height: 100vh;
 }

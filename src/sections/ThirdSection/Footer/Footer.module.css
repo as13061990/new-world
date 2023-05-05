@@ -1,0 +1,20 @@
+.footer {
+  padding: 25px 172px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 85px;
+  text-align: left;
+  color: #DEDEDE;
+  text-transform: uppercase;
+}
+
+.copyright {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.05em;
+  color: #C1C1C1;
+}
