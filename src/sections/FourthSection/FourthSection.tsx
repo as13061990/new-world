@@ -4,7 +4,7 @@ export const FourthSection = ({ innerRef }: any) => {
 
   return (
     <div ref={innerRef} className={"section " + styles.section} id='section4'>
-      <h1>FourthSection</h1>
+      <p className={styles.title}>НОВЫЙ МИР</p>
     </div>
   )
 };

@@ -1,10 +1,34 @@
 import styles from './ThirdSection.module.css'
+import BY from '../../assets/images/section-three-BY.png'
+import BR from '../../assets/images/section-three-BR.png'
+import IN from '../../assets/images/section-three-IN.png'
+import CN from '../../assets/images/section-three-CN.png'
+import CS from '../../assets/images/section-three-CS.png'
+import ZA from '../../assets/images/section-three-ZA.png'
+import CountryItem from './CountryItem/CountryItem'
 
+
+const countries = [
+  {img: BY, name: "беларусь"},
+  {img: BR, name: "бразилия"},
+  {img: IN, name: "индия"},
+  {img: CN, name: "китай"},
+  {img: CS, name: "сербия"},
+  {img: ZA, name: "юар"},
+]
 export const ThirdSection = ({ innerRef }: any) => {
 
   return (
     <div ref={innerRef} className={"section " + styles.section} id='section3'>
-      <h1>ThirdSection</h1>
+      {countries.map((country, i) => {
+        return (
+          <CountryItem
+            key={i}
+            img={country.img}
+            name={country.name}
+          />
+        )
+      })}
     </div>
   )
 };

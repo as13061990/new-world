@@ -1,0 +1,29 @@
+.country {
+  display: inline-block;
+  width: calc(100%/6);
+}
+
+.img {
+  height: 100vh;
+  width: 100%;
+}
+
+.img_block {
+  position: relative;
+}
+
+.name {
+  width: 100%;
+  top: 45%;
+  position: absolute;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 68.5714px;
+  line-height: 91px;
+  letter-spacing: 0.05em;
+  color: #e8e3e3;
+  text-transform: uppercase;
+  position: absolute;
+  transform: rotate(-90deg);
+}
