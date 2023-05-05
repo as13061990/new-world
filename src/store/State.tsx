@@ -1,9 +1,13 @@
 import { makeAutoObservable } from 'mobx';
 
+const ANIMATION_DELAY = 500
+
 class State {
   private _scrollPrecent: number = 0
   private _isMobile: boolean = false
   private _activeCountryIndex: number = -1
+  private _historyCountries: number[] = [-1]
+  private _isTimer: boolean = false
 
   constructor() {
     makeAutoObservable(this);
@@ -22,7 +26,19 @@ class State {
   }
 
   setActiveCountryIndex(index: number): void {
-    this._activeCountryIndex = index
+    this._activeCountryIndex = -1
+    if (this._historyCountries[this._historyCountries.length - 1] === -1) {
+      this._activeCountryIndex = index
+    } else {
+      if (!this._isTimer) {
+        this._isTimer = true
+        setTimeout(()=>{
+          this._isTimer = false
+          this._activeCountryIndex = index
+        }, ANIMATION_DELAY)
+      }
+    }
+    this._historyCountries.push(index)
   }
 
   getActiveCountryIndex(): number {
@@ -33,6 +49,10 @@ class State {
     this._scrollPrecent = precent
     if (precent < 0) this._scrollPrecent = 0
     if (precent > 100) this._scrollPrecent = 100
+  }
+
+  getHistoryCountries(): number[] {
+    return JSON.parse(JSON.stringify(this._historyCountries))
   }
 }
 

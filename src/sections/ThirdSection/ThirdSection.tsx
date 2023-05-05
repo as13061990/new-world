@@ -19,25 +19,19 @@ const countries = [
   { img: CS, name: "сербия" },
   { img: ZA, name: "юар" },
 ]
-let stylesActiveContent
+let stylesActiveContent: any
 
 export const ThirdSection = observer(() => {
 
-  stylesActiveContent = State.getActiveCountryIndex() !== -1 ? {
+  const index = State.getActiveCountryIndex()
+
+  stylesActiveContent = index !== -1 ? {
     transform: 'translate(calc(100%/4.7))',
     transition: '0.5s all ease;',
     transitionDelay: '0.2s',
     zIndex: 1
   } : {}
-  // const index = State.getActiveCountryIndex()
-  // useEffect(() => {
-  //   stylesActiveContent = {
-  //     transform: 'translate(calc(100%/4.7))',
-  //     transition: '0.5s all ease;',
-  //     animationDelay: '1s',
-  //     zIndex: 1
-  //   }
-  // }, [index])
+
 
   return (
     <div className={"section " + styles.section} id='section3'>
