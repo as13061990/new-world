@@ -14,27 +14,25 @@ export const CountryItem = observer(({ img, name, index }: ICountryItemProps) =>
     else State.setActiveCountryIndex(index)
   }
 
-  const stylesActive = State.getActiveCountryIndex() === index ? {
+  const stylesActiveImg = State.getActiveCountryIndex() === index ? {
     transform: `translateX(calc(100% * ${index} * -1))`,
-    transition: '0.5s all ease;'
+    transition: '0.5s all ease;',
+    zIndex: 10
   } : State.getActiveCountryIndex() > index ? {
     transform: `translateX(calc(100% * ${index} * -1))`,
-    transition: '0.5s all ease;'
+    transition: '0.5s all ease;',
+    zIndex: 10
   } : State.getActiveCountryIndex() < index && State.getActiveCountryIndex() !== -1 ? {
     transform: `translateX(calc(100% * (${6 - State.getActiveCountryIndex()}) - 130%))`,
-    transition: '0.5s all ease;'
+    transition: '0.5s all ease;',
+    zIndex: 10
   } : {}
 
-
-
-
   return (
-    <div className={styles.country} style={stylesActive} onClick={clickHandler}>
-      <div className={styles.img_block}>
+    <div className={styles.country} >
+      <div className={styles.img_block} onClick={clickHandler} style={stylesActiveImg}>
         <img src={img} alt={'countrybg'} className={styles.img} />
-
         <p className={styles.name}>{name}</p>
-
       </div>
     </div>
   )
