@@ -3,6 +3,8 @@ import { makeAutoObservable } from 'mobx';
 class State {
   private _scrollPrecent: number = 0
   private _isMobile: boolean = false
+  private _activeCountryIndex: number = -1
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -17,6 +19,14 @@ class State {
 
   getScrollPrecent(): number {
     return this._scrollPrecent
+  }
+
+  setActiveCountryIndex(index: number): void {
+    this._activeCountryIndex = index
+  }
+
+  getActiveCountryIndex(): number {
+    return this._activeCountryIndex
   }
 
   setScrollPrecent(precent: number): void {

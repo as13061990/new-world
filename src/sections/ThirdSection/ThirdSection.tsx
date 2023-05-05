@@ -6,31 +6,34 @@ import CN from '../../assets/images/section-three-CN.png'
 import CS from '../../assets/images/section-three-CS.png'
 import ZA from '../../assets/images/section-three-ZA.png'
 import CountryItem from './CountryItem/CountryItem'
-
+import { useState, useCallback } from "react";
+import { observer } from 'mobx-react-lite'
+import State from '../../store/State'
 
 const countries = [
-  {img: BY, name: "беларусь"},
-  {img: BR, name: "бразилия"},
-  {img: IN, name: "индия"},
-  {img: CN, name: "китай"},
-  {img: CS, name: "сербия"},
-  {img: ZA, name: "юар"},
+  { img: BY, name: "беларусь" },
+  { img: BR, name: "бразилия" },
+  { img: IN, name: "индия" },
+  { img: CN, name: "китай" },
+  { img: CS, name: "сербия" },
+  { img: ZA, name: "юар" },
 ]
-export const ThirdSection = ({ innerRef }: any) => {
-
+export const ThirdSection = observer(() => {
+  console.log(State.getActiveCountryIndex())
   return (
-    <div ref={innerRef} className={"section " + styles.section} id='section3'>
+    <div className={"section " + styles.section} id='section3'>
       {countries.map((country, i) => {
         return (
           <CountryItem
             key={i}
             img={country.img}
             name={country.name}
+            index={i}
           />
         )
       })}
     </div>
   )
-};
+});
 
 export default ThirdSection

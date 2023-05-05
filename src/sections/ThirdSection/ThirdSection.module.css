@@ -3,4 +3,5 @@
   height: 100vh;
   scroll-snap-align: start;
   scroll-margin-bottom: 180px;
+  overflow: hidden;
 }
