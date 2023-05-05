@@ -7,7 +7,7 @@ import CS from '../../assets/images/section-three-CS.png'
 import ZA from '../../assets/images/section-three-ZA.png'
 import BYInfo from '../../assets/images/section-three-BR-info.png'
 import CountryItem from './CountryItem/CountryItem'
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { observer } from 'mobx-react-lite'
 import State from '../../store/State'
 
@@ -19,8 +19,25 @@ const countries = [
   { img: CS, name: "сербия" },
   { img: ZA, name: "юар" },
 ]
+let stylesActiveContent
 
 export const ThirdSection = observer(() => {
+
+  stylesActiveContent = State.getActiveCountryIndex() !== -1 ? {
+    transform: 'translate(calc(100%/4.7))',
+    transition: '0.5s all ease;',
+    transitionDelay: '0.2s',
+    zIndex: 1
+  } : {}
+  // const index = State.getActiveCountryIndex()
+  // useEffect(() => {
+  //   stylesActiveContent = {
+  //     transform: 'translate(calc(100%/4.7))',
+  //     transition: '0.5s all ease;',
+  //     animationDelay: '1s',
+  //     zIndex: 1
+  //   }
+  // }, [index])
 
   return (
     <div className={"section " + styles.section} id='section3'>
@@ -35,7 +52,7 @@ export const ThirdSection = observer(() => {
         )
       })}
 
-      <div className={styles.content}>
+      <div className={styles.content} style={stylesActiveContent}>
         <div className={styles.title}>
           смотреть кино бесплатно и без смс
         </div>
