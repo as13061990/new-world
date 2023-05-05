@@ -2,6 +2,7 @@ import styles from './Content.module.css'
 import { observer } from 'mobx-react';
 import BYInfo from '../../../assets/images/section-three-BR-info.png'
 import State from '../../../store/State';
+import Hint from './Hint/Hint';
 export const Content = observer(() => {
 
   const index = State.getActiveCountryIndex()
@@ -12,7 +13,7 @@ export const Content = observer(() => {
     transitionDelay: '0.2s',
     zIndex: 1
   } : {}
-  
+
   return (
     <div className={styles.content} style={stylesActiveContent}>
       <div className={styles.title}>
@@ -28,7 +29,9 @@ export const Content = observer(() => {
             смотреть фильм
           </div>
         </div>
-        <div>
+        <div className={styles.info_img_block}>
+          
+          <Hint/>
           <img className={styles.info_img} src={BYInfo} alt='country' />
         </div>
       </div>

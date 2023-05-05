@@ -1,0 +1,63 @@
+
+.info_hint {
+  background: linear-gradient(180deg, #DDEAFC 0%, #FCFCFF 100%);
+  box-shadow: 0px 3.27363px 24.5522px rgba(118, 167, 247, 0.63);
+  border-radius: 24.5522px;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: -35px;
+  top: -32px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700;
+  font-size: 14.375px;
+  line-height: 17px;
+  display: flex;
+  justify-content: center;
+  padding-top: 3px;
+  align-items: center;
+  color: #313154;
+  cursor: pointer;
+}
+
+.bubble {
+  position: absolute;
+  width: 329px;
+  height: 73.66px;
+  padding: 16px 30px;
+  min-width: 200px;
+  text-align: center;
+  background: linear-gradient(180deg, #DDEAFC 0%, #FCFCFF 100%);
+  box-shadow: 0px 3.27363px 24.5522px rgba(118, 167, 247, 0.63);
+  border-radius: 24.5522px;
+  left: -187px;
+  top: 4px;
+  opacity: 0;
+  transition: 0.1s all ease-out;
+}
+
+.bubble_text {
+  font-family: 'Monaco';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+  color: #313154;
+  -webkit-text-stroke:  0.8px #313154
+}
+
+.pointer {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  background: #ffffff;
+  box-shadow: 0px 3.27363px 24.5522px rgba(118, 167, 247, 0.63);
+  margin: 0 auto;
+  transform: rotate(45deg);
+  left: -29px;
+  z-index: -1;
+  border-radius: 2px;
+  opacity: 0;
+  transition: 0.3s all ease-out;
+}

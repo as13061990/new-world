@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
 const ANIMATION_DELAY = 500
+const HINT_DELAY = 2000
 
 class State {
   private _scrollPrecent: number = 0
@@ -8,24 +9,38 @@ class State {
   private _activeCountryIndex: number = -1
   private _historyCountries: number[] = [-1]
   private _isTimer: boolean = false
+  private _activeHint: boolean = false
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getIsMobile(): boolean {
+  public getIsMobile(): boolean {
     return this._isMobile
   }
 
-  setIsMobile(mobile: boolean): void {
+  public setIsMobile(mobile: boolean): void {
     this._isMobile = mobile
   }
 
-  getScrollPrecent(): number {
+  public getScrollPrecent(): number {
     return this._scrollPrecent
   }
 
-  setActiveCountryIndex(index: number): void {
+  public getActiveHint(): boolean {
+    return this._activeHint
+  }
+
+  public openHint(): void {
+    if (!this._activeHint) {
+      this._activeHint = true
+      setTimeout(()=>{
+        this._activeHint = false
+      }, HINT_DELAY)
+    }
+  }
+
+  public setActiveCountryIndex(index: number): void {
     this._activeCountryIndex = -1
     if (this._historyCountries[this._historyCountries.length - 1] === -1) {
       this._activeCountryIndex = index
@@ -41,17 +56,17 @@ class State {
     this._historyCountries.push(index)
   }
 
-  getActiveCountryIndex(): number {
+  public getActiveCountryIndex(): number {
     return this._activeCountryIndex
   }
 
-  setScrollPrecent(precent: number): void {
+  public setScrollPrecent(precent: number): void {
     this._scrollPrecent = precent
     if (precent < 0) this._scrollPrecent = 0
     if (precent > 100) this._scrollPrecent = 100
   }
 
-  getHistoryCountries(): number[] {
+  public getHistoryCountries(): number[] {
     return JSON.parse(JSON.stringify(this._historyCountries))
   }
 }

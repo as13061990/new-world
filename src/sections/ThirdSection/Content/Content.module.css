@@ -10,6 +10,11 @@
   overflow: hidden;
 }
 
+.info {
+  display: flex;
+  gap: 27px;
+}
+
 .title {
   font-weight: 400;
   font-size: 45px;
@@ -24,15 +29,15 @@
   margin-bottom: 72px;
 }
 
+.info_img_block {
+  position: relative;
+}
+
 .info_img {
   height: 367px;
   width: 100%;
 }
 
-.info {
-  display: flex;
-  gap: 27px;
-}
 
 .info_block {
   display: flex;
