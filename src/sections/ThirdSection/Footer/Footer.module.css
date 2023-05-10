@@ -1,5 +1,9 @@
 .footer {
   padding: 25px 172px;
+  scroll-snap-align: start;
+  margin-top: -18vh;
+  z-index: 50;
+  position: relative;
 }
 
 .title {
@@ -9,6 +13,7 @@
   text-align: left;
   color: #DEDEDE;
   text-transform: uppercase;
+  z-index: 50;
 }
 
 .copyright {
@@ -17,4 +22,5 @@
   line-height: 16px;
   letter-spacing: -0.05em;
   color: #C1C1C1;
+  z-index: 50;
 }

@@ -35,12 +35,11 @@ export const ThirdSection = () => {
           />
         )
       })}
-      <Content/>
+      <Content />
       <div className={styles.hr}></div>
 
-
-      <Footer />
     </div>
+      <Footer />
   </>)
 };
 

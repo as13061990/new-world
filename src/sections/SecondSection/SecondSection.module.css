@@ -10,3 +10,29 @@
   width: 100%;
   height: 100vh;
 }
+
+.img_block {
+  position: relative;
+}
+
+.button {
+  content: "";
+  position: absolute;
+  width: 137px;
+  border-radius: 120px;
+  height: 137px;
+  bottom: -75px;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  background: #000000;
+  opacity: 0.67;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
+  margin-bottom: 65px;
+}
