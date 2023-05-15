@@ -7,14 +7,14 @@ class Planet {
   }
 
   private _build(): void {
-    const root = document.querySelector('#root') as HTMLElement;
+    const root = document.querySelector('#canvas_three') as HTMLElement;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, root.clientWidth / root.clientHeight, 0.1, 1000);
     
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(root.clientWidth, root.clientHeight);
-    root.appendChild(renderer.domElement);
-    // root.insertBefore(renderer.domElement, root.firstChild);
+    // root.appendChild(renderer.domElement);
+    root.insertBefore(renderer.domElement, root.firstChild);
 
 
     const geometry = new THREE.BoxGeometry(1, 1, 1);

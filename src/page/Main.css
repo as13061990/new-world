@@ -1,5 +1,8 @@
 .main {
-  overflow-y: auto;
+  overflow-y: scroll;
   height: 100vh;
   scroll-snap-type: y mandatory;
+}
+.main::-webkit-scrollbar {
+  width: 0;
 }
