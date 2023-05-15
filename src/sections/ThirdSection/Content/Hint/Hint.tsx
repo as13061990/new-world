@@ -1,6 +1,6 @@
 import State from '../../../../store/State';
 import styles from './Hint.module.css'
-import { observer } from 'mobx-react';
+import { observer } from "mobx-react-lite";
 export const Hint = observer(() => {
   const clickHandler = () => {
     State.openHint()

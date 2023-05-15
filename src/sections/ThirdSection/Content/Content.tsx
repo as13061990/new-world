@@ -1,5 +1,5 @@
 import styles from './Content.module.css'
-import { observer } from 'mobx-react';
+import { observer } from "mobx-react-lite";
 import BYInfo from '../../../assets/images/section-three-BR-info.png'
 import State from '../../../store/State';
 import Hint from './Hint/Hint';
