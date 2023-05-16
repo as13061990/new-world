@@ -20,7 +20,7 @@ export const Main = observer(() => {
   }, [])
 
   return (
-    <div className="main" onScroll={scroll}>
+    <div className="main" id='main' onScroll={scroll}>
       <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100 }}>Current scroll position: {State.getScrollPrecent()}</p>
       <FirstSection />
       <SecondSection />

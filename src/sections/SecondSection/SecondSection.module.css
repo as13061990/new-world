@@ -2,7 +2,8 @@
   background-color: blue;
   height: 100vh;
   scroll-snap-align: start;
-  z-index: -1;
+  position: relative;
+  z-index: 2;
 }
 
 .img {

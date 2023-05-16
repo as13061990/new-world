@@ -2,8 +2,11 @@ import styles from './FirstSection.module.css'
 import earth from '../../assets/images/half-earth.png'
 import arrow from '../../assets/images/section-one-arrow.svg'
 import State from '../../store/State';
+import { useEffect } from 'react';
+
 export const FirstSection = ({ innerRef }: any) => {
   const platfotmClass = State.getIsMobile() ? styles.section_mobile : styles.section_dekstop
+
   return (
     <div className={styles.bg}>
       <div className={styles.blur_right}></div>

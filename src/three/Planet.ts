@@ -33,7 +33,7 @@ class Planet {
         scene.add(this._sphere);
       }
     );
-    
+
     const animate = (time: number): void => {
       if (this._sphere) {
         this._sphere.rotation.y += 0.01;
