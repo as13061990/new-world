@@ -2,7 +2,9 @@
   overflow-y: scroll;
   height: 100vh;
   scroll-snap-type: y mandatory;
+  background-color: black;
 }
+
 .main::-webkit-scrollbar {
   width: 0;
 }
