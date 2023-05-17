@@ -1,7 +1,9 @@
 .section {
   background-color: blue;
   height: 100vh;
+
   scroll-snap-align: start;
+
   position: relative;
   z-index: 2;
 }

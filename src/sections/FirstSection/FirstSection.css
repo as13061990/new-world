@@ -1,0 +1,6 @@
+.first_section_active {
+  scroll-margin-bottom: 15vh;
+}
+.first_section_disable {
+  scroll-margin-bottom: 100vh;
+}

@@ -15,8 +15,15 @@ export const Main = observer(() => {
     const scrollTop = main.scrollTop;
 
     const precent = scrollTop / (section1.scrollHeight) * 100
+
+    if (precent >= 100) {
+      section1.classList.add('first_section_disable');
+      section1.classList.remove('first_section_active');
+    } else if (precent === 0) {
+      section1.classList.add('first_section_active');
+      section1.classList.remove('first_section_disable');
+    }
     State.setScrollPrecent(precent)
-    // console.log(State.getScrollPrecent())
   }, [])
 
   return (

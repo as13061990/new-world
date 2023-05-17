@@ -6,9 +6,9 @@
   overflow: hidden;
   padding: 0 30px;
   text-align: center;
-  scroll-snap-align: start;
   height: 300vh;
-  scroll-margin-bottom: 15vh;
+
+  scroll-snap-align: start;
 }
 
 .section_mobile {
