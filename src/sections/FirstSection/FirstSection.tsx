@@ -1,5 +1,4 @@
 import styles from './FirstSection.module.css'
-import './FirstSection.css'
 import earth from '../../assets/images/half-earth.png'
 import arrow from '../../assets/images/section-one-arrow.svg'
 import State from '../../store/State';

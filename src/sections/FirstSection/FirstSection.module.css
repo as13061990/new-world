@@ -7,7 +7,7 @@
   padding: 0 30px;
   text-align: center;
   height: 300vh;
-
+  scroll-margin-bottom: 100vh;
   scroll-snap-align: start;
 }
 
