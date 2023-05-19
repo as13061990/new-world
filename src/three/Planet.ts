@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import map from '../assets/images/map.png';
 import anime, { AnimeInstance } from 'animejs';
 import State from '../store/State';
+import { modal } from '../types/enums';
 
 type PlanetState = {
   x: number,
@@ -108,7 +109,6 @@ class Planet {
     const scroll = State.getScrollPrecent();
     const step = Math.floor(scroll / 5);
     const index = step >= POSITIONS.length ? POSITIONS.length - 1 : step;
-    console.log(index);
     const prevPos = POSITIONS[index]; // текущая позиция
     const nextPos = index === POSITIONS.length - 1 ? prevPos : POSITIONS[index + 1]; // следующая позиция
     const percents = ((scroll - step * 5) * 20) / 100; // путь в процентах от текущей точки к следующей
@@ -116,6 +116,17 @@ class Planet {
     const y = (nextPos.y - prevPos.y) * percents + prevPos.y;
     const z = (nextPos.z - prevPos.z) * percents + prevPos.z;
     const rotation = (nextPos.rotation - prevPos.rotation) * percents + prevPos.rotation;
+    
+    // console.log(index);
+
+    if (index === 8 || index === 9) {
+      
+      if (State.getModal() === modal.NO) {
+        State.setModal(modal.INDIA);
+      }
+    } else if (State.getModal() !== modal.NO) {
+      State.setModal(modal.NO);
+    }
     return { x, y, z, rotation }
   }
 
