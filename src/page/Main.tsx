@@ -38,23 +38,24 @@ export const Main = observer(() => {
     const section1 = document.getElementById('section1') as HTMLElement;
     const scrollTop = main.scrollTop;
     const precent = scrollTop / (section1.scrollHeight) * 100
-    let mark = false
-    if (precent >= 99.99 && !mark) {
-      if (precent > 100) return
-      mark = true
-      const scrollPosition = main.scrollTop;
-      const oldScrollHeight = section1.scrollHeight; 
 
-      section1.style.scrollMarginBottom = "100vh"; 
-      const newScrollHeight = section1.scrollHeight; 
-      const newScrollTop = (scrollPosition / oldScrollHeight) * newScrollHeight; 
+    State.setScrollPrecent(precent)
+
+    if (precent >= 99.99) {
+      if (precent > 100) return
+
+      const scrollPosition = main.scrollTop;
+      const oldScrollHeight = section1.scrollHeight;
+
+      section1.style.scrollMarginBottom = "100vh";
+      const newScrollHeight = section1.scrollHeight;
+      const newScrollTop = (scrollPosition / oldScrollHeight) * newScrollHeight;
 
       main.scrollTop = newScrollTop;
     } else if (precent <= 1) {
-      mark = false
       section1.style.scrollMarginBottom = '15vh';
     }
-    State.setScrollPrecent(precent)
+
   }, [])
 
   return (
