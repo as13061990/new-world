@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import { modal } from '../types/enums';
 
 const ANIMATION_DELAY = 500
 const HINT_DELAY = 2000
@@ -10,6 +11,7 @@ class State {
   private _historyCountries: number[] = [-1]
   private _isTimer: boolean = false
   private _activeHint: boolean = false
+  private _modal: modal = modal.NO
 
   constructor() {
     makeAutoObservable(this);
@@ -68,6 +70,15 @@ class State {
 
   public getHistoryCountries(): number[] {
     return JSON.parse(JSON.stringify(this._historyCountries))
+  }
+
+  public setModal(modal: modal): void {
+    console.log('SET MODAL', modal);
+    this._modal = modal;
+  }
+
+  public getModal(): modal {
+    return this._modal;
   }
 }
 
