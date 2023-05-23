@@ -31,8 +31,7 @@ const POSITIONS: PlanetState[] = [
   { x: 0, y: 0, z: 4, rotation: 10.5 },
   { x: 0, y: 1, z: 3, rotation: 11.0 },
   { x: 0, y: 2, z: 2, rotation: 11.5 },
-  { x: 0, y: 3, z: 1, rotation: 12.0 },
-  { x: 0, y: 4, z: 0, rotation: 12.5 }
+  { x: 0, y: 3.4, z: 1, rotation: 12.0 }
 ];
 
 class Planet {
@@ -47,6 +46,8 @@ class Planet {
   private _india: THREE.Mesh;
   private _animation: AnimeInstance;
   private _loader: THREE.TextureLoader;
+  private _index: number = 0;
+  private _stop: boolean = false;
 
   private _build(): void {
     const root = document.querySelector('#canvas_three') as HTMLElement;
@@ -64,6 +65,10 @@ class Planet {
     this._loader = new THREE.TextureLoader();
     this._loader.load(map, texture => this._createPlanet(texture));
 
+    // const aLight = new THREE.DirectionalLight(0xFFFFFF, 2);
+    // aLight.position.set(-1.5,1.7,.7);
+    // this._scene.add(aLight);
+
     requestAnimationFrame(this._update.bind(this));
   }
 
@@ -77,6 +82,8 @@ class Planet {
     const state = POSITIONS[0];
     this._sphere.position.set(state.x, state.y, state.z);
     this._sphere.rotation.set(0, state.rotation, 0);
+
+    this._move(this._sphere, 0.01);
 
     this._loader.load(india, texture => this._createIndia(texture));
   }
@@ -125,17 +132,21 @@ class Planet {
 
   private _getStepPosition(): PlanetState {
     const scroll = State.getScrollPrecent();
-    const step = Math.floor(scroll / 5);
+    const part = 100 / POSITIONS.length;
+    const step = Math.floor(scroll / part);
     const index = step >= POSITIONS.length ? POSITIONS.length - 1 : step;
     const prevPos = POSITIONS[index]; // текущая позиция
     const nextPos = index === POSITIONS.length - 1 ? prevPos : POSITIONS[index + 1]; // следующая позиция
-    const percents = ((scroll - step * 5) * 20) / 100; // путь в процентах от текущей точки к следующей
+    const percents = (scroll % part) / part; // путь в процентах от текущей точки к следующей
     const x = (nextPos.x - prevPos.x) * percents + prevPos.x;
     const y = (nextPos.y - prevPos.y) * percents + prevPos.y;
     const z = (nextPos.z - prevPos.z) * percents + prevPos.z;
     const rotation = (nextPos.rotation - prevPos.rotation) * percents + prevPos.rotation;
     
-    // console.log(index);
+    if (this._index !== index) {
+      this._index = index;
+      console.log(this._index, POSITIONS.length);
+    }
 
     if (index === 8 || index === 9) {
       
@@ -175,8 +186,16 @@ class Planet {
     return false;
   }
 
-  private _move(object: THREE.Mesh, step: number = .005): void {
-    let vector = 0; 
+  private _move(object: THREE.Mesh, step: number = .001): void {
+    let vector = 0;
+    const log = (): void => {
+      console.log({
+        ...object.position,
+        rotation: object.rotation.y
+      });
+      this._stop = true;
+    } 
+
     document.onkeydown = (e: KeyboardEvent) => {
       if (e.code === 'ArrowUp') {
 
@@ -184,31 +203,37 @@ class Planet {
           object.position.x += step;
         } else if (vector === 1) {
           object.position.y += step;
-        } else {
+        } else if (vector === 2) {
           object.position.z += step;
+        } else {
+          object.rotation.y += step;
         }
-        console.log(object.position);
+        log();
       } else if (e.code === 'ArrowDown') {
         
         if (vector === 0) {
           object.position.x -= step;
         } else if (vector === 1) {
           object.position.y -= step;
-        } else {
+        } else if (vector === 2) {
           object.position.z -= step;
+        } else {
+          object.rotation.y -= step;
         }
-        console.log(object.position);
+        log();
       } else if (e.code === 'ArrowLeft' || e.code == 'ArrowRight') {
 
-        if (e.code === 'ArrowLeft') vector = vector === 0 ? 2 : vector - 1;
-        else vector = vector === 2 ? 0 : vector + 1;
-        console.log(vector === 0 ? 'x' : vector === 1 ? 'y' : 'z');
+        if (e.code === 'ArrowLeft') vector = vector === 0 ? 3 : vector - 1;
+        else vector = vector === 3 ? 0 : vector + 1;
+        console.log(vector === 0 ? 'x' : vector === 1 ? 'y' : vector === 2 ? 'z' : 'rotation');
+      } else if (e.code === 'Space') {
+        this._stop = false;
       }
     }
   }
 
   private _update(time: number): void {
-    if (this._sphere && (!this._animation || this._animation?.completed === true)) {
+    if (this._sphere && (!this._animation || this._animation?.completed === true) && this._stop === false) {
       this._checkAnimation();
     }
     this._renderer.render(this._scene, this._camera);
