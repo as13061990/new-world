@@ -1,8 +1,9 @@
 import * as THREE from 'three';
-import map from '../assets/images/map.png';
 import anime, { AnimeInstance } from 'animejs';
 import State from '../store/State';
 import { modal } from '../types/enums';
+import map from '../assets/images/map.png';
+import india from '../assets/images/india.png';
 
 type PlanetState = {
   x: number,
@@ -11,7 +12,8 @@ type PlanetState = {
   rotation: number
 }
 
-const DURATION = 400;
+const DURATION = 800;
+const COUNTRY_DURATION = 1500;
 const POSITIONS: PlanetState[] = [
   { x: 0, y: -1, z: 15, rotation: 3.3 },
   { x: 0, y: -.5, z: 7.5, rotation: 3.8 },
@@ -38,46 +40,62 @@ class Planet {
     this._build();
   }
 
+  private _scene: THREE.Scene;
+  private _camera: THREE.PerspectiveCamera;
+  private _renderer: THREE.WebGLRenderer;
   private _sphere: THREE.Mesh;
+  private _india: THREE.Mesh;
   private _animation: AnimeInstance;
+  private _loader: THREE.TextureLoader;
 
   private _build(): void {
     const root = document.querySelector('#canvas_three') as HTMLElement;
     
-    const scene = new THREE.Scene();
+    this._scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(12, root.clientWidth / root.clientHeight, 0.01, 100);
-    camera.position.set(0, 0, 20);
+    this._camera = new THREE.PerspectiveCamera(12, root.clientWidth / root.clientHeight, 0.01, 100);
+    this._camera.position.set(0, 0, 20);
 
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(root.clientWidth, root.clientHeight);
-    renderer.setClearColor('#FFFFFF', 0); // цвет фона. 0 - прозрачность
-    root.insertBefore(renderer.domElement, root.firstChild);
+    this._renderer = new THREE.WebGLRenderer();
+    this._renderer.setSize(root.clientWidth, root.clientHeight);
+    this._renderer.setClearColor('#FFFFFF', 0); // цвет фона. 0 - прозрачность
+    root.insertBefore(this._renderer.domElement, root.firstChild);
 
-    const loader = new THREE.TextureLoader();
-    loader.load(
-      map,
-      (texture) => {
-        const material = new THREE.MeshBasicMaterial({
-          map: texture
-        });
-        const geometry = new THREE.SphereGeometry(1.0499, 200, 200);
-        this._sphere = new THREE.Mesh(geometry, material);
-        scene.add(this._sphere);
-        const state = POSITIONS[0];
-        this._sphere.position.set(state.x, state.y, state.z);
-        this._sphere.rotation.set(0, state.rotation, 0);
-      }
-    );
+    this._loader = new THREE.TextureLoader();
+    this._loader.load(map, texture => this._createPlanet(texture));
 
-    const animate = (time: number): void => {
-      if (this._sphere && (!this._animation || this._animation?.completed === true)) {
-        this._checkAnimation();
-      }
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    }
-    requestAnimationFrame(animate);
+    requestAnimationFrame(this._update.bind(this));
+  }
+
+  private _createPlanet(texture: THREE.Texture): void {
+    const material = new THREE.MeshBasicMaterial({
+      map: texture
+    });
+    const geometry = new THREE.SphereGeometry(1.0499, 200, 200);
+    this._sphere = new THREE.Mesh(geometry, material);
+    this._scene.add(this._sphere);
+    const state = POSITIONS[0];
+    this._sphere.position.set(state.x, state.y, state.z);
+    this._sphere.rotation.set(0, state.rotation, 0);
+
+    this._loader.load(india, texture => this._createIndia(texture));
+  }
+
+  private _createIndia(texture: THREE.Texture): void {
+    const material = new THREE.MeshBasicMaterial({
+      map: texture,
+      side: THREE.DoubleSide
+    });
+    this._india = new THREE.Mesh(new THREE.PlaneGeometry(.235, .235), material);
+    this._india.position.set(.14, .39, -.985);
+    this._india.rotation.set(.35, 2.97, 6.24);
+    this._india.scale.set(2, 2, 2);
+    this._scene.add(this._india);
+    this._sphere.add(this._india);
+
+    const india = this._india.material as THREE.Material;
+    india.transparent = true;
+    india.opacity = 0;
   }
 
   private _checkAnimation(): void {
@@ -122,12 +140,34 @@ class Planet {
     if (index === 8 || index === 9) {
       
       if (State.getModal() === modal.NO) {
-        State.setModal(modal.INDIA);
+        this._showCountry(modal.INDIA);
       }
     } else if (State.getModal() !== modal.NO) {
-      State.setModal(modal.NO);
+      this._hideCountry();
     }
     return { x, y, z, rotation }
+  }
+
+  private _showCountry(country: modal): void {
+    State.setModal(country);
+    const material = country === modal.INDIA ? this._india.material : null;
+    anime({
+      targets: material,
+      opacity: 1,
+      easing: "easeInOutSine",
+      duration: COUNTRY_DURATION
+    });
+  }
+
+  private _hideCountry(): void {
+    State.setModal(modal.NO);
+
+    anime({
+      targets: [this._india.material],
+      opacity: 0,
+      easing: "easeInOutSine",
+      duration: COUNTRY_DURATION
+    });
   }
 
   private _checkPosition(pos1: PlanetState, pos2: PlanetState): boolean {
@@ -135,7 +175,7 @@ class Planet {
     return false;
   }
 
-  private _move(object: THREE.Mesh, step: number = 1): void {
+  private _move(object: THREE.Mesh, step: number = .005): void {
     let vector = 0; 
     document.onkeydown = (e: KeyboardEvent) => {
       if (e.code === 'ArrowUp') {
@@ -165,6 +205,14 @@ class Planet {
         console.log(vector === 0 ? 'x' : vector === 1 ? 'y' : 'z');
       }
     }
+  }
+
+  private _update(time: number): void {
+    if (this._sphere && (!this._animation || this._animation?.completed === true)) {
+      this._checkAnimation();
+    }
+    this._renderer.render(this._scene, this._camera);
+    requestAnimationFrame(this._update.bind(this));
   }
 }
 
