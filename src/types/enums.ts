@@ -1,5 +1,6 @@
 enum modal {
   NO,
+  CHINA,
   INDIA,
 }
 
