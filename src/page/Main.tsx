@@ -15,21 +15,21 @@ export const Main = observer(() => {
     const precent = scrollTop / (section1.scrollHeight) * 100
 
     State.setScrollPrecent(precent)
-    if (precent >= 99) {
-      if (precent > 100) return
+    // if (precent >= 99) {
+    //   if (precent > 100) return
 
-      const scrollPosition = main.scrollTop;
-      const oldScrollHeight = section1.scrollHeight;
+    //   const scrollPosition = main.scrollTop;
+    //   const oldScrollHeight = section1.scrollHeight;
 
-      section1.style.scrollMarginBottom = "100vh";
-      const newScrollHeight = section1.scrollHeight;
-      const newScrollTop = (scrollPosition / oldScrollHeight) * newScrollHeight;
+    //   section1.style.scrollMarginBottom = "100vh";
+    //   const newScrollHeight = section1.scrollHeight;
+    //   const newScrollTop = (scrollPosition / oldScrollHeight) * newScrollHeight;
 
-      main.scrollTop = newScrollTop + (1 - (scrollTop / section1.scrollHeight)) * section1.scrollHeight
+    //   main.scrollTop = newScrollTop + (1 - (scrollTop / section1.scrollHeight)) * section1.scrollHeight
 
-    } else if (precent <= 1) {
-      section1.style.scrollMarginBottom = '15vh';
-    }
+    // } else if (precent <= 1) {
+    //   section1.style.scrollMarginBottom = '15vh';
+    // }
 
   }, [])
 
