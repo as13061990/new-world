@@ -15,7 +15,6 @@ export const Main = observer(() => {
     const precent = scrollTop / (section1.scrollHeight) * 100
 
     State.setScrollPrecent(precent)
-
     if (precent >= 99) {
       if (precent > 100) return
 
@@ -26,7 +25,8 @@ export const Main = observer(() => {
       const newScrollHeight = section1.scrollHeight;
       const newScrollTop = (scrollPosition / oldScrollHeight) * newScrollHeight;
 
-      main.scrollTop = newScrollTop;
+      main.scrollTop = newScrollTop + (1 - (scrollTop / section1.scrollHeight)) * section1.scrollHeight
+
     } else if (precent <= 1) {
       section1.style.scrollMarginBottom = '15vh';
     }
