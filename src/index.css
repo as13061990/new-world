@@ -11,9 +11,25 @@
   font-weight: 400;
 }
 
+@font-face { 
+  font-family: "HelveticaNeueRegular";
+  src: url("./assets/fonts/HelveticaNeueRegular.otf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+@font-face { 
+  font-family: "HelveticaNeueMedium";
+  src: url("./assets/fonts/HelveticaNeueMedium.otf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+}
+
+
 
 body {
-  font-family: 'Monaco', sans-serif;
+  font-family: 'HelveticaNeueRegular', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden; 
