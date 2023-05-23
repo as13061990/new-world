@@ -17,12 +17,13 @@
 }
 
 .name {
+  font-family: 'HelveticaNeueMedium', sans-serif;
   width: 100%;
-  top: 45%;
+  top: 49%;
   position: absolute;
   text-align: center;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 68.5714px;
   line-height: 91px;
   letter-spacing: 0.05em;

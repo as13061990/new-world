@@ -16,7 +16,8 @@
 }
 
 .title {
-  font-weight: 400;
+  font-family: 'HelveticaNeueMedium', sans-serif;
+  font-weight: 500;
   font-size: 45px;
   line-height: 60px;
   color: #252525;
@@ -50,6 +51,7 @@
 }
 
 .info_title {
+  font-family: 'HelveticaNeueMedium', sans-serif;
   font-weight: 500;
   font-size: 30px;
   line-height: 37px;

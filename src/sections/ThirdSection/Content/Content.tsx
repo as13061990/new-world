@@ -9,7 +9,7 @@ export const Content = observer(() => {
 
   const stylesActiveContent = index !== -1 ? {
     transform: 'translate(calc(100%/4.7))',
-    transition: '0.5s all ease;',
+    transition: '0.5s all ease',
     transitionDelay: '0.2s',
     zIndex: 1
   } : {}
