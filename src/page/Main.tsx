@@ -16,7 +16,7 @@ export const Main = observer(() => {
 
     State.setScrollPrecent(precent)
 
-    if (precent >= 99.99) {
+    if (precent >= 99) {
       if (precent > 100) return
 
       const scrollPosition = main.scrollTop;
