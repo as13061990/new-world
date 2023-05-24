@@ -13,8 +13,8 @@ import southAfrica from '../assets/images/south-africa.png';
 import brazil from '../assets/images/brazil.png';
 import Loader from './Loader';
 
-const DURATION = 800;
-const COUNTRY_DURATION = 1500;
+const DURATION = 700;
+const COUNTRY_DURATION = 500;
 
 class Planet {
   constructor() {
@@ -27,7 +27,7 @@ class Planet {
   private _sphere: THREE.Mesh;
   private _country: THREE.Mesh;
   private _animation: AnimeInstance;
-  private _load: Loader = new Loader(this);
+  private _load: Loader = new Loader();
   private _index: number = 0;
   private _stop: boolean = false;
 
@@ -75,7 +75,7 @@ class Planet {
     this._sphere.position.set(state.position.x, state.position.y, state.position.z);
     this._sphere.rotation.set(state.rotation.x, state.rotation.y, state.rotation.z);
     this._createCountry();
-    // this._move(this._sphere, 0.01);
+    this._move(this._sphere, 0.01);
   }
 
   private _createCountry(): void {
@@ -100,12 +100,13 @@ class Planet {
     const state = this._getStepState();
 
     if (this._checkPosition(current, state) === false) {
+      const easing = 'easeInOutQuad';
       this._animation = anime({
         targets: this._sphere.position,
         x: state.position.x,
         y: state.position.y,
         z: state.position.z,
-        easing: "easeInOutSine",
+        easing: easing,
         duration: DURATION
       });
       anime({
@@ -113,7 +114,7 @@ class Planet {
         x: state.rotation.x,
         y: state.rotation.y,
         z: state.rotation.z,
-        easing: "easeInOutSine",
+        easing: easing,
         duration: DURATION
       });
     }
@@ -127,6 +128,7 @@ class Planet {
     const prevPos = positions[index]; // текущая позиция
     const nextPos = index === positions.length - 1 ? prevPos : positions[index + 1]; // следующая позиция
     const percents = (scroll % part) / part; // путь в процентах от текущей точки к следующей
+    const state = prevPos.state as modal;
 
     const position = new THREE.Vector3();
     const rotation = new THREE.Vector3();
@@ -141,15 +143,11 @@ class Planet {
     
     if (this._index !== index) {
       this._index = index;
-      console.log(this._index + 1, positions.length);
-      console.log(nextPos);
     }
 
-    if (index === 7) {
-      State.getModal() === modal.NO && this._showCountry(modal.CHINA);
-    } else if (index === 9) {
-      State.getModal() === modal.NO && this._showCountry(modal.INDIA);
-    } else if (State.getModal() !== modal.NO) {
+    if (state && State.getModal() === modal.NO) {
+      this._showCountry(state);
+    } else if (!state && State.getModal() !== modal.NO) {
       this._hideCountry();
     }
     return { position, rotation }
@@ -157,7 +155,6 @@ class Planet {
 
   private _showCountry(country: modal): void {
     State.setModal(country);
-    
     const texture = this._load.get(country);
     // @ts-ignore
     this._country.material.map = texture;
@@ -217,8 +214,7 @@ class Planet {
         const property = position ? 'position' : 'rotation';
         console.log(property + ' - ' + vector3);
       } else if (e.code === 'Space') {
-        // this._stop = false;
-        console.log('SPACE')
+        this._stop = false;
       }
     }
   }

@@ -4,6 +4,7 @@ interface Vector3 {
   z: number;
 }
 interface IPlanetState {
+  state?: string,
   position: Vector3;
   rotation: Vector3;
 }
