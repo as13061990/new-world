@@ -7,6 +7,11 @@ import positions from './positions';
 import map from '../assets/images/map.png';
 import china from '../assets/images/china.png';
 import india from '../assets/images/india.png';
+import belarus from '../assets/images/belarus.png';
+import serbia from '../assets/images/serbia.png';
+import southAfrica from '../assets/images/south-africa.png';
+import brazil from '../assets/images/brazil.png';
+import Loader from './Loader';
 
 const DURATION = 800;
 const COUNTRY_DURATION = 1500;
@@ -20,10 +25,9 @@ class Planet {
   private _camera: THREE.PerspectiveCamera;
   private _renderer: THREE.WebGLRenderer;
   private _sphere: THREE.Mesh;
-  private _china: THREE.Mesh;
-  private _india: THREE.Mesh;
+  private _country: THREE.Mesh;
   private _animation: AnimeInstance;
-  private _loader: THREE.TextureLoader;
+  private _load: Loader = new Loader(this);
   private _index: number = 0;
   private _stop: boolean = false;
 
@@ -40,8 +44,17 @@ class Planet {
     this._renderer.setClearColor('#FFFFFF', 0); // цвет фона. 0 - прозрачность
     root.insertBefore(this._renderer.domElement, root.firstChild);
 
-    this._loader = new THREE.TextureLoader();
-    this._loader.load(map, texture => this._createPlanet(texture));
+    this._load.image('map', map);
+    this._load.image('china', china);
+    this._load.image('india', india);
+    this._load.image('belarus', belarus);
+    this._load.image('serbia', serbia);
+    this._load.image('south-africa', southAfrica);
+    this._load.image('brazil', brazil);
+    this._load.onComplete = (): void => {
+      this._createPlanet();
+      this._createCountry();
+    }
 
     // const aLight = new THREE.DirectionalLight(0xFFFFFF, 2);
     // aLight.position.set(-1.5,1.7,.7);
@@ -50,7 +63,8 @@ class Planet {
     requestAnimationFrame(this._update.bind(this));
   }
 
-  private _createPlanet(texture: THREE.Texture): void {
+  private _createPlanet(): void {
+    const texture = this._load.get('map');
     const material = new THREE.MeshBasicMaterial({
       map: texture
     });
@@ -60,46 +74,22 @@ class Planet {
     const state = positions[0];
     this._sphere.position.set(state.position.x, state.position.y, state.position.z);
     this._sphere.rotation.set(state.rotation.x, state.rotation.y, state.rotation.z);
-
-    this._loader.load(india, texture => this._createIndia(texture));
-    this._loader.load(china, texture => this._createChina(texture));
-    
+    this._createCountry();
     // this._move(this._sphere, 0.01);
   }
 
-  private _createIndia(texture: THREE.Texture): void {
+  private _createCountry(): void {
+    const texture = this._load.get('china');
     const material = new THREE.MeshBasicMaterial({
-      map: texture,
-      side: THREE.DoubleSide
+      map: texture
     });
-    this._india = new THREE.Mesh(new THREE.PlaneGeometry(.235, .235), material);
-    this._india.position.set(.14, .39, -.985);
-    this._india.rotation.set(.35, 2.97, 6.24);
-    this._india.scale.set(2, 2, 2);
-    this._scene.add(this._india);
-    this._sphere.add(this._india);
-
-    const m = this._india.material as THREE.Material;
-    m.transparent = true;
-    m.opacity = 0;
-  }
-
-  private _createChina(texture: THREE.Texture): void {
-    const material = new THREE.MeshBasicMaterial({
-      map: texture,
-      side: THREE.DoubleSide
-    });
-    this._china = new THREE.Mesh(new THREE.PlaneGeometry(.235, .235), material);
-    this._china.position.set(-.18, .62, -.995);
-    this._china.rotation.set(.35, 2.97, 6.24);
-    this._china.scale.set(3, 3, 3);
-
-    this._scene.add(this._china);
-    this._sphere.add(this._china);
-
-    const m = this._china.material as THREE.Material;
-    m.transparent = true;
-    m.opacity = 0;
+    material.needsUpdate = true;
+    material.transparent = true;
+    material.opacity = 0;
+    const geometry = new THREE.SphereGeometry(1.065, 200, 200);
+    this._country = new THREE.Mesh(geometry, material);
+    this._scene.add(this._country);
+    this._sphere.add(this._country);
   }
 
   private _checkAnimation(): void {
@@ -168,13 +158,12 @@ class Planet {
   private _showCountry(country: modal): void {
     State.setModal(country);
     
-    const material = 
-      country === modal.INDIA ? this._india.material :
-      country === modal.CHINA ? this._china.material :
-      null;
+    const texture = this._load.get(country);
+    // @ts-ignore
+    this._country.material.map = texture;
 
     anime({
-      targets: material,
+      targets: this._country.material,
       opacity: 1,
       easing: "easeInOutSine",
       duration: COUNTRY_DURATION
@@ -185,7 +174,7 @@ class Planet {
     State.setModal(modal.NO);
 
     anime({
-      targets: [this._india.material, this._china.material],
+      targets: this._country.material,
       opacity: 0,
       easing: "easeInOutSine",
       duration: COUNTRY_DURATION
@@ -228,7 +217,8 @@ class Planet {
         const property = position ? 'position' : 'rotation';
         console.log(property + ' - ' + vector3);
       } else if (e.code === 'Space') {
-        this._stop = false;
+        // this._stop = false;
+        console.log('SPACE')
       }
     }
   }
