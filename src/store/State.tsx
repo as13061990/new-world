@@ -11,7 +11,11 @@ class State {
   private _historyCountries: number[] = [-1]
   private _isTimer: boolean = false
   private _activeHint: boolean = false
+  private _modalActive: boolean = false
   private _modal: modal = modal.NO
+  
+  public modalCallbackActive: () => void = (): void => {console.log('modal set active')}
+  public modalCallbackInactive: () => void = (): void => {console.log('modal set inactive')}
 
   constructor() {
     makeAutoObservable(this);
@@ -36,7 +40,7 @@ class State {
   public openHint(): void {
     if (!this._activeHint) {
       this._activeHint = true
-      setTimeout(()=>{
+      setTimeout(() => {
         this._activeHint = false
       }, HINT_DELAY)
     }
@@ -49,7 +53,7 @@ class State {
     } else {
       if (!this._isTimer) {
         this._isTimer = true
-        setTimeout(()=>{
+        setTimeout(() => {
           this._isTimer = false
           this._activeCountryIndex = index
         }, ANIMATION_DELAY)
@@ -79,6 +83,19 @@ class State {
 
   public getModal(): modal {
     return this._modal;
+  }
+
+  public setModalActive(modal: boolean): void {
+    if (modal) {
+      this.modalCallbackActive()
+    } else {
+      this.modalCallbackInactive()
+    }
+    this._modalActive = modal;
+  }
+
+  public getModalActive(): boolean {
+    return this._modalActive;
   }
 }
 

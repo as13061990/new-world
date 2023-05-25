@@ -135,3 +135,11 @@
   z-index: 1;
   pointer-events: none;
 }
+
+.active {
+  cursor: pointer;
+}
+
+.inactive {
+  cursor: default;
+}
