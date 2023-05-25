@@ -1,20 +1,20 @@
 .modal_block {
   position: fixed;
   z-index: -1;
-  top: 30%;
-  left: 52%;
+  bottom: 150px;
+  right: 126px;
 }
 
 .active {
   z-index: 11;
   opacity: 1;
-  transition: 0.3s all ease;
+  transition: 0.5s all ease;
 }
 
 .inactive {
   z-index: -1;
   opacity: 0;
-  transition: 0.3s all ease;
+  transition: 0.5s all ease;
 }
 
 .modal {
