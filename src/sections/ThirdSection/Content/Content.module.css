@@ -86,3 +86,48 @@
   box-shadow: 0px 4px 30px rgba(118, 167, 247, 0.63);
   border-radius: 30px;
 }
+
+@media screen and (max-width: 1332px) {
+  .title {
+    font-size: 32px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    padding: 23px 5px;
+  }
+
+  .info_img_block {
+    display: none;
+  }
+
+  .info {
+    flex-direction: column;
+  }
+
+  .info_btn {
+    margin-top: 8px;
+  }
+
+  .info_text {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #BEBEBE;
+  }
+
+  .content {
+    padding: 15px 20px 0px 20px;
+  }
+}
+
+@media screen and (max-width: 930px) {
+  .title {
+    font-size: 30px;
+    padding: 15px 5px;
+  }
+  .info_text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #BEBEBE;
+  }
+}

@@ -58,28 +58,6 @@
   background-attachment: fixed;
 }
 
-.img {
-  position: relative;
-  display: block;
-  max-height: 562px;
-  max-width: 1812px;
-  bottom: 0;
-  z-index: 10;
-}
-
-.img {
-  display: block;
-  max-height: 562px;
-  max-width: 1812px;
-  bottom: 0;
-  z-index: 10;
-}
-
-.img_block {
-  position: relative;
-  overflow: hidden;
-}
-
 .button {
   content: "";
   position: absolute;
@@ -142,4 +120,14 @@
 
 .inactive {
   cursor: default;
+}
+
+@media screen and (max-width: 930px) {
+  .title {
+    font-size: 60px;
+    padding: 15px 5px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
 }

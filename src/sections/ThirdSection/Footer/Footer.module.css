@@ -26,3 +26,19 @@
   color: #C1C1C1;
   z-index: 50;
 }
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 25px 32px;
+  }
+  .title {
+    font-size: 44px;
+  }
+}
+
+@media screen and (max-width: 336px) {
+  .footer {
+    margin-top: -16vh;
+    padding: 0px 22px;
+  }
+}
