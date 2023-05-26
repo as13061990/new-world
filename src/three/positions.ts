@@ -97,25 +97,25 @@ const positions: IPlanetState[] = [
   {
     state: modal.SERBIA,
     position: { x: 0, y: 0, z: 6 }, // Сербия
-    rotation: { x: .29, y: 10.653, z: 0 }
+    rotation: { x: .29, y: 10.5, z: 0 }
   },
   {
     state: modal.SERBIA,
     position: { x: 0, y: 0, z: 6 }, // Сербия
-    rotation: { x: .29, y: 10.653, z: 0 }
+    rotation: { x: .29, y: 10.5, z: 0 }
   },
   {
     state: modal.SERBIA,
     position: { x: 0, y: 0, z: 6 }, // Сербия
-    rotation: { x: .23, y: 10.653, z: 0 }
+    rotation: { x: .23, y: 10.5, z: 0 }
   },
   {
     position: { x: 0, y: 0, z: 6 },
-    rotation: { x: -.1, y: 10.608, z: 0 }
+    rotation: { x: -.1, y: 10.5415, z: 0 }
   },
   {
     position: { x: 0, y: 0, z: 6 },
-    rotation: { x: -.45, y: 10.59, z: 0 }
+    rotation: { x: -.45, y: 10.583, z: 0 }
   },
   {
     state: modal.SOUTH_AFRICA,

@@ -15,6 +15,7 @@ import Loader from './Loader';
 
 const DURATION = 700;
 const COUNTRY_DURATION = 500;
+const EASING = 'easeInOutQuad';
 
 class Planet {
   constructor() {
@@ -30,6 +31,7 @@ class Planet {
   private _load: Loader = new Loader();
   private _index: number = 0;
   private _stop: boolean = false;
+  private _zoom: boolean = false;
 
   private _build(): void {
     const root = document.querySelector('#canvas_three') as HTMLElement;
@@ -99,14 +101,13 @@ class Planet {
     } as IPlanetState;
     const state = this._getStepState();
 
-    if (this._checkPosition(current, state) === false) {
-      const easing = 'easeInOutQuad';
+    if (this._checkPosition(current, state) === false && !this._zoom) {
       this._animation = anime({
         targets: this._sphere.position,
         x: state.position.x,
         y: state.position.y,
         z: state.position.z,
-        easing: easing,
+        easing: EASING,
         duration: DURATION
       });
       anime({
@@ -114,7 +115,30 @@ class Planet {
         x: state.rotation.x,
         y: state.rotation.y,
         z: state.rotation.z,
-        easing: easing,
+        easing: EASING,
+        duration: DURATION
+      });
+    }
+
+    if (!this._zoom && State.getModal() !== modal.NO && State.getModalActive()) {
+      this._zoom = true;
+      this._animation = anime({
+        targets: this._sphere.position,
+        x: -.5,
+        y: -.5,
+        z: 10,
+        easing: EASING,
+        duration: DURATION
+      });
+    } else if (this._zoom && (State.getModal() === modal.NO || !State.getModalActive())) {
+      this._zoom = false;
+
+      this._animation = anime({
+        targets: this._sphere.position,
+        x: state.position.x,
+        y: state.position.y,
+        z: state.position.z,
+        easing: EASING,
         duration: DURATION
       });
     }
@@ -162,7 +186,7 @@ class Planet {
     anime({
       targets: this._country.material,
       opacity: 1,
-      easing: "easeInOutSine",
+      easing: EASING,
       duration: COUNTRY_DURATION
     });
   }
@@ -173,7 +197,7 @@ class Planet {
     anime({
       targets: this._country.material,
       opacity: 0,
-      easing: "easeInOutSine",
+      easing: EASING,
       duration: COUNTRY_DURATION
     });
   }

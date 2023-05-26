@@ -77,7 +77,6 @@ class State {
   }
 
   public setModal(modal: modal): void {
-    console.log('SET MODAL', modal);
     this._modal = modal;
   }
 
@@ -86,11 +85,11 @@ class State {
   }
 
   public setModalActive(modal: boolean): void {
-    if (modal) {
-      this.modalCallbackActive()
-    } else {
-      this.modalCallbackInactive()
-    }
+    // if (modal) {
+    //   this.modalCallbackActive()
+    // } else {
+    //   this.modalCallbackInactive()
+    // }
     this._modalActive = modal;
   }
 
