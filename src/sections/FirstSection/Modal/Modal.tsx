@@ -3,12 +3,14 @@ import styles from './Modal.module.css'
 import State from '../../../store/State';
 import { modal } from '../../../types/enums';
 import { useMemo } from 'react';
-
+import { runInAction } from "mobx"
 export const Modal = observer(() => {
   let activeStyle = State.getModalActive() ? styles.active : styles.inactive
   const modalType = State.getModal()
   if (modalType === modal.NO) {
-    State.setModalActive(false)
+    runInAction(()=>{
+      State.setModalActive(false)
+    })
   }
 
   const onClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {

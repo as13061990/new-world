@@ -2,8 +2,9 @@ import styles from './FirstSection.module.css'
 import State from '../../store/State';
 import Modal from './Modal/Modal';
 import { modal } from '../../types/enums';
+import { observer } from 'mobx-react-lite';
 
-export const FirstSection = ({ innerRef }: any) => {
+export const FirstSection = observer(({ innerRef }: any) => {
   const platfotmClass = State.getIsMobile() ? styles.section_mobile : styles.section_dekstop
 
   const canvasThreeClass = State.getModal() === modal.NO ? styles.inactive : State.getModalActive() ? styles.inactive : styles.active
@@ -27,6 +28,6 @@ export const FirstSection = ({ innerRef }: any) => {
       <div id='canvas_three' className={styles.canvas_three}></div>
     </div>
   )
-};
+});
 
 export default FirstSection
