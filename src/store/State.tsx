@@ -12,6 +12,7 @@ class State {
   private _isTimer: boolean = false
   private _activeHint: boolean = false
   private _modalActive: boolean = false
+  private _modalPrev: modal = null
   private _modal: modal = modal.NO
   
   public modalCallbackActive: () => void = (): void => {console.log('modal set active')}
@@ -77,6 +78,7 @@ class State {
   }
 
   public setModal(modal: modal): void {
+    this._modalPrev = this._modal
     this._modal = modal;
   }
 
@@ -95,6 +97,10 @@ class State {
 
   public getModalActive(): boolean {
     return this._modalActive;
+  }
+
+  public getModalPrev(): modal {
+    return this._modalPrev;
   }
 }
 

@@ -8,7 +8,7 @@ export const Modal = observer(() => {
   let activeStyle = State.getModalActive() ? styles.active : styles.inactive
   const modalType = State.getModal()
   if (modalType === modal.NO) {
-    runInAction(()=>{
+    runInAction(() => {
       State.setModalActive(false)
     })
   }
@@ -19,7 +19,11 @@ export const Modal = observer(() => {
   }
 
   const title = useMemo((): string => {
-    switch (modalType) {
+    let modalTypeCheck = State.getModal()
+    if (modalTypeCheck === modal.NO) {
+      modalTypeCheck = State.getModalPrev()
+    }
+    switch (modalTypeCheck) {
       case (modal.CHINA):
         return 'китай'
       case (modal.INDIA):
@@ -32,8 +36,6 @@ export const Modal = observer(() => {
         return 'Южная африка'
       case (modal.BRAZIL):
         return 'Бразилия'
-      case (modal.NO):
-        return 'Страна'
     }
   }, [modalType])
 
