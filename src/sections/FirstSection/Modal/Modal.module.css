@@ -110,28 +110,52 @@
     font-size: 40px;
     line-height: 40px;
   }
-  
+
   .text {
     font-size: 18px;
     line-height: 23px;
   }
-  
+
 }
 
 @media screen and (max-width: 580px) {
   .modal_block {
-   bottom: 80px;
+    bottom: 80px;
   }
 
   .modal {
     height: 70vh;
-    padding: 55px 40px;
+    padding: 25px 20px;
     display: inline-block;
     overflow-y: hidden;
+    border-radius: 30px;
   }
 
   .btn_down {
     bottom: -20px;
   }
-  
+
+}
+
+@media (min-width: 500px) and (max-width: 1024px) {
+  .modal_block {
+    bottom: 20px;
+  }
+
+  .modal {
+    height: 70vh;
+    padding: 25px 20px;
+    display: inline-block;
+    overflow-y: hidden;
+    border-radius: 30px;
+  }
+
+  .btn_down {
+    bottom: -20px;
+  }
+
+  .btn_back {
+    top: -70px;
+  }
+
 }
