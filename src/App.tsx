@@ -7,7 +7,7 @@ import State from './store/State';
 class App extends React.Component {
   componentDidMount(): void {
     new Planet();
-    console.log(platform)
+    
     if (platform.os.family === 'iOS' || platform.os.family === 'Android') {
       State.setIsMobile(true);
     }
@@ -19,12 +19,5 @@ class App extends React.Component {
     )
   }
 }
-
-// function App() {
-//   new Planet();
-//   return (
-//     <Main/>
-//   );
-// }
 
 export default App;

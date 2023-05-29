@@ -9,10 +9,7 @@ import { useEffect } from "react";
 const STEP_DELAY = 200
 
 export const Main = observer(() => {
-
   useEffect(() => {
-
-
     let startY: number;
     let endY: number;
 
@@ -31,13 +28,11 @@ export const Main = observer(() => {
     const onWheel = (event: WheelEvent): void => {
       const time = new Date().getTime()
       if (time - State.getScrollTimer() > STEP_DELAY) {
-        console.log('scroll')
+        
         if (event.deltaY > 0) {
           State.plusStep()
-          console.log(State.getStep())
         } else if (event.deltaY < 0) {
           State.minusStep()
-          console.log(State.getStep())
         }
       }
       State.setScrollTimer(time)

@@ -18,12 +18,7 @@ class State {
   private _modal: modal = modal.NO
   private _step: number = 0
   private _scrollTimer: number = 0
-
-  public modalCallbackActive: () => void = (): void => { console.log('modal set active') }
-  public modalCallbackInactive: () => void = (): void => { console.log('modal set inactive') }
-
-  public stepCallbackPlus: () => void = (): void => { console.log('step plus') }
-  public stepCallbackMinus: () => void = (): void => { console.log('step minus') }
+  public stepCallback: Function = (): void => {}
 
   constructor() {
     makeAutoObservable(this);
@@ -94,11 +89,6 @@ class State {
   }
 
   public setModalActive(modal: boolean): void {
-    // if (modal) {
-    //   this.modalCallbackActive()
-    // } else {
-    //   this.modalCallbackInactive()
-    // }
     this._modalActive = modal;
   }
 
@@ -120,14 +110,14 @@ class State {
 
   public plusStep(): void {
     if (this._step === MAX_STEP + 3) return
-    this.stepCallbackPlus()
     this._step++
+    this.stepCallback()
   }
 
   public minusStep(): void {
     if (this._step === 0) return
-    this.stepCallbackMinus()
     this._step--
+    this.stepCallback()
   }
 
   public setScrollTimer(time: number): void {
