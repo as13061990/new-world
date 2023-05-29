@@ -114,11 +114,13 @@ class State {
   }
 
   public plusStep(): void {
+    if (this._step === MAX_STEP) return
     this.stepCallbackPlus()
     this._step++
   }
 
   public minusStep(): void {
+    if (this._step === 0) return
     this.stepCallbackMinus()
     this._step--
   }

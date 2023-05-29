@@ -11,6 +11,23 @@ const STEP_DELAY = 200
 export const Main = observer(() => {
 
   useEffect(() => {
+
+
+    let startY: number;
+    let endY: number;
+
+    function handleSwipe(start: number, end: number) {
+      const threshold = 50; // Минимальный порог свайпа
+      if (start - end > threshold) {
+        State.plusStep()
+        console.log(State.getStep())
+      } else if (end - start > threshold) {
+        State.minusStep()
+        console.log(State.getStep())
+      }
+
+    }
+
     const onWheel = (event: WheelEvent): void => {
       const time = new Date().getTime()
       if (time - State.getScrollTimer() > STEP_DELAY) {
@@ -25,9 +42,23 @@ export const Main = observer(() => {
       }
       State.setScrollTimer(time)
     }
+    if (State.getIsMobile()) {
+      document.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY;
+      });
 
-    window.addEventListener('wheel', onWheel)
-    return () => window.removeEventListener('wheel', onWheel)
+      document.addEventListener('touchend', (e) => {
+        endY = e.changedTouches[0].clientY;
+        handleSwipe(startY, endY);
+      });
+    } else {
+      window.addEventListener('wheel', onWheel)
+    }
+    return () => {
+      if (!State.getIsMobile()) {
+        window.removeEventListener('wheel', onWheel)
+      }
+    }
   }, [])
 
   return (
