@@ -32,3 +32,10 @@
   position: absolute;
   transform: rotate(-90deg);
 }
+
+@media screen and (max-width: 768px) {
+  .name { 
+    font-size: 50px;
+    top: 55%
+  }
+}

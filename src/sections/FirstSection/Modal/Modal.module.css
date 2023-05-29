@@ -99,3 +99,39 @@
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
 }
+
+@media screen and (max-width: 980px) {
+  .modal_block {
+    right: 10px;
+  }
+
+  .title {
+
+    font-size: 40px;
+    line-height: 40px;
+  }
+  
+  .text {
+    font-size: 18px;
+    line-height: 23px;
+  }
+  
+}
+
+@media screen and (max-width: 580px) {
+  .modal_block {
+   bottom: 80px;
+  }
+
+  .modal {
+    height: 70vh;
+    padding: 55px 40px;
+    display: inline-block;
+    overflow-y: hidden;
+  }
+
+  .btn_down {
+    bottom: -20px;
+  }
+  
+}

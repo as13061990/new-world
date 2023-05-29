@@ -40,15 +40,18 @@
 @media screen and (max-width: 768px) {
   .footer {
     padding: 25px 32px;
+    margin-top: -20vh;
+    padding-bottom: 10px;
   }
   .title {
     font-size: 44px;
+    line-height: 35px;
   }
 }
 
 @media screen and (max-width: 336px) {
   .footer {
-    margin-top: -16vh;
     padding: 0px 22px;
+    margin-top: -16vh;
   }
 }

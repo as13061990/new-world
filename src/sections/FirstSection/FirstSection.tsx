@@ -10,7 +10,7 @@ export const FirstSection = observer(({ innerRef }: any) => {
 
   const onClickCountry = (): void => {
     if (State.getModal() !== modal.NO) {
-      State.setModalActive(true)
+      State.setModalActive(!State.getModalActive())
     }
   }
 

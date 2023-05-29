@@ -99,12 +99,12 @@
 
 .activeText {
   transform: translateY(0);
-  transition: 0.5s all ease;
+  transition: 0.7s all ease;
 }
 
 .inactiveText {
-  transform: translateY(-600px);
-  transition: 0.5s all ease;
+  transform: translateY(-1100px);
+  transition: 0.7s all ease;
 }
 
 .canvas_three {
@@ -128,8 +128,26 @@
   .title {
     font-size: 60px;
     padding: 15px 5px;
+    line-height: 90px;
+    
+    margin: 10px 0;
   }
   .subtitle {
-    font-size: 18px;
+    line-height: 27px;
+    font-size: 19px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .title {
+    font-size: 60px;
+    padding: 15px 5px;
+    line-height: 60px;
+    
+    margin: 10px 0;
+  }
+  .subtitle {
+    line-height: 23px;
+    font-size: 17px;
   }
 }

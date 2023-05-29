@@ -18,7 +18,7 @@
 
 .active {
   transform: translateY(-200vh);
-  transition: 0.7s all ease;
+  transition: 0.8s all ease;
 }
 
 .activeFooter {
@@ -27,8 +27,8 @@
 }
 
 .inactive {
-  transform: translateY(-100vh);
-  transition: 0.7s all ease;
+  transform: translateY(-50vh);
+  transition: 0.8s all ease;
 }
 
 
