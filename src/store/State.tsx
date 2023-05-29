@@ -4,7 +4,7 @@ import positions from '../three/positions';
 
 const ANIMATION_DELAY = 500
 const HINT_DELAY = 2000
-const MAX_STEP = positions.length
+export const MAX_STEP = positions.length
 
 class State {
   private _scrollPrecent: number = 0
@@ -114,8 +114,12 @@ class State {
     return this._step
   }
 
+  public setStep(step: number): void {
+    this._step = step
+  }
+
   public plusStep(): void {
-    if (this._step === MAX_STEP + 2) return
+    if (this._step === MAX_STEP + 3) return
     this.stepCallbackPlus()
     this._step++
   }

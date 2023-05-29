@@ -2,10 +2,18 @@
   background-color: blue;
   height: 100vh;
 
-  scroll-snap-align: start;
-
   position: relative;
   z-index: 2;
+}
+
+.active {
+  transform: translateY(calc(-100vh));
+  transition: 0.5s all ease;
+}
+
+.inactive {
+  transform: translateY(0);
+  transition: 0.5s all ease;
 }
 
 .img {

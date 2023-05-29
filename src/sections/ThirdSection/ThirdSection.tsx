@@ -8,6 +8,8 @@ import ZA from '../../assets/images/section-three-ZA.png'
 import CountryItem from './CountryItem/CountryItem'
 import Footer from './Footer/Footer'
 import Content from './Content/Content'
+import State, { MAX_STEP } from '../../store/State'
+import { observer } from 'mobx-react-lite'
 
 const countries = [
   { img: BY, name: "беларусь" },
@@ -18,10 +20,13 @@ const countries = [
   { img: ZA, name: "юар" },
 ]
 
-export const ThirdSection = () => {
-
+export const ThirdSection = observer(() => {
+  let sectionActiveClass = State.getStep() >= MAX_STEP + 2 ? 
+  State.getStep() >= MAX_STEP + 3 ? styles.activeFooter : styles.active 
+  : styles.inactive
+  
   return (<>
-    <div className={"section " + styles.section} id='section3'>
+    <div className={styles.section + ' ' + sectionActiveClass} id='section3'>
       <div className={styles.blur_right}></div>
       <div className={styles.blur_left}></div>
 
@@ -37,10 +42,9 @@ export const ThirdSection = () => {
       })}
       <Content />
       <div className={styles.hr}></div>
-
     </div>
-      <Footer />
+    <Footer />
   </>)
-};
+});
 
 export default ThirdSection

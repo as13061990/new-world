@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import State from '../../../store/State';
+import State, { MAX_STEP } from '../../../store/State';
 import styles from './CountryItem.module.css'
 
 interface ICountryItemProps {
@@ -13,6 +13,7 @@ export const CountryItem = observer(({ img, name, index }: ICountryItemProps) =>
   const clickHandler = () => {
     if (State.getActiveCountryIndex() === index) State.setActiveCountryIndex(-1)
     else State.setActiveCountryIndex(index)
+    State.setStep(MAX_STEP + 2)
   }
 
   const stylesActiveImg = State.getActiveCountryIndex() === index ? {

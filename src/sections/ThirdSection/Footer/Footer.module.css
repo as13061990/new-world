@@ -1,10 +1,20 @@
 .footer {
   padding: 25px 172px;
-  scroll-snap-align: start;
   margin-top: -18vh;
   z-index: 50;
   position: relative;
 }
+
+.active {
+  transform: translateY(-218vh);
+  transition: 0.3s all ease;
+}
+
+.inactive {
+  transform: translateY(-200vh);
+  transition: 0.5s all ease;
+}
+
 
 .title {
   font-family: 'Monaco', sans-serif;

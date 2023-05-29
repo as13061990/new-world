@@ -3,8 +3,8 @@ import SecondSection from "../sections/SecondSection/SecondSection";
 import ThirdSection from "../sections/ThirdSection/ThirdSection";
 import './Main.css'
 import { observer } from "mobx-react-lite";
-import State from "../store/State";
-import { useCallback, useEffect } from "react";
+import State, { MAX_STEP } from "../store/State";
+import { useEffect } from "react";
 
 const STEP_DELAY = 200
 
@@ -65,8 +65,8 @@ export const Main = observer(() => {
     <div className="main" id='main' >
       <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100 }}>Current step: {State.getStep()}</p>
       <FirstSection />
-      <SecondSection />
-      <ThirdSection />
+      {State.getStep() >= MAX_STEP ? <SecondSection /> : null}
+      {State.getStep() >= MAX_STEP + 1 ? <ThirdSection /> : null}
     </div>
   )
 });
