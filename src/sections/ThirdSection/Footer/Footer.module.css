@@ -7,12 +7,12 @@
 
 .active {
   transform: translateY(-218vh);
-  transition: 0.3s all ease;
+  transition: 0.4s all ease;
 }
 
 .inactive {
   transform: translateY(-200vh);
-  transition: 0.5s all ease;
+  transition: 0.7s all ease;
 }
 
 

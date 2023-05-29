@@ -21,8 +21,8 @@ const countries = [
 ]
 
 export const ThirdSection = observer(() => {
-  let sectionActiveClass = State.getStep() >= MAX_STEP + 2 ? 
-  State.getStep() >= MAX_STEP + 3 ? styles.activeFooter : styles.active 
+  let sectionActiveClass = State.getStep() >= MAX_STEP ? 
+  State.getStep() >= MAX_STEP + 1 ? styles.activeFooter : styles.active 
   : styles.inactive
   
   return (<>

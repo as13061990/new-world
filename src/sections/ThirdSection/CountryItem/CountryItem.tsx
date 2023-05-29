@@ -13,7 +13,7 @@ export const CountryItem = observer(({ img, name, index }: ICountryItemProps) =>
   const clickHandler = () => {
     if (State.getActiveCountryIndex() === index) State.setActiveCountryIndex(-1)
     else State.setActiveCountryIndex(index)
-    State.setStep(MAX_STEP + 2)
+    State.setStep(MAX_STEP)
   }
 
   const stylesActiveImg = State.getActiveCountryIndex() === index ? {

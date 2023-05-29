@@ -1,5 +1,5 @@
 import styles from './FirstSection.module.css'
-import State from '../../store/State';
+import State, { MAX_STEP } from '../../store/State';
 import Modal from './Modal/Modal';
 import { modal } from '../../types/enums';
 import { observer } from 'mobx-react-lite';

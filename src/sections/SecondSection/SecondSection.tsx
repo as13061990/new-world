@@ -5,7 +5,7 @@ import State, { MAX_STEP } from '../../store/State';
 import { observer } from 'mobx-react-lite';
 
 export const SecondSection = observer(() => {
-  let sectionActiveClass = State.getStep() >= MAX_STEP + 1 ? styles.active : styles.inactive
+  let sectionActiveClass = State.getStep() >= MAX_STEP - 1 ? styles.active : styles.inactive
 
   return (
     <div className={styles.section + ' ' + sectionActiveClass} id='section2'>
