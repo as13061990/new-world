@@ -1,9 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 import { modal } from '../types/enums';
+import positions from '../three/positions';
 
 const ANIMATION_DELAY = 500
 const HINT_DELAY = 2000
-const MAX_STEP = 20
+const MAX_STEP = positions.length
 
 class State {
   private _scrollPrecent: number = 0
