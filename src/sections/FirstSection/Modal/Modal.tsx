@@ -13,9 +13,13 @@ export const Modal = observer(() => {
     })
   }
 
-  const onClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+  const onClickBack = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
     e.stopPropagation()
     State.setModalActive(false)
+  }
+
+  const onClickModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+    e.stopPropagation()
   }
 
   const title = useMemo((): string => {
@@ -42,10 +46,10 @@ export const Modal = observer(() => {
 
   return (
     <div className={styles.modal_block + ' ' + activeStyle}>
-      <div className={styles.btn_back} onClick={onClick}>
+      <div className={styles.btn_back} onClick={onClickBack}>
         Назад
       </div>
-      <div className={styles.modal}>
+      <div className={styles.modal} onClick={onClickModal}>
         <p className={styles.title}>
           {title}
         </p>
