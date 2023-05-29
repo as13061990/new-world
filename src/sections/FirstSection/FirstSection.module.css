@@ -6,17 +6,9 @@
   overflow: hidden;
   padding: 0 30px;
   text-align: center;
-  height: 300vh;
+  height: 100vh;
   scroll-margin-bottom: 100vh;
   scroll-snap-align: start;
-}
-
-.section_mobile {
-  height: 300vh;
-}
-
-.section_dekstop {
-  height: 2000vh;
 }
 
 .bg {
@@ -103,6 +95,16 @@
 
   position: relative;
   z-index: 4;
+}
+
+.activeText {
+  transform: translateY(0);
+  transition: 0.5s all ease;
+}
+
+.inactiveText {
+  transform: translateY(-600px);
+  transition: 0.5s all ease;
 }
 
 .canvas_three {
