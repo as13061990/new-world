@@ -3,6 +3,7 @@ import { modal } from '../types/enums';
 
 const ANIMATION_DELAY = 500
 const HINT_DELAY = 2000
+const MAX_STEP = 20
 
 class State {
   private _scrollPrecent: number = 0
@@ -14,9 +15,14 @@ class State {
   private _modalActive: boolean = false
   private _modalPrev: modal = null
   private _modal: modal = modal.NO
-  
-  public modalCallbackActive: () => void = (): void => {console.log('modal set active')}
-  public modalCallbackInactive: () => void = (): void => {console.log('modal set inactive')}
+  private _step: number = 0
+  private _scrollTimer: number = 0
+
+  public modalCallbackActive: () => void = (): void => { console.log('modal set active') }
+  public modalCallbackInactive: () => void = (): void => { console.log('modal set inactive') }
+
+  public stepCallbackPlus: () => void = (): void => { console.log('step plus') }
+  public stepCallbackMinus: () => void = (): void => { console.log('step minus') }
 
   constructor() {
     makeAutoObservable(this);
@@ -101,6 +107,28 @@ class State {
 
   public getModalPrev(): modal {
     return this._modalPrev;
+  }
+
+  public getStep(): number {
+    return this._step
+  }
+
+  public plusStep(): void {
+    this.stepCallbackPlus()
+    this._step++
+  }
+
+  public minusStep(): void {
+    this.stepCallbackMinus()
+    this._step--
+  }
+
+  public setScrollTimer(time: number): void {
+    this._scrollTimer = time
+  }
+
+  public getScrollTimer(): number {
+    return this._scrollTimer
   }
 }
 

@@ -4,38 +4,35 @@ import ThirdSection from "../sections/ThirdSection/ThirdSection";
 import './Main.css'
 import { observer } from "mobx-react-lite";
 import State from "../store/State";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+
+const STEP_DELAY = 200
 
 export const Main = observer(() => {
 
-  const scroll = useCallback(() => {
-    const main = document.querySelector('.main') as HTMLElement;
-    const section1 = document.getElementById('section1') as HTMLElement;
-    const scrollTop = main.scrollTop;
-    const precent = scrollTop / (section1.scrollHeight) * 100
+  useEffect(() => {
+    const onWheel = (event: WheelEvent): void => {
+      const time = new Date().getTime()
+      if (time - State.getScrollTimer() > STEP_DELAY) {
+        console.log('scroll')
+        if (event.deltaY > 0) {
+          State.plusStep()
+          console.log(State.getStep())
+        } else if (event.deltaY < 0) {
+          State.minusStep()
+          console.log(State.getStep())
+        }
+      }
+      State.setScrollTimer(time)
+    }
 
-    State.setScrollPrecent(precent)
-    // if (precent >= 99) {
-    //   if (precent > 100) return
-
-    //   const scrollPosition = main.scrollTop;
-    //   const oldScrollHeight = section1.scrollHeight;
-
-    //   section1.style.scrollMarginBottom = "100vh";
-    //   const newScrollHeight = section1.scrollHeight;
-    //   const newScrollTop = (scrollPosition / oldScrollHeight) * newScrollHeight;
-
-    //   main.scrollTop = newScrollTop + (1 - (scrollTop / section1.scrollHeight)) * section1.scrollHeight
-
-    // } else if (precent <= 1) {
-    //   section1.style.scrollMarginBottom = '15vh';
-    // }
-
+    window.addEventListener('wheel', onWheel)
+    return () => window.removeEventListener('wheel', onWheel)
   }, [])
 
   return (
-    <div className="main" id='main' onScroll={scroll}>
-      <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100 }}>Current scroll position: {State.getScrollPrecent()}</p>
+    <div className="main" id='main' >
+      <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100 }}>Current step: {State.getStep()}</p>
       <FirstSection />
       <SecondSection />
       <ThirdSection />
