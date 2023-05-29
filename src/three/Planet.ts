@@ -29,18 +29,14 @@ class Planet {
   private _country: THREE.Mesh;
   private _animation: AnimeInstance;
   private _load: Loader = new Loader();
-  private _index: number = 0;
-  private _stop: boolean = false;
   private _zoom: boolean = false;
 
   private _build(): void {
+    State.stepCallback = this._setControls.bind(this);
     const root = document.querySelector('#canvas_three') as HTMLElement;
-    
     this._scene = new THREE.Scene();
-
     this._camera = new THREE.PerspectiveCamera(12, root.clientWidth / root.clientHeight, 0.01, 100);
     this._camera.position.set(0, 0, 20);
-
     this._renderer = new THREE.WebGLRenderer();
     this._renderer.setSize(root.clientWidth, root.clientHeight);
     this._renderer.setClearColor('#FFFFFF', 0); // цвет фона. 0 - прозрачность
@@ -53,16 +49,46 @@ class Planet {
     this._load.image('serbia', serbia);
     this._load.image('south-africa', southAfrica);
     this._load.image('brazil', brazil);
-    this._load.onComplete = (): void => {
-      this._createPlanet();
-      this._createCountry();
-    }
+    this._load.onComplete = this._createPlanet.bind(this);
 
     // const aLight = new THREE.DirectionalLight(0xFFFFFF, 2);
     // aLight.position.set(-1.5,1.7,.7);
     // this._scene.add(aLight);
 
     requestAnimationFrame(this._update.bind(this));
+  }
+
+  private _setControls(): void {
+    const i = State.getStep();
+    const state = positions[i];
+    if (!state) return;
+    const m = state.state as modal;
+
+    if (m && m !== State.getModal()) {
+      this._showCountry(m);
+    } else if (State.getModal() !== modal.NO && !m) {
+      this._hideCountry();
+    }
+    this._animation?.pause();
+    this._animation = anime({
+      targets: this._sphere.rotation,
+      x: state.rotation.x,
+      y: state.rotation.y,
+      z: state.rotation.z,
+      easing: EASING,
+      duration: DURATION
+    });
+
+    if (this._zoom === false) {
+      anime({
+        targets: this._sphere.position,
+        x: state.position.x,
+        y: state.position.y,
+        z: state.position.z,
+        easing: EASING,
+        duration: DURATION
+      });
+    }
   }
 
   private _createPlanet(): void {
@@ -94,106 +120,43 @@ class Planet {
     this._sphere.add(this._country);
   }
 
-  private _checkAnimation(): void {
-    const current = {
-      position: this._sphere.position,
-      rotation: this._sphere.rotation
-    } as IPlanetState;
-    const state = this._getStepState();
-
-    if (this._checkPosition(current, state) === false && !this._zoom) {
-      this._animation = anime({
-        targets: this._sphere.position,
-        x: state.position.x,
-        y: state.position.y,
-        z: state.position.z,
-        easing: EASING,
-        duration: DURATION
-      });
-      anime({
-        targets: this._sphere.rotation,
-        x: state.rotation.x,
-        y: state.rotation.y,
-        z: state.rotation.z,
-        easing: EASING,
-        duration: DURATION
-      });
-    }
-
-    if (!this._zoom && State.getModal() !== modal.NO && State.getModalActive()) {
-      this._zoom = true;
-      this._animation = anime({
-        targets: this._sphere.position,
-        x: -.5,
-        y: -.5,
-        z: 10,
-        easing: EASING,
-        duration: DURATION
-      });
-    } else if (this._zoom && (State.getModal() === modal.NO || !State.getModalActive())) {
-      this._zoom = false;
-
-      this._animation = anime({
-        targets: this._sphere.position,
-        x: state.position.x,
-        y: state.position.y,
-        z: state.position.z,
-        easing: EASING,
-        duration: DURATION
-      });
-    }
-  }
-
-  private _getStepState(): IPlanetState {
-    const scroll = State.getScrollPrecent();
-    const part = 100 / positions.length;
-    const step = Math.floor(scroll / part);
-    const index = step >= positions.length ? positions.length - 1 : step;
-    const prevPos = positions[index]; // текущая позиция
-    const nextPos = index === positions.length - 1 ? prevPos : positions[index + 1]; // следующая позиция
-    const percents = (scroll % part) / part; // путь в процентах от текущей точки к следующей
-    const state = prevPos.state as modal;
-
-    const position = new THREE.Vector3();
-    const rotation = new THREE.Vector3();
-    
-    position.x = (nextPos.position.x - prevPos.position.x) * percents + prevPos.position.x;
-    position.y = (nextPos.position.y - prevPos.position.y) * percents + prevPos.position.y;
-    position.z = (nextPos.position.z - prevPos.position.z) * percents + prevPos.position.z;
-
-    rotation.x = (nextPos.rotation.x - prevPos.rotation.x) * percents + prevPos.rotation.x;
-    rotation.y = (nextPos.rotation.y - prevPos.rotation.y) * percents + prevPos.rotation.y;
-    rotation.z = (nextPos.rotation.z - prevPos.rotation.z) * percents + prevPos.rotation.z;
-    
-    if (this._index !== index) {
-      this._index = index;
-    }
-
-    if (state && State.getModal() === modal.NO) {
-      this._showCountry(state);
-    } else if (!state && State.getModal() !== modal.NO) {
-      this._hideCountry();
-    }
-    return { position, rotation }
-  }
-
   private _showCountry(country: modal): void {
     State.setModal(country);
-    const texture = this._load.get(country);
-    // @ts-ignore
-    this._country.material.map = texture;
-
-    anime({
-      targets: this._country.material,
-      opacity: 1,
-      easing: EASING,
-      duration: COUNTRY_DURATION
-    });
+    const material = this._country.material as THREE.Material;
+    
+    if (material.opacity === 0) {
+      const texture = this._load.get(country);
+      // @ts-ignore
+      this._country.material.map = texture;
+      anime({
+        targets: material,
+        opacity: 1,
+        easing: EASING,
+        duration: COUNTRY_DURATION
+      });
+    } else {
+      anime({
+        targets: material,
+        opacity: 0,
+        easing: EASING,
+        duration: COUNTRY_DURATION / 2,
+        complete: (): void => {
+          const texture = this._load.get(country);
+          // @ts-ignore
+          this._country.material.map = texture;
+          anime({
+            targets: material,
+            opacity: 1,
+            easing: EASING,
+            duration: COUNTRY_DURATION / 2
+          });
+        }
+      });
+    }
   }
 
   private _hideCountry(): void {
     State.setModal(modal.NO);
-
     anime({
       targets: this._country.material,
       opacity: 0,
@@ -202,14 +165,32 @@ class Planet {
     });
   }
 
-  private _checkPosition(state1: IPlanetState, state2: IPlanetState): boolean {
-    if (state1.position.x === state2.position.x &&
-      state1.position.y === state2.position.y &&
-      state1.position.z === state2.position.z &&
-      state1.rotation.x === state2.rotation.x &&
-      state1.rotation.y === state2.rotation.y &&
-      state1.rotation.z === state2.rotation.z) return true;
-    return false;
+  private _checkZoom(): void {
+    if (!this._sphere) return;
+    if (!this._zoom && State.getModal() !== modal.NO && State.getModalActive()) {
+      this._zoom = true;
+      this._animation = anime({
+        targets: this._sphere.position,
+        x: -.7,
+        y: -.2,
+        z: 13,
+        easing: EASING,
+        duration: DURATION
+      });
+    } else if (this._zoom && (State.getModal() === modal.NO || !State.getModalActive())) {
+      this._zoom = false;
+      const i = State.getStep();
+      const state = positions[i];
+      if (!state) return;
+      this._animation = anime({
+        targets: this._sphere.position,
+        x: state.position.x,
+        y: state.position.y,
+        z: state.position.z,
+        easing: EASING,
+        duration: DURATION
+      });
+    }
   }
 
   private _move(object: THREE.Mesh, step: number = .001): void {
@@ -219,9 +200,7 @@ class Planet {
         position: object.position,
         rotation: object.rotation
       });
-      this._stop = true;
-    } 
-
+    }
     document.onkeydown = (e: KeyboardEvent) => {
       if (e.code === 'ArrowUp' || e.code === 'ArrowDown') {
         const vector3 = vector === 0 ? 'x' : vector === 1 ? 'y' : 'z';
@@ -238,15 +217,13 @@ class Planet {
         const property = position ? 'position' : 'rotation';
         console.log(property + ' - ' + vector3);
       } else if (e.code === 'Space') {
-        this._stop = false;
+        console.log('JUST SPACE BUTTON')
       }
     }
   }
 
   private _update(time: number): void {
-    if (this._sphere && (!this._animation || this._animation?.completed === true) && this._stop === false) {
-      this._checkAnimation();
-    }
+    this._checkZoom();
     this._renderer.render(this._scene, this._camera);
     requestAnimationFrame(this._update.bind(this));
   }
