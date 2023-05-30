@@ -1,5 +1,4 @@
 .section {
-  background-color: blue;
   height: 100vh;
 
   position: relative;
@@ -7,8 +6,14 @@
 }
 
 .active {
-  transform: translateY(calc(-100vh));
-  transition: 0.9s all ease;
+  transform: translateY(-100vh);
+  transition: 0.9s transform ease;
+}
+
+.inactiveUnder {
+  transform: translateY(-100vh);
+  transition-delay: 0.9s;
+  opacity: 0;
 }
 
 .inactive {
