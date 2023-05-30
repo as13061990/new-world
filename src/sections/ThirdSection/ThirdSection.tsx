@@ -24,7 +24,6 @@ export const ThirdSection = observer(() => {
   let sectionActiveClass = State.getStep() >= MAX_STEP ? 
   State.getStep() >= MAX_STEP + 1 ? styles.activeFooter : styles.active 
   : styles.inactive
-  
   return (<>
     <div className={styles.section + ' ' + sectionActiveClass} id='section3'>
       <div className={styles.blur_right}></div>
@@ -43,7 +42,7 @@ export const ThirdSection = observer(() => {
       <Content />
       <div className={styles.hr}></div>
     </div>
-    <Footer />
+    {/* <Footer /> */}
   </>)
 });
 
