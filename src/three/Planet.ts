@@ -16,6 +16,11 @@ import Loader from './Loader';
 const DURATION = 700;
 const COUNTRY_DURATION = 500;
 const EASING = 'easeInOutQuad';
+const ZOOM: Vector3 = {
+  x: -.7,
+  y: -.2,
+  z: 13
+}
 
 class Planet {
   constructor() {
@@ -32,7 +37,7 @@ class Planet {
   private _zoom: boolean = false;
 
   private _build(): void {
-    State.stepCallback = this._setControls.bind(this);
+    State.stepCallback = this._stepCallback.bind(this);
     const root = document.querySelector('#canvas_three') as HTMLElement;
     this._scene = new THREE.Scene();
     this._camera = new THREE.PerspectiveCamera(12, root.clientWidth / root.clientHeight, 0.01, 100);
@@ -58,10 +63,10 @@ class Planet {
     requestAnimationFrame(this._update.bind(this));
   }
 
-  private _setControls(): void {
+  private _stepCallback(): void {
     const i = State.getStep();
     const state = positions[i];
-    if (!state) return;
+    if (!state || !this._sphere) return;
     const m = state.state as modal;
 
     if (m && m !== State.getModal()) {
@@ -69,7 +74,6 @@ class Planet {
     } else if (State.getModal() !== modal.NO && !m) {
       this._hideCountry();
     }
-    this._animation?.pause();
     this._animation = anime({
       targets: this._sphere.rotation,
       x: state.rotation.x,
@@ -103,7 +107,7 @@ class Planet {
     this._sphere.position.set(state.position.x, state.position.y, state.position.z);
     this._sphere.rotation.set(state.rotation.x, state.rotation.y, state.rotation.z);
     this._createCountry();
-    this._move(this._sphere, 0.01);
+    // this._move(this._sphere, 0.01);
   }
 
   private _createCountry(): void {
@@ -171,9 +175,9 @@ class Planet {
       this._zoom = true;
       this._animation = anime({
         targets: this._sphere.position,
-        x: -.7,
-        y: -.2,
-        z: 13,
+        x: ZOOM.x,
+        y: ZOOM.y,
+        z: ZOOM.z,
         easing: EASING,
         duration: DURATION
       });
