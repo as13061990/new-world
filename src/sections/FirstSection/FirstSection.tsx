@@ -10,10 +10,9 @@ export const FirstSection = observer(({ innerRef }: any) => {
 
   const onClickCountry = (): void => {
     if (State.getModal() !== modal.NO) {
-      State.setModalActive(!State.getModalActive())
+      State.setModalActive(true)
     }
   }
-
 
   return (
     <div className={styles.bg + ' ' + canvasThreeClass} onClick={onClickCountry}>

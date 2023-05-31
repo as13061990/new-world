@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import anime, { AnimeInstance } from 'animejs';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import anime from 'animejs';
 import State from '../store/State';
 import { modal } from '../types/enums';
 import positions from './positions';
@@ -11,7 +12,9 @@ import belarus from '../assets/images/belarus.png';
 import serbia from '../assets/images/serbia.png';
 import southAfrica from '../assets/images/south-africa.png';
 import brazil from '../assets/images/brazil.png';
+import point from '../assets/images/point.png';
 import Loader from './Loader';
+import points from './points';
 
 const DURATION = 700;
 const COUNTRY_DURATION = 500;
@@ -27,25 +30,26 @@ class Planet {
     this._build();
   }
 
+  private _root: HTMLElement;
   private _scene: THREE.Scene;
   private _camera: THREE.PerspectiveCamera;
   private _renderer: THREE.WebGLRenderer;
   private _sphere: THREE.Mesh;
   private _country: THREE.Mesh;
-  private _animation: AnimeInstance;
   private _load: Loader = new Loader();
   private _zoom: boolean = false;
+  private _points: THREE.Mesh[] = [];
 
   private _build(): void {
     State.stepCallback = this._stepCallback.bind(this);
-    const root = document.querySelector('#canvas_three') as HTMLElement;
+    this._root = document.querySelector('#canvas_three') as HTMLElement;
     this._scene = new THREE.Scene();
-    this._camera = new THREE.PerspectiveCamera(12, root.clientWidth / root.clientHeight, 0.01, 100);
+    this._camera = new THREE.PerspectiveCamera(12, this._root.clientWidth / this._root.clientHeight, 0.01, 100);
     this._camera.position.set(0, 0, 20);
     this._renderer = new THREE.WebGLRenderer();
-    this._renderer.setSize(root.clientWidth, root.clientHeight);
+    this._renderer.setSize(this._root.clientWidth, this._root.clientHeight);
     this._renderer.setClearColor('#FFFFFF', 0); // цвет фона. 0 - прозрачность
-    root.insertBefore(this._renderer.domElement, root.firstChild);
+    this._root.insertBefore(this._renderer.domElement, this._root.firstChild);
 
     this._load.image('map', map);
     this._load.image('china', china);
@@ -54,13 +58,57 @@ class Planet {
     this._load.image('serbia', serbia);
     this._load.image('south-africa', southAfrica);
     this._load.image('brazil', brazil);
-    this._load.onComplete = this._createPlanet.bind(this);
+    this._load.image('point', point);
+    this._load.onComplete = this._loadComplete.bind(this);
 
     // const aLight = new THREE.DirectionalLight(0xFFFFFF, 2);
     // aLight.position.set(-1.5,1.7,.7);
     // this._scene.add(aLight);
 
     requestAnimationFrame(this._update.bind(this));
+  }
+
+  private _click(): void {
+    document.onclick = (event): void => {
+      // создаём вспомогательные объекты для поиска щелчка
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+
+      // задаём размер игрового бокса
+      const ww = this._root.clientWidth;
+      const hh = this._root.clientHeight;
+
+      // получить позицию мышки относительно игрового бокса
+      const xMouse = event.offsetX;
+      const yMouse = event.offsetY;
+      mouse.x = (xMouse / ww) * 2 - 1;
+      mouse.y = -(yMouse / hh) * 2 + 1;
+      raycaster.setFromCamera(mouse, this._camera);
+
+      // создаём массив для хранения 3D объектов
+      // const objects = [this._country];
+
+      // получаем массив объектов, по которым был сделан щелчок
+      const intersects = raycaster.intersectObjects(this._points);
+
+      // если этот массив не пустой
+      if (this._points.length > 0) {
+        // координаты в 3д пространстве
+        // const objXYZ = intersects[0].point;
+        // const xx = objXYZ.x;
+        // const yy = objXYZ.y;
+        // const zz = objXYZ.z;
+        // console.log("X = " + xx + "  Y = " + yy + "  Z = " + zz);
+
+        // получаем самый первый объект, по которому щёлкнули
+        const answer = intersects[0];
+
+        if (answer?.object) {
+          const data = answer.object.userData;
+          alert(data.name);
+        }
+      }
+    }
   }
 
   private _stepCallback(): void {
@@ -74,13 +122,14 @@ class Planet {
     } else if (State.getModal() !== modal.NO && !m) {
       this._hideCountry();
     }
-    this._animation = anime({
+    anime({
       targets: this._sphere.rotation,
       x: state.rotation.x,
       y: state.rotation.y,
       z: state.rotation.z,
       easing: EASING,
-      duration: DURATION
+      duration: DURATION,
+      complete: (): void => this._zoom && this._showPoints()
     });
 
     if (this._zoom === false) {
@@ -92,22 +141,24 @@ class Planet {
         easing: EASING,
         duration: DURATION
       });
+    } else {
+      this._hidePoints();
     }
   }
 
-  private _createPlanet(): void {
+  private _loadComplete(): void {
     const texture = this._load.get('map');
     const material = new THREE.MeshBasicMaterial({
       map: texture
     });
     const geometry = new THREE.SphereGeometry(1.0499, 200, 200);
     this._sphere = new THREE.Mesh(geometry, material);
+    this._sphere.name = 'sphere';
     this._scene.add(this._sphere);
     const state = positions[0];
     this._sphere.position.set(state.position.x, state.position.y, state.position.z);
     this._sphere.rotation.set(state.rotation.x, state.rotation.y, state.rotation.z);
     this._createCountry();
-    // this._move(this._sphere, 0.01);
   }
 
   private _createCountry(): void {
@@ -120,8 +171,11 @@ class Planet {
     material.opacity = 0;
     const geometry = new THREE.SphereGeometry(1.065, 200, 200);
     this._country = new THREE.Mesh(geometry, material);
-    this._scene.add(this._country);
+    this._country.name = 'country';
     this._sphere.add(this._country);
+    this._click();
+    // const main = document.querySelector('#main') as HTMLElement;
+    // new OrbitControls(this._camera, main);
   }
 
   private _showCountry(country: modal): void {
@@ -169,24 +223,78 @@ class Planet {
     });
   }
 
+  private _showPoints(): void {
+    const data = points(State.getModal());
+    this._points.map(point => {
+      this._country.remove(point);
+    });
+    this._points = [];
+    data.map(point => {
+      const texture = this._load.get('point');
+      const material = new THREE.MeshBasicMaterial({
+        map: texture
+      });
+      material.transparent = true;
+      material.opacity = 0;
+      const meshTexture = new THREE.Mesh(
+        new THREE.PlaneGeometry(.128, .128),
+        material
+      );
+      const position = point.position;
+      const rotation = point.rotation;
+      
+      meshTexture.position.set(position.x, position.y, position.z);
+      meshTexture.rotation.set(rotation.x, rotation.y, rotation.z);
+      meshTexture.scale.set(1, 1, 1);
+      meshTexture.userData = {
+        name: point.data
+      }
+      this._country.add(meshTexture);
+      this._points.push(meshTexture);
+
+      anime({
+        targets: material,
+        opacity: 1,
+        easing: EASING,
+        duration: DURATION / 2
+      });
+    });
+  }
+
+  private _hidePoints(): void {
+    this._points.map(point => {
+      anime({
+        targets: point.material,
+        opacity: 0,
+        easing: EASING,
+        duration: DURATION / 2,
+        complete: (): void => {
+          this._country.remove(point);
+        }
+      });
+    });
+  }
+
   private _checkZoom(): void {
     if (!this._sphere) return;
     if (!this._zoom && State.getModal() !== modal.NO && State.getModalActive()) {
       this._zoom = true;
-      this._animation = anime({
+      anime({
         targets: this._sphere.position,
         x: ZOOM.x,
         y: ZOOM.y,
         z: ZOOM.z,
         easing: EASING,
-        duration: DURATION
+        duration: DURATION,
+        complete: (): void => this._showPoints()
       });
     } else if (this._zoom && (State.getModal() === modal.NO || !State.getModalActive())) {
       this._zoom = false;
       const i = State.getStep();
       const state = positions[i];
       if (!state) return;
-      this._animation = anime({
+      this._hidePoints();
+      anime({
         targets: this._sphere.position,
         x: state.position.x,
         y: state.position.y,
