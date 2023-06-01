@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/new-world/static/css/main.83f9e14b.css",
+    "main.css": "/new-world/static/css/main.17b4f0bb.css",
     "main.js": "/new-world/static/js/main.da7482b9.js",
     "static/media/map.png": "/new-world/static/media/map.f63a5d10a14771196295.png",
     "static/media/section-two-bg.png": "/new-world/static/media/section-two-bg.1d8039956b212c747267.png",
@@ -23,11 +23,11 @@
     "static/media/section-one-stars-1.png": "/new-world/static/media/section-one-stars-1.10496b57b8fead3cdbac.png",
     "index.html": "/new-world/index.html",
     "static/media/section-one-arrow.svg": "/new-world/static/media/section-one-arrow.459545896024926bd36e4f768edc6904.svg",
-    "main.83f9e14b.css.map": "/new-world/static/css/main.83f9e14b.css.map",
+    "main.17b4f0bb.css.map": "/new-world/static/css/main.17b4f0bb.css.map",
     "main.da7482b9.js.map": "/new-world/static/js/main.da7482b9.js.map"
   },
   "entrypoints": [
-    "static/css/main.83f9e14b.css",
+    "static/css/main.17b4f0bb.css",
     "static/js/main.da7482b9.js"
   ]
 }
