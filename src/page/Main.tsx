@@ -58,7 +58,6 @@ export const Main = observer(() => {
 
   return (
     <div className="main" id='main' >
-      <p style={{ position: 'fixed', color: 'red', right: 0, zIndex: 100 }}>Current step: {State.getStep()}</p>
       <FirstSection />
       {State.getStep() >= MAX_STEP - 2 ? <SecondSection /> : null}
       {State.getStep() >= MAX_STEP - 1? <ThirdSection /> : null}

@@ -4,6 +4,8 @@ import State from '../../../store/State';
 import { modal } from '../../../types/enums';
 import { useMemo } from 'react';
 import { runInAction } from "mobx"
+import points from '../../../three/points';
+
 export const Modal = observer(() => {
   let activeStyle = State.getModalActive() ? styles.active : styles.inactive
   const modalType = State.getModal()
@@ -25,7 +27,7 @@ export const Modal = observer(() => {
   const title = useMemo((): string => {
     let modalTypeCheck = State.getModal()
     if (modalTypeCheck === modal.NO) {
-      modalTypeCheck = State.getModalPrev()
+      modalTypeCheck = State.getModalPrev()  
     }
     switch (modalTypeCheck) {
       case (modal.CHINA):
@@ -43,7 +45,20 @@ export const Modal = observer(() => {
     }
   }, [modalType])
 
+  const content = useMemo((): string => {
+    let modalTypeCheck = State.getModal()
+    let countryPointIndex = State.getCountryPointIndex()
+    if (modalTypeCheck === modal.NO) {
+      countryPointIndex = State.getCountryPointIndexPrev()
+    }
+    if (points) {
+      return points(modalTypeCheck)[countryPointIndex]?.data
+    } else {
+      return null
+    }
+  }, [modalType])
 
+  console.log(points(modal.CHINA))
   return (
     <div className={styles.modal_block + ' ' + activeStyle}>
       <div className={styles.btn_back} onClick={onClickBack}>
@@ -55,7 +70,7 @@ export const Modal = observer(() => {
         </p>
 
         <p className={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis eros commodo, vehicula turpis eu, posuere diam. Duis et dapibus lacus. Morbi bibendum, nulla sed imperdiet lacinia, diam nibh mattis sapien, non vehicula nulla nisl et nibh. Sed ac tincidunt augue. Suspendisse dictum pulvinar purus sed eleifend. Sed eu suscipit nulla. Sed nec risus eget justo dapibus cursus in et nibh.  Mauris nec diam at leo pellentesque dignissim et eu augue. Nunc in mattis nibh, et laoreet arcu. Aenean sit amet rhoncus risus. Etiam vitae pellentesque diam, nec porttitor eros. Aliquam vehicula diam a nisi sodales, sit amet feugiat dui vulputate. Vestibulum pulvinar ligula rutrum eros laoreet pellentesque. Aliquam
+          {content}
         </p>
       </div>
       <div className={styles.btn_down}>

@@ -18,6 +18,8 @@ class State {
   private _modal: modal = modal.NO
   private _step: number = 0
   private _scrollTimer: number = 0
+  private _countryPointIndex: number = 0
+  private _countryPointIndexPrev: number = 0
   public stepCallback: Function = (): void => {}
 
   constructor() {
@@ -127,6 +129,19 @@ class State {
 
   public getScrollTimer(): number {
     return this._scrollTimer
+  }
+
+  public setCountryPointIndex(index: number): void {
+    this._countryPointIndexPrev = this._countryPointIndex
+    this._countryPointIndex = index
+  }
+
+  public getCountryPointIndex(): number {
+    return this._countryPointIndex
+  }
+
+  public getCountryPointIndexPrev(): number {
+    return this._countryPointIndexPrev
   }
 }
 

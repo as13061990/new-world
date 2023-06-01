@@ -69,5 +69,6 @@ const points: Ipoints[] = [
 ];
 
 export default (country: modal) => {
-  return points.find(data => data.state === country).points;
+  const foundData = points.find(data => data.state === country);
+  return foundData ? foundData.points : [];
 }
