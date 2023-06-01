@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/new-world/static/css/main.83f9e14b.css",
+    "main.js": "/new-world/static/js/main.da7482b9.js",
+    "static/media/map.png": "/new-world/static/media/map.f63a5d10a14771196295.png",
+    "static/media/section-two-bg.png": "/new-world/static/media/section-two-bg.1d8039956b212c747267.png",
+    "static/media/section-three-CS.png": "/new-world/static/media/section-three-CS.708e260fec4fe916e188.png",
+    "static/media/section-three-CN.png": "/new-world/static/media/section-three-CN.5be1d06aa2c26784d563.png",
+    "static/media/section-three-BR.png": "/new-world/static/media/section-three-BR.06b9033e199002e97df4.png",
+    "static/media/section-three-ZA.png": "/new-world/static/media/section-three-ZA.1dd6c013a32d5beed561.png",
+    "static/media/section-three-BY.png": "/new-world/static/media/section-three-BY.06545cf4925eda94946a.png",
+    "static/media/section-three-IN.png": "/new-world/static/media/section-three-IN.0d4eef216135a0dd2f01.png",
+    "static/media/section-three-BR-info.png": "/new-world/static/media/section-three-BR-info.fc0049e7fc3162b4d405.png",
+    "static/media/MonacoRegular.ttf": "/new-world/static/media/MonacoRegular.58102a1c5cc9b8b664b7.ttf",
+    "static/media/china.png": "/new-world/static/media/china.da3b996ad194e5872427.png",
+    "static/media/brazil.png": "/new-world/static/media/brazil.3be90f7d4a9859461979.png",
+    "static/media/HelveticaNeueMedium.otf": "/new-world/static/media/HelveticaNeueMedium.aac832b31cda7c2489a3.otf",
+    "static/media/india.png": "/new-world/static/media/india.f9768bf41dbd4ea09370.png",
+    "static/media/south-africa.png": "/new-world/static/media/south-africa.7f1b3b5b3149ec362763.png",
+    "static/media/belarus.png": "/new-world/static/media/belarus.a68e1ca17186e25b93d6.png",
+    "static/media/HelveticaNeueRegular.otf": "/new-world/static/media/HelveticaNeueRegular.84fb498ef9ef3d096f71.otf",
+    "static/media/serbia.png": "/new-world/static/media/serbia.db228ede91aef304b6e7.png",
+    "static/media/section-one-stars-1.png": "/new-world/static/media/section-one-stars-1.10496b57b8fead3cdbac.png",
+    "index.html": "/new-world/index.html",
+    "static/media/section-one-arrow.svg": "/new-world/static/media/section-one-arrow.459545896024926bd36e4f768edc6904.svg",
+    "main.83f9e14b.css.map": "/new-world/static/css/main.83f9e14b.css.map",
+    "main.da7482b9.js.map": "/new-world/static/js/main.da7482b9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.83f9e14b.css",
+    "static/js/main.da7482b9.js"
+  ]
+}
