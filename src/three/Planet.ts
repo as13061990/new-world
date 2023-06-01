@@ -86,7 +86,7 @@ class Planet {
       raycaster.setFromCamera(mouse, this._camera);
 
       // создаём массив для хранения 3D объектов
-      // const objects = [this._country];
+      // this._points - массив объектов, по которым отслеживаем клик
 
       // получаем массив объектов, по которым был сделан щелчок
       const intersects = raycaster.intersectObjects(this._points);
@@ -237,7 +237,7 @@ class Planet {
       material.transparent = true;
       material.opacity = 0;
       const meshTexture = new THREE.Mesh(
-        new THREE.PlaneGeometry(.128, .128),
+        new THREE.PlaneGeometry(.08, 0.1),
         material
       );
       const position = point.position;
@@ -245,7 +245,7 @@ class Planet {
       
       meshTexture.position.set(position.x, position.y, position.z);
       meshTexture.rotation.set(rotation.x, rotation.y, rotation.z);
-      meshTexture.scale.set(1, 1, 1);
+      meshTexture.scale.set(.5, .5, .5);
       meshTexture.userData = {
         name: point.data
       }

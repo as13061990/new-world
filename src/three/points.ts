@@ -7,7 +7,12 @@ const points: Ipoints[] = [
       {
         position: { x: -0.3, y: .6, z: -.9 },
         rotation: { x: 3.4, y: -.4, z: 3.2 },
-        data: 'Точнка на карте Китая'
+        data: 'Точнка на карте Китая 1'
+      },
+      {
+        position: { x: -0.3, y: .7, z: -.9 },
+        rotation: { x: 3.4, y: -.4, z: 3.2 },
+        data: 'Точнка на карте Китая 2'
       }
     ]
   },
