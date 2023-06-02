@@ -1,0 +1,26 @@
+.img {
+  width: 98px;
+  height: 48px;
+  margin: 6px 6px 8px 6px;
+}
+
+.text {
+  font-family: 'Monaco';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12.4133px;
+  text-align: center;
+  color: #343434;
+}
+
+.triangle {
+  position: absolute;
+  bottom: -13px;
+  left: 55px;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 13px 7.5px 0 7.5px;
+  border-color: #ff0303 transparent transparent transparent;
+}

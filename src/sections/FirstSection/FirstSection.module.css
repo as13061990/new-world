@@ -19,7 +19,7 @@
   overflow: hidden;
   position: absolute;
   right: 0;
-  z-index: 2;
+  z-index: 0;
   width: 338px;
   height: 438px;
   background: #923DFF;
@@ -29,7 +29,7 @@
 .blur_left {
   position: absolute;
   left: -100px;
-  z-index: 2;
+  z-index: 0;
   top: -180px;
   width: 438px;
   height: 438px;

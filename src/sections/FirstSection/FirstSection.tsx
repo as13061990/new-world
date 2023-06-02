@@ -3,6 +3,7 @@ import State from '../../store/State';
 import Modal from './Modal/Modal';
 import { modal } from '../../types/enums';
 import { observer } from 'mobx-react-lite';
+import ModalPointer from './ModalPointer/ModalPointer';
 
 export const FirstSection = observer(({ innerRef }: any) => {
   const canvasThreeClass = State.getModal() === modal.NO ? styles.inactive : State.getModalActive() ? styles.inactive : styles.active
@@ -24,15 +25,7 @@ export const FirstSection = observer(({ innerRef }: any) => {
       </div>
       <Modal />
       <div id='canvas_three' className={styles.canvas_three}>
-        <div id="test" style={{
-          backgroundColor: 'red',
-          position: 'absolute', 
-          left: State.getIconPosition().x,
-          top: State.getIconPosition().y,
-          width: 100,
-          height: 70,
-          borderRadius: 10
-        }}></div>
+        <ModalPointer/>
       </div>
     </div>
   )

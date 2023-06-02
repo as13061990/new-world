@@ -16,6 +16,8 @@ interface Ipoint {
   position: Vector3;
   rotation: Vector3;
   data: string;
+  image: string;
+  name: string;
 }
 interface Ipoints {
   state: string;

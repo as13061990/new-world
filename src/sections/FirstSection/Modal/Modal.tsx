@@ -9,6 +9,7 @@ import points from '../../../three/points';
 export const Modal = observer(() => {
   let activeStyle = State.getModalActive() ? styles.active : styles.inactive
   const modalType = State.getModal()
+  const index = State.getCountryPointIndex()
   if (modalType === modal.NO) {
     runInAction(() => {
       State.setModalActive(false)
@@ -44,7 +45,7 @@ export const Modal = observer(() => {
         return 'Бразилия'
     }
   }, [modalType])
-
+  
   const content = useMemo((): string => {
     let modalTypeCheck = State.getModal()
     let countryPointIndex = State.getCountryPointIndex()
@@ -56,7 +57,7 @@ export const Modal = observer(() => {
     } else {
       return null
     }
-  }, [modalType])
+  }, [modalType, index])
 
   return (
     <div className={styles.modal_block + ' ' + activeStyle}>
