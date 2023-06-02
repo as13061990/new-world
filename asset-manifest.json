@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/new-world/static/css/main.f95e33d4.css",
+    "main.css": "/new-world/static/css/main.14b63f98.css",
     "main.js": "/new-world/static/js/main.736cf409.js",
     "static/media/map.png": "/new-world/static/media/map.f63a5d10a14771196295.png",
     "static/media/section-two-bg.png": "/new-world/static/media/section-two-bg.1d8039956b212c747267.png",
@@ -24,11 +24,11 @@
     "static/media/attractions-india-1.png": "/new-world/static/media/attractions-india-1.66700afe04e550483803.png",
     "index.html": "/new-world/index.html",
     "static/media/section-one-arrow.svg": "/new-world/static/media/section-one-arrow.459545896024926bd36e4f768edc6904.svg",
-    "main.f95e33d4.css.map": "/new-world/static/css/main.f95e33d4.css.map",
+    "main.14b63f98.css.map": "/new-world/static/css/main.14b63f98.css.map",
     "main.736cf409.js.map": "/new-world/static/js/main.736cf409.js.map"
   },
   "entrypoints": [
-    "static/css/main.f95e33d4.css",
+    "static/css/main.14b63f98.css",
     "static/js/main.736cf409.js"
   ]
 }
