@@ -245,7 +245,14 @@ class Planet {
       this._country.add(meshTexture);
       this._points.push(meshTexture);
       meshTexture.lookAt(this._camera.position);
-      this._move(meshTexture, 0.01);
+      
+      if (index === 0) {
+        const vector = meshTexture.getWorldPosition(new THREE.Vector3());
+        const position = this.toScreenXY(vector);
+        State.setIconPosition(position.x, position.y);
+        State.setCountryPointIndex(0);
+      }
+
       anime({
         targets: material,
         opacity: 1,
