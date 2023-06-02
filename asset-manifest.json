@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/new-world/static/css/main.17b4f0bb.css",
-    "main.js": "/new-world/static/js/main.da7482b9.js",
+    "main.css": "/new-world/static/css/main.8f73cb6f.css",
+    "main.js": "/new-world/static/js/main.736cf409.js",
     "static/media/map.png": "/new-world/static/media/map.f63a5d10a14771196295.png",
     "static/media/section-two-bg.png": "/new-world/static/media/section-two-bg.1d8039956b212c747267.png",
     "static/media/section-three-CS.png": "/new-world/static/media/section-three-CS.708e260fec4fe916e188.png",
@@ -21,13 +21,14 @@
     "static/media/HelveticaNeueRegular.otf": "/new-world/static/media/HelveticaNeueRegular.84fb498ef9ef3d096f71.otf",
     "static/media/serbia.png": "/new-world/static/media/serbia.db228ede91aef304b6e7.png",
     "static/media/section-one-stars-1.png": "/new-world/static/media/section-one-stars-1.10496b57b8fead3cdbac.png",
+    "static/media/attractions-india-1.png": "/new-world/static/media/attractions-india-1.66700afe04e550483803.png",
     "index.html": "/new-world/index.html",
     "static/media/section-one-arrow.svg": "/new-world/static/media/section-one-arrow.459545896024926bd36e4f768edc6904.svg",
-    "main.17b4f0bb.css.map": "/new-world/static/css/main.17b4f0bb.css.map",
-    "main.da7482b9.js.map": "/new-world/static/js/main.da7482b9.js.map"
+    "main.8f73cb6f.css.map": "/new-world/static/css/main.8f73cb6f.css.map",
+    "main.736cf409.js.map": "/new-world/static/js/main.736cf409.js.map"
   },
   "entrypoints": [
-    "static/css/main.17b4f0bb.css",
-    "static/js/main.da7482b9.js"
+    "static/css/main.8f73cb6f.css",
+    "static/js/main.736cf409.js"
   ]
 }
