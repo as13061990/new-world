@@ -36,7 +36,7 @@ export const Modal = observer(() => {
       case (modal.INDIA):
         return 'Индия'
       case (modal.BELARUS):
-        return 'Белоруссия'
+        return 'Беларусь'
       case (modal.SERBIA):
         return 'Сербия'
       case (modal.SOUTH_AFRICA):
