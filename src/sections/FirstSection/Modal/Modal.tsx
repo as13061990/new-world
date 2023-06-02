@@ -51,6 +51,7 @@ export const Modal = observer(() => {
     let countryPointIndex = State.getCountryPointIndex()
     if (modalTypeCheck === modal.NO) {
       countryPointIndex = State.getCountryPointIndexPrev()
+      modalTypeCheck = State.getModalPrev()
     }
     if (points) {
       if (points(modalTypeCheck)[countryPointIndex]?.data) {

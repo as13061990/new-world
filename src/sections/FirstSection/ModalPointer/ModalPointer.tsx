@@ -14,6 +14,7 @@ export const ModalPointer = observer(() => {
     let countryPointIndex = State.getCountryPointIndex()
     if (modalTypeCheck === modal.NO) {
       countryPointIndex = State.getCountryPointIndexPrev()
+      modalTypeCheck = State.getModalPrev()
     }
     if (points) {
       if (points(modalTypeCheck)[countryPointIndex]?.image) {
@@ -22,7 +23,7 @@ export const ModalPointer = observer(() => {
         return points(modalTypeCheck)[0]?.image
       }
     } else {
-      return points(State.getModalPrev())[countryPointIndex]?.name
+      return null
     }
   }, [modalType, index])
 
@@ -31,6 +32,7 @@ export const ModalPointer = observer(() => {
     let countryPointIndex = State.getCountryPointIndex()
     if (modalTypeCheck === modal.NO) {
       countryPointIndex = State.getCountryPointIndexPrev()
+      modalTypeCheck = State.getModalPrev()
     }
     if (points) {
       if (points(modalTypeCheck)[countryPointIndex]?.name) {
@@ -39,7 +41,7 @@ export const ModalPointer = observer(() => {
         return points(modalTypeCheck)[0]?.name
       }
     } else {
-      return points(State.getModalPrev())[countryPointIndex]?.name
+      return null
     }
   }, [modalType, index])
 
@@ -60,7 +62,7 @@ export const ModalPointer = observer(() => {
         borderRadius: 10,
         opacity: 1,
         transition: '0.4s opacity',
-        transitionDelay: indexPrev === null && modalActivePrev? '0.2s' : '0.7s',
+        transitionDelay: indexPrev === null && modalActivePrev ? '0.2s' : '0.6s',
       }
     } else {
       return {
@@ -75,18 +77,17 @@ export const ModalPointer = observer(() => {
         transition: '0.1s opacity',
       }
     }
-  }, [modalActive, y, x, index, indexPrev, modalActivePrev])
-  console.log(index, State.getCountryPointIndexPrev())
-  console.log(modalActive, modalActivePrev)
+  }, [index, x,y, modalActive, indexPrev, modalActivePrev])
+
   return (<>
-    {styleModal ?
+
       <div id="test" style={styleModal}>
         <img src={image} alt='attraction' className={styles.img} />
         <p className={styles.text}>{name}</p>
 
         <div className={styles.triangle}></div>
       </div>
-      : null}
+
 
   </>
   )
