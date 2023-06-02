@@ -14,7 +14,6 @@ interface IPlanetState {
 }
 interface Ipoint {
   position: Vector3;
-  rotation: Vector3;
   data: string;
 }
 interface Ipoints {
