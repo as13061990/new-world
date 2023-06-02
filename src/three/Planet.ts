@@ -93,22 +93,41 @@ class Planet {
 
       // если этот массив не пустой
       if (this._points.length > 0) {
-        // координаты в 3д пространстве
-        // const objXYZ = intersects[0].point;
-        // const xx = objXYZ.x;
-        // const yy = objXYZ.y;
-        // const zz = objXYZ.z;
-        // console.log("X = " + xx + "  Y = " + yy + "  Z = " + zz);
-
         // получаем самый первый объект, по которому щёлкнули
         const answer = intersects[0];
 
         if (answer?.object) {
-          const data = answer.object.userData;
-          alert(data.name);
+          const mesh = answer.object as THREE.Mesh;
+          const vector = mesh.getWorldPosition(new THREE.Vector3());
+          const position = this.toScreenXY(vector);
+          State.setIconPosition(position.x, position.y);
+          State.setCountryPointIndex(mesh.userData.index);
+
+          // console.log(answer.point)
+          // console.log(answer.object)
+
+          // юзерские данные
+          // const data = mesh.userData;
+          // console.log(data.text);
+
+          // координаты в 3д пространстве курсора
+          // console.log(answer.point);
         }
       }
     }
+  }
+
+  private toScreenXY(position: THREE.Vector3): Vector2 {
+    const pos = position.clone();
+    const vector = pos.project(this._camera);
+
+    // console.log(pos)
+    // console.log(vector)
+
+    const { width, height } = this._root.getBoundingClientRect();
+    vector.x = (vector.x + 1) / 2 * width;
+    vector.y = -(vector.y - 1) / 2 * height;
+    return vector;
   }
 
   private _stepCallback(): void {
@@ -229,7 +248,7 @@ class Planet {
       this._country.remove(point);
     });
     this._points = [];
-    data.map(point => {
+    data.map((point, index) => {
       const texture = this._load.get('point');
       const material = new THREE.MeshBasicMaterial({
         map: texture
@@ -247,7 +266,8 @@ class Planet {
       meshTexture.rotation.set(rotation.x, rotation.y, rotation.z);
       meshTexture.scale.set(.5, .5, .5);
       meshTexture.userData = {
-        name: point.data
+        text: point.data,
+        index: index
       }
       this._country.add(meshTexture);
       this._points.push(meshTexture);

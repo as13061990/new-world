@@ -58,7 +58,6 @@ export const Modal = observer(() => {
     }
   }, [modalType])
 
-  console.log(points(modal.CHINA))
   return (
     <div className={styles.modal_block + ' ' + activeStyle}>
       <div className={styles.btn_back} onClick={onClickBack}>

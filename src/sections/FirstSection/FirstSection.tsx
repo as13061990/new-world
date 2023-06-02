@@ -23,7 +23,17 @@ export const FirstSection = observer(({ innerRef }: any) => {
         <p className={styles.subtitle + ' ' + textClass}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis eros commodo, vehicula turpis eu, posuere diam. Duis et dapibus lacus. Morbi bibendum, nulla sed imperdiet lacinia, diam nibh mattis sapien, non vehicula nulla nisl et nibh. Sed ac tincidunt augue. Suspendisse dictum pulvinar purus sed eleifend. Sed eu suscipit nulla. Sed nec risus eget justo dapibus cursus in et nibh. </p>
       </div>
       <Modal />
-      <div id='canvas_three' className={styles.canvas_three}></div>
+      <div id='canvas_three' className={styles.canvas_three}>
+        <div id="test" style={{
+          backgroundColor: 'red',
+          position: 'absolute', 
+          left: State.getIconPosition().x,
+          top: State.getIconPosition().y,
+          width: 100,
+          height: 70,
+          borderRadius: 10
+        }}></div>
+      </div>
     </div>
   )
 });
