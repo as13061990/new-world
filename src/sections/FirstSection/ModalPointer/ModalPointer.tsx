@@ -22,7 +22,7 @@ export const ModalPointer = observer(() => {
         return points(modalTypeCheck)[0]?.image
       }
     } else {
-      return null
+      return points(State.getModalPrev())[countryPointIndex]?.name
     }
   }, [modalType, index])
 
@@ -39,25 +39,56 @@ export const ModalPointer = observer(() => {
         return points(modalTypeCheck)[0]?.name
       }
     } else {
-      return null
+      return points(State.getModalPrev())[countryPointIndex]?.name
     }
   }, [modalType, index])
-  console.log(State.getIconPosition())
-  return (
-    <div id="test" style={{
-      backgroundColor: 'red',
-      position: 'absolute',
-      left: State.getIconPosition().x - 55,
-      top: State.getIconPosition().y - 115,
-      width: 110,
-      height: 95,
-      borderRadius: 10
-    }}>
-      <img src={image} alt='attraction' className={styles.img} />
-      <p className={styles.text}>{name}</p>
 
-      <div className={styles.triangle}></div>
-    </div>
+  const modalActive = State.getModalActive()
+  const modalTypePrev = State.getModalPrev()
+  const modalActivePrev = State.getModalActivePrev()
+  const indexPrev =  State.getCountryPointIndexPrev()
+  const { x, y } = State.getIconPosition()
+  const styleModal = useMemo((): {} => {
+    if (modalActive && index !== null ) {
+      return {
+        backgroundColor: 'red',
+        position: 'absolute',
+        left: x - 55,
+        top: y - 125,
+        width: 110,
+        height: 95,
+        borderRadius: 10,
+        opacity: 1,
+        transition: '0.4s opacity',
+        transitionDelay: indexPrev === null && modalActivePrev? '0.2s' : '0.7s',
+      }
+    } else {
+      return {
+        backgroundColor: 'red',
+        position: 'absolute',
+        left: x - 55,
+        top: y - 125,
+        width: 110,
+        height: 95,
+        borderRadius: 10,
+        opacity: 0,
+        transition: '0.1s opacity',
+      }
+    }
+  }, [modalActive, y, x, index, indexPrev, modalActivePrev])
+  console.log(index, State.getCountryPointIndexPrev())
+  console.log(modalActive, modalActivePrev)
+  return (<>
+    {styleModal ?
+      <div id="test" style={styleModal}>
+        <img src={image} alt='attraction' className={styles.img} />
+        <p className={styles.text}>{name}</p>
+
+        <div className={styles.triangle}></div>
+      </div>
+      : null}
+
+  </>
   )
 });
 

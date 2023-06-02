@@ -14,12 +14,13 @@ class State {
   private _isTimer: boolean = false
   private _activeHint: boolean = false
   private _modalActive: boolean = false
+  private _modalActivePrev: boolean = false
   private _modalPrev: modal = null
   private _modal: modal = modal.NO
   private _step: number = 0
   private _scrollTimer: number = 0
-  private _countryPointIndex: number = 0
-  private _countryPointIndexPrev: number = 0
+  private _countryPointIndex: number = null
+  private _countryPointIndexPrev: number = null
   private _iconPosition: string = JSON.stringify({ x: 0, y: 0 });
   public stepCallback: Function = (): void => {}
 
@@ -84,6 +85,9 @@ class State {
 
   public setModal(modal: modal): void {
     this._modalPrev = this._modal
+    if (this._modalActive) {
+      this._modalActivePrev = this._modalActive
+    }
     this._modal = modal;
   }
 
@@ -92,11 +96,16 @@ class State {
   }
 
   public setModalActive(modal: boolean): void {
+    this._modalActivePrev = this._modalActive
     this._modalActive = modal;
   }
 
   public getModalActive(): boolean {
     return this._modalActive;
+  }
+
+  public getModalActivePrev(): boolean {
+    return this._modalActivePrev;
   }
 
   public getModalPrev(): modal {

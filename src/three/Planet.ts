@@ -137,6 +137,7 @@ class Planet {
         duration: DURATION
       });
     } else {
+      State.setCountryPointIndex(null)
       this._hidePoints();
     }
   }

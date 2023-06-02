@@ -1,7 +1,7 @@
 .modal_block {
   position: fixed;
   z-index: -1;
-  bottom: 150px;
+  top: 200px;
   right: 126px;
 }
 
@@ -117,7 +117,7 @@
 
 @media screen and (max-width: 580px) {
   .modal_block {
-    bottom: 80px;
+    top: 120px;
   }
 
   .modal {
@@ -136,7 +136,7 @@
 
 @media (min-width: 500px) and (max-width: 1024px) {
   .modal_block {
-    bottom: 20px;
+    top: 100px;
   }
 
   .modal {
