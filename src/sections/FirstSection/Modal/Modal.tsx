@@ -28,7 +28,7 @@ export const Modal = observer(() => {
   const title = useMemo((): string => {
     let modalTypeCheck = State.getModal()
     if (modalTypeCheck === modal.NO) {
-      modalTypeCheck = State.getModalPrev()  
+      modalTypeCheck = State.getModalPrev()
     }
     switch (modalTypeCheck) {
       case (modal.CHINA):
@@ -45,7 +45,7 @@ export const Modal = observer(() => {
         return 'Бразилия'
     }
   }, [modalType])
-  
+
   const content = useMemo((): string => {
     let modalTypeCheck = State.getModal()
     let countryPointIndex = State.getCountryPointIndex()
@@ -53,7 +53,11 @@ export const Modal = observer(() => {
       countryPointIndex = State.getCountryPointIndexPrev()
     }
     if (points) {
-      return points(modalTypeCheck)[countryPointIndex]?.data
+      if (points(modalTypeCheck)[countryPointIndex]?.data) {
+        return points(modalTypeCheck)[countryPointIndex]?.data
+      } else {
+        return points(modalTypeCheck)[0]?.data
+      }
     } else {
       return null
     }

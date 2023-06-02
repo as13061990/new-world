@@ -16,7 +16,11 @@ export const ModalPointer = observer(() => {
       countryPointIndex = State.getCountryPointIndexPrev()
     }
     if (points) {
-      return points(modalTypeCheck)[countryPointIndex]?.image
+      if (points(modalTypeCheck)[countryPointIndex]?.image) {
+        return points(modalTypeCheck)[countryPointIndex]?.image
+      } else {
+        return points(modalTypeCheck)[0]?.image
+      }
     } else {
       return null
     }
@@ -29,7 +33,11 @@ export const ModalPointer = observer(() => {
       countryPointIndex = State.getCountryPointIndexPrev()
     }
     if (points) {
-      return points(modalTypeCheck)[countryPointIndex]?.name
+      if (points(modalTypeCheck)[countryPointIndex]?.name) {
+        return points(modalTypeCheck)[countryPointIndex]?.name
+      } else {
+        return points(modalTypeCheck)[0]?.name
+      }
     } else {
       return null
     }
