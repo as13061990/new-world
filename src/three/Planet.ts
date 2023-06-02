@@ -70,30 +70,18 @@ class Planet {
 
   private _click(): void {
     document.onclick = (event): void => {
-      // создаём вспомогательные объекты для поиска щелчка
       const raycaster = new THREE.Raycaster();
       const mouse = new THREE.Vector2();
-
-      // задаём размер игрового бокса
       const ww = this._root.clientWidth;
       const hh = this._root.clientHeight;
-
-      // получить позицию мышки относительно игрового бокса
       const xMouse = event.offsetX;
       const yMouse = event.offsetY;
       mouse.x = (xMouse / ww) * 2 - 1;
       mouse.y = -(yMouse / hh) * 2 + 1;
       raycaster.setFromCamera(mouse, this._camera);
-
-      // создаём массив для хранения 3D объектов
-      // this._points - массив объектов, по которым отслеживаем клик
-
-      // получаем массив объектов, по которым был сделан щелчок
       const intersects = raycaster.intersectObjects(this._points);
 
-      // если этот массив не пустой
       if (this._points.length > 0) {
-        // получаем самый первый объект, по которому щёлкнули
         const answer = intersects[0];
 
         if (answer?.object) {
@@ -102,15 +90,7 @@ class Planet {
           const position = this.toScreenXY(vector);
           State.setIconPosition(position.x, position.y);
           State.setCountryPointIndex(mesh.userData.index);
-
-          // console.log(answer.point)
-          // console.log(answer.object)
-
-          // юзерские данные
-          // const data = mesh.userData;
-          // console.log(data.text);
-
-          // координаты в 3д пространстве курсора
+          // координаты курсора в 3д пространстве
           // console.log(answer.point);
         }
       }
@@ -120,10 +100,6 @@ class Planet {
   private toScreenXY(position: THREE.Vector3): Vector2 {
     const pos = position.clone();
     const vector = pos.project(this._camera);
-
-    // console.log(pos)
-    // console.log(vector)
-
     const { width, height } = this._root.getBoundingClientRect();
     vector.x = (vector.x + 1) / 2 * width;
     vector.y = -(vector.y - 1) / 2 * height;
@@ -260,10 +236,7 @@ class Planet {
         material
       );
       const position = point.position;
-      const rotation = point.rotation;
-      
       meshTexture.position.set(position.x, position.y, position.z);
-      meshTexture.rotation.set(rotation.x, rotation.y, rotation.z);
       meshTexture.scale.set(.5, .5, .5);
       meshTexture.userData = {
         text: point.data,
@@ -271,7 +244,8 @@ class Planet {
       }
       this._country.add(meshTexture);
       this._points.push(meshTexture);
-
+      meshTexture.lookAt(this._camera.position);
+      this._move(meshTexture, 0.01);
       anime({
         targets: material,
         opacity: 1,
