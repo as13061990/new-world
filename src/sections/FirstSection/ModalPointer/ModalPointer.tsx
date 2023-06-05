@@ -62,7 +62,6 @@ export const ModalPointer = observer(() => {
         borderRadius: 10,
         opacity: 1,
         transition: '0.4s opacity',
-        transitionDelay: indexPrev === null && modalActivePrev ? '0.2s' : '0.6s',
       }
     } else {
       return {
@@ -77,7 +76,7 @@ export const ModalPointer = observer(() => {
         transition: '0.1s opacity',
       }
     }
-  }, [index, x,y, modalActive, indexPrev, modalActivePrev])
+  }, [index, x,y, modalActive])
   console.log(index)
   return (<>
 
