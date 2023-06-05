@@ -88,9 +88,7 @@ class Planet {
 
         if (answer?.object) {
           const mesh = answer.object as THREE.Mesh;
-          const vector = mesh.getWorldPosition(new THREE.Vector3());
-          const position = this.toScreenXY(vector);
-          State.setIconPosition(position.x, position.y);
+          this._icon = mesh;
           State.setCountryPointIndex(mesh.userData.index);
           // координаты курсора в 3д пространстве
           // console.log(answer.point);
@@ -144,7 +142,6 @@ class Planet {
         duration: DURATION
       });
     } else {
-      State.setCountryPointIndex(null)
       this._hidePoints();
     }
   }
@@ -257,26 +254,20 @@ class Planet {
       if (index === 0) {
         this._country.remove(this._icon);
         this._icon = meshTexture;
-        // const vector = meshTexture.getWorldPosition(new THREE.Vector3());
-        // const position = this.toScreenXY(vector);
-        // State.setIconPosition(position.x, position.y);
+        State.setCountryPointIndex(0);
       }
 
       anime({
         targets: material,
         opacity: 1,
         easing: EASING,
-        duration: DURATION / 2,
-        complete: () => {
-          if (index === 0) {
-            State.setCountryPointIndex(0);
-          }
-        }
+        duration: DURATION / 2
       });
     });
   }
 
   private _hidePoints(): void {
+    State.setCountryPointIndex(null);
     this._points.map(point => {
       anime({
         targets: point.material,
@@ -294,14 +285,18 @@ class Planet {
     if (!this._sphere) return;
     if (!this._zoom && State.getModal() !== modal.NO && State.getModalActive()) {
       this._zoom = true;
-      anime({
+      this._animation = anime({
         targets: this._sphere.position,
         x: ZOOM.x,
         y: ZOOM.y,
         z: ZOOM.z,
         easing: EASING,
         duration: DURATION,
-        complete: (): void => this._showPoints()
+        complete: (): void => {
+          if (this._animation.completed) {
+            this._showPoints();
+          }
+        }
       });
     } else if (this._zoom && (State.getModal() === modal.NO || !State.getModalActive())) {
       this._zoom = false;

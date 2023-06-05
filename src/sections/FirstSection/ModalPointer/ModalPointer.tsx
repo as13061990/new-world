@@ -77,18 +77,15 @@ export const ModalPointer = observer(() => {
       }
     }
   }, [index, x,y, modalActive])
-  console.log(index)
-  return (<>
 
+  return (
+    <>
       <div id="test" style={styleModal}>
         <img src={image} alt='attraction' className={styles.img} />
         <p className={styles.text}>{name}</p>
-
         <div className={styles.triangle}></div>
       </div>
-
-
-  </>
+    </>
   )
 });
 

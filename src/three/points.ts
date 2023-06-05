@@ -6,7 +6,7 @@ const points: Ipoints[] = [
     state: modal.CHINA,
     points: [
       {
-        position: { x: -0.3, y: .6, z: -.9 },
+        position: { x: -0.45, y: .6, z: -.9 },
         data: 'Точнка на карте Китая 1',
         image: india1,
         name: 'Тадж-Махал'
