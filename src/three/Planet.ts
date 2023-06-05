@@ -183,7 +183,7 @@ class Planet {
   private _showCountry(country: modal): void {
     State.setModal(country);
     const material = this._country.material as THREE.Material;
-    
+
     if (material.opacity === 0) {
       const texture = this._load.get(country);
       // @ts-ignore
@@ -252,7 +252,7 @@ class Planet {
       this._country.add(meshTexture);
       this._points.push(meshTexture);
       meshTexture.lookAt(this._camera.position);
-      
+
       if (index === 0) {
         const vector = meshTexture.getWorldPosition(new THREE.Vector3());
         const position = this.toScreenXY(vector);
@@ -264,12 +264,7 @@ class Planet {
         opacity: 1,
         easing: EASING,
         duration: DURATION / 2,
-        begin: ()=>{
-          if (!State.getModalActivePrev) {
-            State.setCountryPointIndex(null);
-          }
-        },
-        complete: ()=> {
+        complete: () => {
           if (index === 0) {
             State.setCountryPointIndex(0);
           }
@@ -341,7 +336,7 @@ class Planet {
 
         if (e.code === 'ArrowLeft') vector = vector === 0 ? 2 : vector - 1;
         else position = !position;
-        
+
         const vector3 = vector === 0 ? 'x' : vector === 1 ? 'y' : 'z';
         const property = position ? 'position' : 'rotation';
         console.log(property + ' - ' + vector3);
