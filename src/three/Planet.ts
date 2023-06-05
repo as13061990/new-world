@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import anime from 'animejs';
+import anime, { AnimeInstance } from 'animejs';
 import State from '../store/State';
 import { modal } from '../types/enums';
 import positions from './positions';
@@ -36,6 +36,7 @@ class Planet {
   private _renderer: THREE.WebGLRenderer;
   private _sphere: THREE.Mesh;
   private _country: THREE.Mesh;
+  private _animation: AnimeInstance;
   private _load: Loader = new Loader();
   private _zoom: boolean = false;
   private _points: THREE.Mesh[] = [];
@@ -117,14 +118,19 @@ class Planet {
     } else if (State.getModal() !== modal.NO && !m) {
       this._hideCountry();
     }
-    anime({
+
+    this._animation = anime({
       targets: this._sphere.rotation,
       x: state.rotation.x,
       y: state.rotation.y,
       z: state.rotation.z,
       easing: EASING,
       duration: DURATION,
-      complete: (): void => this._zoom && this._showPoints()
+      complete: (): void => {
+        if (this._zoom && this._animation.completed) {
+          this._showPoints();
+        }
+      }
     });
 
     if (this._zoom === false) {
