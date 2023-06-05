@@ -36,6 +36,7 @@ class Planet {
   private _renderer: THREE.WebGLRenderer;
   private _sphere: THREE.Mesh;
   private _country: THREE.Mesh;
+  private _icon: THREE.Mesh;
   private _animation: AnimeInstance;
   private _load: Loader = new Loader();
   private _zoom: boolean = false;
@@ -254,9 +255,11 @@ class Planet {
       meshTexture.lookAt(this._camera.position);
 
       if (index === 0) {
-        const vector = meshTexture.getWorldPosition(new THREE.Vector3());
-        const position = this.toScreenXY(vector);
-        State.setIconPosition(position.x, position.y);
+        this._country.remove(this._icon);
+        this._icon = meshTexture;
+        // const vector = meshTexture.getWorldPosition(new THREE.Vector3());
+        // const position = this.toScreenXY(vector);
+        // State.setIconPosition(position.x, position.y);
       }
 
       anime({
@@ -317,6 +320,17 @@ class Planet {
     }
   }
 
+  private _setIconPostition(): void {
+    if (!this._icon) return;
+    const vector = this._icon.getWorldPosition(new THREE.Vector3());
+    const position = this.toScreenXY(vector);
+    const state = State.getIconPosition();
+
+    if (state.x !== position.x || state.y !== position.y) {
+      State.setIconPosition(position.x, position.y);
+    }
+  }
+
   private _move(object: THREE.Mesh, step: number = .001): void {
     let vector = 0, position = false;
     const log = (): void => {
@@ -348,6 +362,7 @@ class Planet {
 
   private _update(time: number): void {
     this._checkZoom();
+    this._setIconPostition();
     this._renderer.render(this._scene, this._camera);
     requestAnimationFrame(this._update.bind(this));
   }
