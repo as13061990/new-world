@@ -19,6 +19,7 @@ export const Modal = observer(() => {
   const onClickBack = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
     e.stopPropagation()
     State.setModalActive(false)
+    State.setCountryPointIndex(null)
   }
 
   const onClickModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {

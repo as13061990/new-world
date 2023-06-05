@@ -257,14 +257,23 @@ class Planet {
         const vector = meshTexture.getWorldPosition(new THREE.Vector3());
         const position = this.toScreenXY(vector);
         State.setIconPosition(position.x, position.y);
-        State.setCountryPointIndex(0);
       }
 
       anime({
         targets: material,
         opacity: 1,
         easing: EASING,
-        duration: DURATION / 2
+        duration: DURATION / 2,
+        begin: ()=>{
+          if (!State.getModalActivePrev) {
+            State.setCountryPointIndex(null);
+          }
+        },
+        complete: ()=> {
+          if (index === 0) {
+            State.setCountryPointIndex(0);
+          }
+        }
       });
     });
   }

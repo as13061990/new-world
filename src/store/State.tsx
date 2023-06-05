@@ -97,6 +97,7 @@ class State {
 
   public setModalActive(modal: boolean): void {
     this._modalActivePrev = this._modalActive
+    this.setActiveCountryIndex(null)
     this._modalActive = modal;
   }
 

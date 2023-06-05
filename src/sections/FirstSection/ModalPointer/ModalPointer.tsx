@@ -78,7 +78,7 @@ export const ModalPointer = observer(() => {
       }
     }
   }, [index, x,y, modalActive, indexPrev, modalActivePrev])
-
+  console.log(index)
   return (<>
 
       <div id="test" style={styleModal}>
