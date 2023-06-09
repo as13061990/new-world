@@ -79,9 +79,9 @@ export const Modal = observer(() => {
           {content}
         </p>
       </div>
-      <div className={styles.btn_down}>
+      {/* <div className={styles.btn_down}>
         <div className={styles.triangle_down}></div>
-      </div>
+      </div> */}
     </div>
   )
 });

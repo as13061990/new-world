@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { modal } from '../types/enums';
+import { content, modal } from '../types/enums';
 import positions from '../three/positions';
 
 const ANIMATION_DELAY = 500
@@ -9,8 +9,8 @@ export const MAX_STEP = positions.length
 class State {
   private _scrollPrecent: number = 0
   private _isMobile: boolean = false
-  private _activeCountryIndex: number = -1
-  private _historyCountries: number[] = [-1]
+  private _activeCountryIndex: content = content.NO
+  private _historyCountries: content[] = [content.NO]
   private _isTimer: boolean = false
   private _activeHint: boolean = false
   private _modalActive: boolean = false
@@ -53,9 +53,9 @@ class State {
     }
   }
 
-  public setActiveCountryIndex(index: number): void {
-    this._activeCountryIndex = -1
-    if (this._historyCountries[this._historyCountries.length - 1] === -1) {
+  public setActiveCountryIndex(index: content): void {
+    this._activeCountryIndex = content.NO
+    if (this._historyCountries[this._historyCountries.length - 1] === content.NO) {
       this._activeCountryIndex = index
     } else {
       if (!this._isTimer) {
@@ -69,7 +69,7 @@ class State {
     this._historyCountries.push(index)
   }
 
-  public getActiveCountryIndex(): number {
+  public getActiveCountryIndex(): content {
     return this._activeCountryIndex
   }
 
@@ -79,7 +79,7 @@ class State {
     if (precent > 100) this._scrollPrecent = 100
   }
 
-  public getHistoryCountries(): number[] {
+  public getHistoryCountries(): content[] {
     return JSON.parse(JSON.stringify(this._historyCountries))
   }
 
