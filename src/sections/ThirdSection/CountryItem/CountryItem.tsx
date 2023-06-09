@@ -9,7 +9,7 @@ interface ICountryItemProps {
 }
 
 export const CountryItem = observer(({ img, name, index }: ICountryItemProps) => {
-
+  
   const clickHandler = () => {
     if (State.getActiveCountryIndex() === index) State.setActiveCountryIndex(-1)
     else State.setActiveCountryIndex(index)
