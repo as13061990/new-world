@@ -5,6 +5,7 @@ import { modal } from '../../../types/enums';
 import { useMemo } from 'react';
 import { runInAction } from "mobx"
 import points from '../../../three/points';
+import * as platform from 'platform';
 
 export const Modal = observer(() => {
   let activeStyle = State.getModalActive() ? styles.active : styles.inactive
@@ -16,7 +17,7 @@ export const Modal = observer(() => {
     })
   }
 
-  const onClickBack = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+  const onClickBack = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     e.stopPropagation()
     State.setModalActive(false)
     State.setCountryPointIndex(null)
@@ -65,11 +66,16 @@ export const Modal = observer(() => {
     }
   }, [modalType, index])
 
+
+  
+  const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac')
+  const padding = checkOS ? styles.btn_back_ios : ''
+
   return (
     <div className={styles.modal_block + ' ' + activeStyle}>
-      <div className={styles.btn_back} onClick={onClickBack}>
+      <button className={styles.btn_back + ' ' + padding} onClick={onClickBack}>
         Назад
-      </div>
+      </button>
       <div className={styles.modal} onClick={onClickModal}>
         <p className={styles.title}>
           {title}

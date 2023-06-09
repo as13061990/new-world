@@ -5,6 +5,7 @@ import State from '../../../store/State';
 import Hint from './Hint/Hint';
 import { content, modal } from '../../../types/enums';
 import { useMemo } from 'react';
+import * as platform from 'platform';
 
 const brazil = {
   title: 'Бразилия',
@@ -59,6 +60,10 @@ export const Content = observer(() => {
     }
   }, [index])
 
+  const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac')
+  const padding = checkOS ? styles.info_btn_ios : ''
+
+
   return (
     <div className={styles.content} style={stylesActiveContent}>
       <div className={styles.title}>
@@ -69,7 +74,7 @@ export const Content = observer(() => {
         <div className={styles.info_block}>
           <p className={styles.info_title}>{contentTexts.title}</p>
           <p className={styles.info_text}>{contentTexts.text}</p>
-          <div className={styles.info_btn}>
+          <div className={styles.info_btn + " " + padding}>
             смотреть фильм
           </div>
         </div>
