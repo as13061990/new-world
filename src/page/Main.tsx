@@ -27,7 +27,8 @@ export const Main = observer(() => {
 
     const onWheel = (event: WheelEvent): void => {
       const time = new Date().getTime()
-      console.log('WHEEL');
+
+      console.log(time - State.getScrollTimer(), STEP_DELAY)
 
       if (time - State.getScrollTimer() > STEP_DELAY) {
         
