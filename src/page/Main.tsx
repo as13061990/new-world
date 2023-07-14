@@ -27,15 +27,13 @@ export const Main = observer(() => {
 
     const onWheel = (event: WheelEvent): void => {
       const time = new Date().getTime()
-      if (time - State.getScrollTimer() > STEP_DELAY) {
+      console.log('WHEEL');
 
-        console.log('DELAY GOOD');
+      if (time - State.getScrollTimer() > STEP_DELAY) {
         
         if (event.deltaY > 0) {
-          console.log('plus');
           State.plusStep()
         } else if (event.deltaY < 0) {
-          console.log('minus');
           State.minusStep()
         }
       }
