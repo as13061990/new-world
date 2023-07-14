@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import State, { MAX_STEP } from "../store/State";
 import { useEffect } from "react";
 
-const STEP_DELAY = 200
+const STEP_DELAY = 100
 
 export const Main = observer(() => {
   useEffect(() => {
@@ -17,10 +17,10 @@ export const Main = observer(() => {
       const threshold = 50; // Минимальный порог свайпа
       if (start - end > threshold) {
         State.plusStep()
-        console.log(State.getStep())
+        // console.log(State.getStep())
       } else if (end - start > threshold) {
         State.minusStep()
-        console.log(State.getStep())
+        // console.log(State.getStep())
       }
 
     }
@@ -28,10 +28,14 @@ export const Main = observer(() => {
     const onWheel = (event: WheelEvent): void => {
       const time = new Date().getTime()
       if (time - State.getScrollTimer() > STEP_DELAY) {
+
+        console.log('DELAY GOOD');
         
         if (event.deltaY > 0) {
+          console.log('plus');
           State.plusStep()
         } else if (event.deltaY < 0) {
+          console.log('minus');
           State.minusStep()
         }
       }
