@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import State, { MAX_STEP } from "../store/State";
 import { useEffect } from "react";
 
-const STEP_DELAY = 100
+const STEP_DELAY = 30
 
 export const Main = observer(() => {
   useEffect(() => {
@@ -27,8 +27,6 @@ export const Main = observer(() => {
 
     const onWheel = (event: WheelEvent): void => {
       const time = new Date().getTime()
-
-      console.log(time - State.getScrollTimer(), STEP_DELAY)
 
       if (time - State.getScrollTimer() > STEP_DELAY) {
         
