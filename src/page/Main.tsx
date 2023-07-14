@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import State, { MAX_STEP } from "../store/State";
 import { useEffect } from "react";
 
-const STEP_DELAY = 30
+const STEP_DELAY = 200
 
 export const Main = observer(() => {
   useEffect(() => {
