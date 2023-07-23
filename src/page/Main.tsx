@@ -26,6 +26,7 @@ export const Main = observer(() => {
     }
 
     const onWheel = (event: WheelEvent): void => {
+      console.log('onWheel');
       // const time = new Date().getTime()
 
       if (State.isAnimation() === false) {
