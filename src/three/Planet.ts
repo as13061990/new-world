@@ -107,9 +107,15 @@ class Planet {
   }
 
   private _stepCallback(): void {
+    State.setAnimation(true);
     const i = State.getStep();
     const state = positions[i];
-    if (!state || !this._sphere) return;
+    if (!state || !this._sphere) {
+      setTimeout(() => {
+        State.setAnimation(false);
+      }, DURATION);
+      return;
+    }
     const m = state.state as modal;
 
     if (m && m !== State.getModal()) {
@@ -129,6 +135,7 @@ class Planet {
         if (this._zoom && this._animation.completed) {
           this._showPoints();
         }
+        State.setAnimation(false);
       }
     });
 

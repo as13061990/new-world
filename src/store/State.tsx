@@ -21,6 +21,7 @@ class State {
   private _scrollTimer: number = 0
   private _countryPointIndex: number = null
   private _countryPointIndexPrev: number = null
+  private _animation: boolean = false;
   private _iconPosition: string = JSON.stringify({ x: 0, y: 0 });
   public stepCallback: Function = (): void => {}
 
@@ -157,8 +158,17 @@ class State {
   public setIconPosition(x: number, y: number): void {
     this._iconPosition = JSON.stringify({ x, y });
   }
+  
   public getIconPosition(): Vector2 {
     return JSON.parse(this._iconPosition);
+  }
+
+  public isAnimation(): boolean {
+    return this._animation;
+  }
+
+  public setAnimation(animation: boolean): void {
+    this._animation = animation;
   }
 }
 

@@ -26,9 +26,9 @@ export const Main = observer(() => {
     }
 
     const onWheel = (event: WheelEvent): void => {
-      const time = new Date().getTime()
+      // const time = new Date().getTime()
 
-      if (time - State.getScrollTimer() > STEP_DELAY) {
+      if (State.isAnimation() === false) {
         
         if (event.deltaY > 0) {
           State.plusStep()
@@ -36,7 +36,7 @@ export const Main = observer(() => {
           State.minusStep()
         }
       }
-      State.setScrollTimer(time)
+      // State.setScrollTimer(time)
     }
     if (State.getIsMobile()) {
       document.addEventListener('touchstart', (e) => {
