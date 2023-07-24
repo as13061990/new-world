@@ -10,7 +10,7 @@
   height: 70px;
   position: absolute;
   top: 20px;
-  left: calc(50% - 70px);
+  left: calc(50% - 35px);
   background: url('../assets/images/button.png') no-repeat;
   background-size: contain;
   cursor: pointer;
@@ -27,7 +27,7 @@
   height: 70px;
   position: absolute;
   bottom: 20px;
-  left: calc(50% - 70px);
+  left: calc(50% - 35px);
   background: url('../assets/images/button.png') no-repeat;
   background-size: contain;
   cursor: pointer;
