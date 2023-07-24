@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import State, { MAX_STEP } from "../store/State";
 import { useEffect } from "react";
 
-const STEP_DELAY = 200
+// const STEP_DELAY = 200
 
 export const Main = observer(() => {
   useEffect(() => {
@@ -26,7 +26,7 @@ export const Main = observer(() => {
     }
 
     const onWheel = (event: WheelEvent): void => {
-      console.log('onWheel');
+      console.log('wheel');
       // const time = new Date().getTime()
 
       if (State.isAnimation() === false) {
@@ -58,11 +58,20 @@ export const Main = observer(() => {
     }
   }, [])
 
+  const clickButton = (top: boolean) => {
+    console.log('button');
+    if (State.isAnimation()) return
+    if (!top) State.plusStep()
+    else State.minusStep()
+  }
+
   return (
     <div className="main" id='main' >
       <FirstSection />
       {State.getStep() >= MAX_STEP - 2 ? <SecondSection /> : null}
       {State.getStep() >= MAX_STEP - 1? <ThirdSection /> : null}
+      <div className="button-top" onClick={() => clickButton(true)} />
+      <div className="button-bottom" onClick={() => clickButton(false)}  />
     </div>
   )
 });
