@@ -4,6 +4,8 @@ import anime, { AnimeInstance } from 'animejs';
 import State from '../store/State';
 import { modal } from '../types/enums';
 import positions from './positions';
+import Loader from './Loader';
+import points from './points';
 
 import map from '../assets/images/map.png';
 import china from '../assets/images/china.png';
@@ -13,8 +15,9 @@ import serbia from '../assets/images/serbia.png';
 import southAfrica from '../assets/images/south-africa.png';
 import brazil from '../assets/images/brazil.png';
 import point from '../assets/images/point.png';
-import Loader from './Loader';
-import points from './points';
+
+import EarthSpecularMap from '../assets/images/8k_earth_specular_map.jpg';
+import EarthCloudsMap from '../assets/images/8k_earth_clouds.jpg';
 
 const DURATION = 700;
 const COUNTRY_DURATION = 500;
@@ -34,13 +37,15 @@ class Planet {
   private _scene: THREE.Scene;
   private _camera: THREE.PerspectiveCamera;
   private _renderer: THREE.WebGLRenderer;
-  private _sphere: THREE.Mesh;
+  private _earth: THREE.Mesh;
   private _country: THREE.Mesh;
+  private _clouds: THREE.Mesh;
   private _icon: THREE.Mesh;
   private _animation: AnimeInstance;
   private _load: Loader = new Loader();
   private _zoom: boolean = false;
   private _points: THREE.Mesh[] = [];
+  private _time: number = 0;
 
   private _build(): void {
     State.stepCallback = this._stepCallback.bind(this);
@@ -53,7 +58,7 @@ class Planet {
     this._renderer.setClearColor('#FFFFFF', 0); // цвет фона. 0 - прозрачность
     this._root.insertBefore(this._renderer.domElement, this._root.firstChild);
 
-    const light = new THREE.DirectionalLight(0xEEEEEE, 1.4);
+    const light = new THREE.DirectionalLight(0xF6F3EA, 1.2);
     light.position.set(-15, 5, 20);
     this._scene.add(light);
 
@@ -65,6 +70,12 @@ class Planet {
     this._load.image('south-africa', southAfrica);
     this._load.image('brazil', brazil);
     this._load.image('point', point);
+
+    // this._load.image('EarthDayMap', EarthDayMap);
+    // this._load.image('EarthNormalMap', EarthNormalMap);
+    this._load.image('specular', EarthSpecularMap);
+    this._load.image('clouds', EarthCloudsMap);
+
     this._load.onComplete = this._loadComplete.bind(this);
 
     requestAnimationFrame(this._update.bind(this));
@@ -110,7 +121,7 @@ class Planet {
     State.setAnimation(true);
     const i = State.getStep();
     const state = positions[i];
-    if (!state || !this._sphere) {
+    if (!state || !this._earth) {
       setTimeout(() => {
         State.setAnimation(false);
       }, DURATION);
@@ -125,7 +136,7 @@ class Planet {
     }
 
     this._animation = anime({
-      targets: this._sphere.rotation,
+      targets: this._earth.rotation,
       x: state.rotation.x,
       y: state.rotation.y,
       z: state.rotation.z,
@@ -141,7 +152,7 @@ class Planet {
 
     if (this._zoom === false) {
       anime({
-        targets: this._sphere.position,
+        targets: this._earth.position,
         x: state.position.x,
         y: state.position.y,
         z: state.position.z,
@@ -154,18 +165,41 @@ class Planet {
   }
 
   private _loadComplete(): void {
-    const texture = this._load.get('map');
-    const material = new THREE.MeshStandardMaterial({
-      map: texture
-    });
-    const geometry = new THREE.SphereGeometry(1.0499, 200, 200);
-    this._sphere = new THREE.Mesh(geometry, material);
-    this._sphere.name = 'sphere';
-    this._scene.add(this._sphere);
-    const state = positions[0];
-    this._sphere.position.set(state.position.x, state.position.y, state.position.z);
-    this._sphere.rotation.set(state.rotation.x, state.rotation.y, state.rotation.z);
+    this._createPlanet();
+    this._createClouds();
     this._createCountry();
+  }
+
+  private _createPlanet(): void {
+    const texture = this._load.get('map');
+    const texture2 = this._load.get('specular');
+    const material = new THREE.MeshPhongMaterial({
+      map: texture,
+      specularMap: texture2,
+      specular: new THREE.Color('grey'), 
+    });
+    const geometry = new THREE.SphereGeometry(1.05, 32, 32);
+    this._earth = new THREE.Mesh(geometry, material);
+    this._earth.name = 'sphere';
+    this._scene.add(this._earth);
+    const state = positions[0];
+    this._earth.position.set(state.position.x, state.position.y, state.position.z);
+    this._earth.rotation.set(state.rotation.x, state.rotation.y, state.rotation.z);
+  }
+
+  private _createClouds(): void {
+    const texture = this._load.get('clouds');
+    const material = new THREE.MeshPhongMaterial({
+      map: texture,
+      opacity: .3,
+      depthWrite: true,
+      transparent: true,
+      side: THREE.DoubleSide
+    });
+    const geometry = new THREE.SphereGeometry(1.057, 32, 32);
+    this._clouds = new THREE.Mesh(geometry, material);
+    this._clouds.name = 'clouds';
+    this._earth.add(this._clouds);
   }
 
   private _createCountry(): void {
@@ -176,10 +210,10 @@ class Planet {
     material.needsUpdate = true;
     material.transparent = true;
     material.opacity = 0;
-    const geometry = new THREE.SphereGeometry(1.065, 200, 200);
+    const geometry = new THREE.SphereGeometry(1.065, 32, 32);
     this._country = new THREE.Mesh(geometry, material);
     this._country.name = 'country';
-    this._sphere.add(this._country);
+    this._earth.add(this._country);
     this._click();
     // const main = document.querySelector('#main') as HTMLElement;
     // new OrbitControls(this._camera, main);
@@ -263,7 +297,6 @@ class Planet {
         this._icon = meshTexture;
         State.setCountryPointIndex(0);
       }
-
       anime({
         targets: material,
         opacity: 1,
@@ -289,11 +322,11 @@ class Planet {
   }
 
   private _checkZoom(): void {
-    if (!this._sphere) return;
+    if (!this._earth) return;
     if (!this._zoom && State.getModal() !== modal.NO && State.getModalActive()) {
       this._zoom = true;
       this._animation = anime({
-        targets: this._sphere.position,
+        targets: this._earth.position,
         x: ZOOM.x,
         y: ZOOM.y,
         z: ZOOM.z,
@@ -312,7 +345,7 @@ class Planet {
       if (!state) return;
       this._hidePoints();
       anime({
-        targets: this._sphere.position,
+        targets: this._earth.position,
         x: state.position.x,
         y: state.position.y,
         z: state.position.z,
@@ -362,7 +395,21 @@ class Planet {
     }
   }
 
+  private _getDelta(time: number): number {
+    const delta = time - this._time;
+    this._time = time;
+    return delta;
+  }
+
+  private _cloudsAnimation(): void {
+    if (this._clouds) {
+      this._clouds.rotation.y += .0004;
+    }
+  }
+
   private _update(time: number): void {
+    const delta = this._getDelta(time);
+    this._cloudsAnimation();
     this._checkZoom();
     this._setIconPostition();
     this._renderer.render(this._scene, this._camera);
