@@ -53,6 +53,10 @@ class Planet {
     this._renderer.setClearColor('#FFFFFF', 0); // цвет фона. 0 - прозрачность
     this._root.insertBefore(this._renderer.domElement, this._root.firstChild);
 
+    const light = new THREE.DirectionalLight(0xEEEEEE, 1.4);
+    light.position.set(-15, 5, 20);
+    this._scene.add(light);
+
     this._load.image('map', map);
     this._load.image('china', china);
     this._load.image('india', india);
@@ -62,10 +66,6 @@ class Planet {
     this._load.image('brazil', brazil);
     this._load.image('point', point);
     this._load.onComplete = this._loadComplete.bind(this);
-
-    // const aLight = new THREE.DirectionalLight(0xFFFFFF, 2);
-    // aLight.position.set(-1.5,1.7,.7);
-    // this._scene.add(aLight);
 
     requestAnimationFrame(this._update.bind(this));
   }
@@ -155,7 +155,7 @@ class Planet {
 
   private _loadComplete(): void {
     const texture = this._load.get('map');
-    const material = new THREE.MeshBasicMaterial({
+    const material = new THREE.MeshStandardMaterial({
       map: texture
     });
     const geometry = new THREE.SphereGeometry(1.0499, 200, 200);
@@ -333,7 +333,7 @@ class Planet {
     }
   }
 
-  private _move(object: THREE.Mesh, step: number = .001): void {
+  private _move(object: THREE.Mesh | any, step: number = .001): void {
     let vector = 0, position = false;
     const log = (): void => {
       console.log({
