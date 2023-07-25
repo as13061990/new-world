@@ -53,7 +53,11 @@ class Planet {
     this._scene = new THREE.Scene();
     this._camera = new THREE.PerspectiveCamera(12, this._root.clientWidth / this._root.clientHeight, 0.01, 100);
     this._camera.position.set(0, 0, 20);
-    this._renderer = new THREE.WebGLRenderer();
+    this._renderer = new THREE.WebGLRenderer({
+      powerPreference: 'high-performance',
+      antialias: true,
+      alpha: true,
+    });
     this._renderer.setSize(this._root.clientWidth, this._root.clientHeight);
     this._renderer.setClearColor('#FFFFFF', 0); // цвет фона. 0 - прозрачность
     this._root.insertBefore(this._renderer.domElement, this._root.firstChild);
@@ -178,7 +182,7 @@ class Planet {
       specularMap: texture2,
       specular: new THREE.Color('grey'), 
     });
-    const geometry = new THREE.SphereGeometry(1.05, 32, 32);
+    const geometry = new THREE.SphereGeometry(1.05, 100, 100);
     this._earth = new THREE.Mesh(geometry, material);
     this._earth.name = 'sphere';
     this._scene.add(this._earth);
@@ -196,7 +200,7 @@ class Planet {
       transparent: true,
       side: THREE.DoubleSide
     });
-    const geometry = new THREE.SphereGeometry(1.057, 32, 32);
+    const geometry = new THREE.SphereGeometry(1.057, 100, 100);
     this._clouds = new THREE.Mesh(geometry, material);
     this._clouds.name = 'clouds';
     this._earth.add(this._clouds);
