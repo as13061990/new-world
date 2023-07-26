@@ -20,7 +20,8 @@ class State {
   private _step: number = 0
   private _scrollTimer: number = 0
   private _countryPointIndex: number = null
-  private _countryPointIndexPrev: number = null
+  private _point: boolean = false;
+  
   private _animation: boolean = false;
   private _iconPosition: string = JSON.stringify({ x: 0, y: 0 });
   public stepCallback: Function = (): void => {}
@@ -143,16 +144,11 @@ class State {
   }
 
   public setCountryPointIndex(index: number): void {
-    this._countryPointIndexPrev = this._countryPointIndex
     this._countryPointIndex = index
   }
 
   public getCountryPointIndex(): number {
     return this._countryPointIndex
-  }
-
-  public getCountryPointIndexPrev(): number {
-    return this._countryPointIndexPrev
   }
 
   public setIconPosition(x: number, y: number): void {
@@ -169,6 +165,14 @@ class State {
 
   public setAnimation(animation: boolean): void {
     this._animation = animation;
+  }
+
+  public getPoint(): boolean {
+    return this._point;
+  }
+
+  public setPoint(point: boolean): void {
+    this._point = point;
   }
 }
 

@@ -148,7 +148,7 @@ class Planet {
       duration: DURATION,
       complete: (): void => {
         if (this._zoom && this._animation.completed) {
-          this._showPoints();
+          this._showPoint();
         }
         State.setAnimation(false);
       }
@@ -268,45 +268,42 @@ class Planet {
     });
   }
 
-  private _showPoints(): void {
-    const data = points(State.getModal());
+  private _showPoint(): void {
+    const point = points(State.getModal());
     this._points.map(point => {
       this._country.remove(point);
     });
     this._points = [];
-    data.map((point, index) => {
-      const texture = this._load.get('point');
-      const material = new THREE.MeshBasicMaterial({
-        map: texture
-      });
-      material.transparent = true;
-      material.opacity = 0;
-      const meshTexture = new THREE.Mesh(
-        new THREE.PlaneGeometry(.08, 0.1),
-        material
-      );
-      const position = point.position;
-      meshTexture.position.set(position.x, position.y, position.z);
-      meshTexture.scale.set(.5, .5, .5);
-      meshTexture.userData = {
-        text: point.data,
-        index: index
-      }
-      this._country.add(meshTexture);
-      this._points.push(meshTexture);
-      meshTexture.lookAt(this._camera.position);
+    
+    const texture = this._load.get('point');
+    const material = new THREE.MeshBasicMaterial({
+      map: texture
+    });
+    material.transparent = true;
+    material.opacity = 0;
+    const meshTexture = new THREE.Mesh(
+      new THREE.PlaneGeometry(.08, 0.1),
+      material
+    );
+    const position = point.position;
+    meshTexture.position.set(position.x, position.y, position.z);
+    meshTexture.scale.set(.5, .5, .5);
+    meshTexture.userData = {
+      text: point.data,
+    }
+    this._country.add(meshTexture);
+    this._points.push(meshTexture);
+    meshTexture.lookAt(this._camera.position);
 
-      if (index === 0) {
-        this._country.remove(this._icon);
-        this._icon = meshTexture;
-        State.setCountryPointIndex(0);
-      }
-      anime({
-        targets: material,
-        opacity: 1,
-        easing: EASING,
-        duration: DURATION / 2
-      });
+    this._country.remove(this._icon);
+    this._icon = meshTexture;
+    State.setCountryPointIndex(0);
+      
+    anime({
+      targets: material,
+      opacity: 1,
+      easing: EASING,
+      duration: DURATION / 2
     });
   }
 
@@ -338,7 +335,7 @@ class Planet {
         duration: DURATION,
         complete: (): void => {
           if (this._animation.completed) {
-            this._showPoints();
+            this._showPoint();
           }
         }
       });

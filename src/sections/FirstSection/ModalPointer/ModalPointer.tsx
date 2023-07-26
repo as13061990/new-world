@@ -7,51 +7,48 @@ import points from '../../../three/points';
 
 export const ModalPointer = observer(() => {
   const modalType = State.getModal()
-  const index = State.getCountryPointIndex()
 
   const image = useMemo((): string => {
     let modalTypeCheck = State.getModal()
-    let countryPointIndex = State.getCountryPointIndex()
+    
     if (modalTypeCheck === modal.NO) {
-      countryPointIndex = State.getCountryPointIndexPrev()
+      
       modalTypeCheck = State.getModalPrev()
     }
     if (points) {
-      if (points(modalTypeCheck)[countryPointIndex]?.image) {
-        return points(modalTypeCheck)[countryPointIndex]?.image
+      if (points(modalTypeCheck)?.image) {
+        return points(modalTypeCheck)?.image
       } else {
-        return points(modalTypeCheck)[0]?.image
+        return points(modalTypeCheck)?.image
       }
     } else {
       return null
     }
-  }, [modalType, index])
+  }, [modalType])
 
   const name = useMemo((): string => {
     let modalTypeCheck = State.getModal()
-    let countryPointIndex = State.getCountryPointIndex()
+    
     if (modalTypeCheck === modal.NO) {
-      countryPointIndex = State.getCountryPointIndexPrev()
+      
       modalTypeCheck = State.getModalPrev()
     }
     if (points) {
-      if (points(modalTypeCheck)[countryPointIndex]?.name) {
-        return points(modalTypeCheck)[countryPointIndex]?.name
+      if (points(modalTypeCheck)?.name) {
+        return points(modalTypeCheck)?.name
       } else {
-        return points(modalTypeCheck)[0]?.name
+        return points(modalTypeCheck)?.name
       }
     } else {
       return null
     }
-  }, [modalType, index])
+  }, [modalType])
 
   const modalActive = State.getModalActive()
-  const modalTypePrev = State.getModalPrev()
-  const modalActivePrev = State.getModalActivePrev()
-  const indexPrev =  State.getCountryPointIndexPrev()
+  
   const { x, y } = State.getIconPosition()
   const styleModal = useMemo((): {} => {
-    if (modalActive && index !== null ) {
+    if (modalActive && State.getCountryPointIndex() !== null) {
       return {
         backgroundColor: 'red',
         position: 'absolute',
@@ -76,7 +73,7 @@ export const ModalPointer = observer(() => {
         transition: '0.1s opacity',
       }
     }
-  }, [index, x,y, modalActive])
+  }, [x,y, modalActive])
 
   return (
     <>

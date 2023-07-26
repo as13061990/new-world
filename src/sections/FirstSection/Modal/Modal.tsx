@@ -10,7 +10,7 @@ import * as platform from 'platform';
 export const Modal = observer(() => {
   let activeStyle = State.getModalActive() ? styles.active : styles.inactive
   const modalType = State.getModal()
-  const index = State.getCountryPointIndex()
+  
   if (modalType === modal.NO) {
     runInAction(() => {
       State.setModalActive(false)
@@ -20,7 +20,6 @@ export const Modal = observer(() => {
   const onClickBack = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     e.stopPropagation()
     State.setModalActive(false)
-    State.setCountryPointIndex(null)
   }
 
   const onClickModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
@@ -50,21 +49,20 @@ export const Modal = observer(() => {
 
   const content = useMemo((): string => {
     let modalTypeCheck = State.getModal()
-    let countryPointIndex = State.getCountryPointIndex()
+    
     if (modalTypeCheck === modal.NO) {
-      countryPointIndex = State.getCountryPointIndexPrev()
       modalTypeCheck = State.getModalPrev()
     }
     if (points) {
-      if (points(modalTypeCheck)[countryPointIndex]?.data) {
-        return points(modalTypeCheck)[countryPointIndex]?.data
+      if (points(modalTypeCheck)?.data) {
+        return points(modalTypeCheck)?.data
       } else {
-        return points(modalTypeCheck)[0]?.data
+        return points(modalTypeCheck)?.data
       }
     } else {
       return null
     }
-  }, [modalType, index])
+  }, [modalType])
 
 
   

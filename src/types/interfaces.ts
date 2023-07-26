@@ -20,5 +20,5 @@ interface Ipoint {
 }
 interface Ipoints {
   state: string;
-  points: Ipoint[];
+  point: Ipoint;
 }
