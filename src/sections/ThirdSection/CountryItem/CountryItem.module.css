@@ -4,18 +4,15 @@
   transition: 0.5s all ease;
   cursor: pointer;
 }
-
 .img {
   height: 100vh;
   width: 100%;
 }
-
 .img_block {
   position: relative;
   z-index: 10;
   transition: 0.5s all ease;
 }
-
 .name {
   font-family: 'HelveticaNeueMedium', sans-serif;
   width: 100%;
@@ -32,10 +29,33 @@
   position: absolute;
   transform: rotate(-90deg);
 }
-
+.button_content {
+  position: absolute;
+  width: 4vw;
+  height: 4vw;
+  background: url('../../../assets/images/button-content.png') no-repeat;
+  background-size: contain;
+  top: calc(50vh - 3vw);
+  right: 0;
+}
+.button_content_flip {
+  position: absolute;
+  width: 4vw;
+  height: 4vw;
+  background: url('../../../assets/images/button-content.png') no-repeat;
+  background-size: contain;
+  top: calc(50vh - 3vw);
+  right: 0;
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+  -ms-filter: fliph;
+  filter: fliph;
+}
 @media screen and (max-width: 768px) {
   .name { 
-    font-size: 50px;
-    top: 55%
+    font-size: 30px;
+    top: 40%
   }
 }

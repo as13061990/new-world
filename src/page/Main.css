@@ -1,35 +1,59 @@
 .main {
   overflow: hidden;
   height: 100vh;
-  /* scroll-snap-type: y mandatory; */
-
   background-color: black;
 }
-.button-top {
-  width: 70px;
-  height: 70px;
+.button_bottom {
   position: absolute;
-  top: 20px;
-  left: calc(50% - 35px);
+  width: 9vw;
+  height: 4.3vw;
+  bottom: 0;
+  left: calc(45.5%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: url('../assets/images/button.png') no-repeat;
   background-size: contain;
   cursor: pointer;
-  z-index: 5;
-  -moz-transform: scaleY(-1);
-  -webkit-transform: scaleY(-1);
-  -o-transform: scaleY(-1);
-  transform: scaleY(-1);
-  -ms-filter: fliph; /*IE*/
-  filter: fliph; /*IE*/
+  z-index: 1;
 }
-.button-bottom {
-  width: 70px;
-  height: 70px;
+.button-left {
+  width: 8%;
+  height: 8%;
   position: absolute;
-  bottom: 20px;
-  left: calc(50% - 35px);
-  background: url('../assets/images/button.png') no-repeat;
+  top: 46%;
+  left: 20%;
+  background: url('../assets/images/button-turn-around.png') no-repeat;
   background-size: contain;
   cursor: pointer;
   z-index: 5;
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+  -ms-filter: fliph;
+  filter: fliph;
+  user-select: none;
+  opacity: 0;
+}
+.button-right {
+  width: 8%;
+  height: 8%;
+  position: absolute;
+  top: 46%;
+  right: 20%;
+  background: url('../assets/images/button-turn-around.png') no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  z-index: 5;
+  user-select: none;
+  opacity: 0;
+}
+.show-button {
+  opacity: 1;
+  transition: 0.5s all ease;
+}
+.hide-button {
+  opacity: 0;
+  transition: 0.5s all ease;
 }

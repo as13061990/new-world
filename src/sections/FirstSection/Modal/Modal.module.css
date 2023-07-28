@@ -1,60 +1,60 @@
 .modal_block {
   position: fixed;
   z-index: -1;
-  top: 200px;
-  right: 126px;
+  top: 0;
+  left: 60%;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-start;;
+  justify-content: center;
+  flex-direction: column;
 }
-
 .active {
   z-index: 11;
   opacity: 1;
   transition: 0.5s all ease;
 }
-
 .inactive {
   z-index: -1;
   opacity: 0;
   transition: 0.5s all ease;
 }
-
 .modal {
-  background: #06090F;
-  border: 2px solid #FFFFFF;
-  border-radius: 100px;
-  position: relative;
-  min-height: 200px;
-  max-width: 830px;
-  padding: 55px 60px;
+  background: rgb(221, 234, 252);
+  background: linear-gradient(180deg, rgba(221, 234, 252, 1) 50%, rgba(252, 252, 255, 1) 100%);
+  border-radius: 20px;
+  width: 90%;
+  padding: 5%;
+  margin-top: 4%;
 }
-
 .title {
   font-family: 'Monaco';
   font-style: normal;
-  font-weight: 400;
-  font-size: 60px;
-  line-height: 80px;
+  font-weight: 700;
+  font-size: 50px;
   text-align: left;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: 18px;
-  color: #FFFFFF;
+  color: #252525;
 }
-
 .text {
   font-family: 'Monaco';
   font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 27px;
-
-  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #252525;
 }
-
 .btn_back {
-  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  height: 55px;
   background-color: transparent;
   border: none;
-  top: -100px;
   font-family: 'Monaco';
   font-size: 24px;
   font-style: normal;
@@ -64,37 +64,29 @@
   -webkit-font-smoothing: antialiased;
   cursor: pointer;
   color: #252525;
-  padding: 15px 107px;
   text-align: center;
   background: linear-gradient(180deg, #DDEAFC 0%, #FCFCFF 100%);
   box-shadow: 0px 4px 30px rgba(118, 167, 247, 0.63);
   border-radius: 30px;
 }
-
 .btn_back_ios {
-  padding-top: 30px;
+  /* padding-top: 20px; */
 }
-
 .btn_down {
   position: absolute;
   bottom: -60px;
   right: 0;
-
   width: 40px;
   height: 40px;
-
   cursor: pointer;
   color: #252525;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background: linear-gradient(180deg, #DDEAFC 0%, #FCFCFF 100%);
   box-shadow: 0px 4px 30px rgba(118, 167, 247, 0.63);
   border-radius: 30px;
 }
-
 .triangle_down {
   width: 0;
   height: 0;
@@ -102,63 +94,55 @@
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
 }
-
-@media screen and (max-width: 980px) {
-  .modal_block {
-    right: 10px;
-  }
-
-  .title {
-
-    font-size: 40px;
-    line-height: 40px;
-  }
-
-  .text {
-    font-size: 18px;
-    line-height: 23px;
-  }
-
+.button_block {
+  margin: 30px 0 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
-
-@media screen and (max-width: 580px) {
-  .modal_block {
-    top: 120px;
-  }
-
-  .modal {
-    height: 70vh;
-    padding: 25px 20px;
-    display: inline-block;
-    overflow-y: hidden;
-    border-radius: 30px;
-  }
-
-  .btn_down {
-    bottom: -20px;
-  }
-
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  box-sizing: border-box;
+  margin-right: 15px;
+  border-radius: 35px;
+  background: linear-gradient(180deg, rgba(221,234,252,1) 50%, rgba(252,252,255,1) 100%);
+  border: 2px solid #313154;
+  color: #252525;
+  font-family: 'Monaco';
+  font-size: 18px;
+  font-weight: 500;
 }
-
-@media (min-width: 500px) and (max-width: 1024px) {
+@media screen and (max-width: 930px) {
   .modal_block {
-    top: 100px;
+    left: 55%;
   }
-
-  .modal {
-    height: 70vh;
-    padding: 25px 20px;
-    display: inline-block;
-    overflow-y: hidden;
-    border-radius: 30px;
-  }
-
-  .btn_down {
-    bottom: -20px;
-  }
-
   .btn_back {
-    top: -70px;
+    font-size: 10px;
+    height: 25px;
   }
-
+  .modal {
+    border-radius: 10px;
+    padding: 6%;
+  }
+  .title {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  .text {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  .button_block {
+    margin: 10px 0 5px 0;
+  }
+  .button {
+    height: 25px;
+    margin-right: 5px;
+    border-radius: 35px;
+    font-size: 7px;
+    border-width: 1px;
+  }
 }

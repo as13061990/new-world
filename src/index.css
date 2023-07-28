@@ -2,32 +2,26 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
-
 @font-face { 
   font-family: "Monaco";
   src: url("./assets/fonts/MonacoRegular.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
 }
-
 @font-face { 
   font-family: "HelveticaNeueRegular";
   src: url("./assets/fonts/HelveticaNeueRegular.otf") format("truetype");
   font-style: normal;
   font-weight: 400;
 }
-
-
 @font-face { 
   font-family: "HelveticaNeueMedium";
   src: url("./assets/fonts/HelveticaNeueMedium.otf") format("truetype");
   font-style: normal;
   font-weight: 500;
 }
-
-
-
 body {
   font-family: 'HelveticaNeueRegular', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,16 +29,6 @@ body {
   overflow: hidden; 
   background-color: #000000;
 }
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
-
-/* canvas {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-} */

@@ -19,7 +19,6 @@ class State {
   private _modal: modal = modal.NO
   private _step: number = 0
   private _scrollTimer: number = 0
-  private _countryPointIndex: number = null
   private _point: boolean = false;
   
   private _animation: boolean = false;
@@ -141,14 +140,6 @@ class State {
 
   public getScrollTimer(): number {
     return this._scrollTimer
-  }
-
-  public setCountryPointIndex(index: number): void {
-    this._countryPointIndex = index
-  }
-
-  public getCountryPointIndex(): number {
-    return this._countryPointIndex
   }
 
   public setIconPosition(x: number, y: number): void {

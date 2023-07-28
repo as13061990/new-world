@@ -41,15 +41,15 @@ class Planet {
   private _country: THREE.Mesh;
   private _clouds: THREE.Mesh;
   private _icon: THREE.Mesh;
-  private _animation: AnimeInstance;
   private _load: Loader = new Loader();
   private _zoom: boolean = false;
-  private _points: THREE.Mesh[] = [];
   private _time: number = 0;
 
   private _build(): void {
-    State.stepCallback = this._stepCallback.bind(this);
     this._root = document.querySelector('#canvas_three') as HTMLElement;
+    if (!this._root) return;
+
+    State.stepCallback = this._stepCallback.bind(this);
     this._scene = new THREE.Scene();
     this._camera = new THREE.PerspectiveCamera(12, this._root.clientWidth / this._root.clientHeight, 0.01, 100);
     this._camera.position.set(0, 0, 20);
@@ -85,33 +85,6 @@ class Planet {
     requestAnimationFrame(this._update.bind(this));
   }
 
-  private _click(): void {
-    document.onclick = (event): void => {
-      const raycaster = new THREE.Raycaster();
-      const mouse = new THREE.Vector2();
-      const ww = this._root.clientWidth;
-      const hh = this._root.clientHeight;
-      const xMouse = event.offsetX;
-      const yMouse = event.offsetY;
-      mouse.x = (xMouse / ww) * 2 - 1;
-      mouse.y = -(yMouse / hh) * 2 + 1;
-      raycaster.setFromCamera(mouse, this._camera);
-      const intersects = raycaster.intersectObjects(this._points);
-
-      if (this._points.length > 0) {
-        const answer = intersects[0];
-
-        if (answer?.object) {
-          const mesh = answer.object as THREE.Mesh;
-          this._icon = mesh;
-          State.setCountryPointIndex(mesh.userData.index);
-          // координаты курсора в 3д пространстве
-          // console.log(answer.point);
-        }
-      }
-    }
-  }
-
   private toScreenXY(position: THREE.Vector3): Vector2 {
     const pos = position.clone();
     const vector = pos.project(this._camera);
@@ -139,7 +112,7 @@ class Planet {
       this._hideCountry();
     }
 
-    this._animation = anime({
+    anime({
       targets: this._earth.rotation,
       x: state.rotation.x,
       y: state.rotation.y,
@@ -147,9 +120,6 @@ class Planet {
       easing: EASING,
       duration: DURATION,
       complete: (): void => {
-        if (this._zoom && this._animation.completed) {
-          this._showPoint();
-        }
         State.setAnimation(false);
       }
     });
@@ -163,8 +133,6 @@ class Planet {
         easing: EASING,
         duration: DURATION
       });
-    } else {
-      this._hidePoints();
     }
   }
 
@@ -218,7 +186,6 @@ class Planet {
     this._country = new THREE.Mesh(geometry, material);
     this._country.name = 'country';
     this._earth.add(this._country);
-    this._click();
     // const main = document.querySelector('#main') as HTMLElement;
     // new OrbitControls(this._camera, main);
   }
@@ -268,83 +235,24 @@ class Planet {
     });
   }
 
-  private _showPoint(): void {
-    const point = points(State.getModal());
-    this._points.map(point => {
-      this._country.remove(point);
-    });
-    this._points = [];
-    
-    const texture = this._load.get('point');
-    const material = new THREE.MeshBasicMaterial({
-      map: texture
-    });
-    material.transparent = true;
-    material.opacity = 0;
-    const meshTexture = new THREE.Mesh(
-      new THREE.PlaneGeometry(.08, 0.1),
-      material
-    );
-    const position = point.position;
-    meshTexture.position.set(position.x, position.y, position.z);
-    meshTexture.scale.set(.5, .5, .5);
-    meshTexture.userData = {
-      text: point.data,
-    }
-    this._country.add(meshTexture);
-    this._points.push(meshTexture);
-    meshTexture.lookAt(this._camera.position);
-
-    this._country.remove(this._icon);
-    this._icon = meshTexture;
-    State.setCountryPointIndex(0);
-      
-    anime({
-      targets: material,
-      opacity: 1,
-      easing: EASING,
-      duration: DURATION / 2
-    });
-  }
-
-  private _hidePoints(): void {
-    State.setCountryPointIndex(null);
-    this._points.map(point => {
-      anime({
-        targets: point.material,
-        opacity: 0,
-        easing: EASING,
-        duration: DURATION / 2,
-        complete: (): void => {
-          this._country.remove(point);
-        }
-      });
-    });
-  }
-
   private _checkZoom(): void {
     if (!this._earth) return;
     if (!this._zoom && State.getModal() !== modal.NO && State.getModalActive()) {
       this._zoom = true;
-      this._animation = anime({
+      anime({
         targets: this._earth.position,
         x: ZOOM.x,
         y: ZOOM.y,
         z: ZOOM.z,
         easing: EASING,
-        duration: DURATION,
-        complete: (): void => {
-          if (this._animation.completed) {
-            this._showPoint();
-          }
-        }
+        duration: DURATION
       });
     } else if (this._zoom && (State.getModal() === modal.NO || !State.getModalActive())) {
       this._zoom = false;
       const i = State.getStep();
       const state = positions[i];
       if (!state) return;
-      this._hidePoints();
+      
       anime({
         targets: this._earth.position,
         x: state.position.x,

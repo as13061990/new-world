@@ -6,8 +6,6 @@ import { observer } from "mobx-react-lite";
 import State, { MAX_STEP } from "../store/State";
 import { useEffect } from "react";
 
-// const STEP_DELAY = 200
-
 export const Main = observer(() => {
   useEffect(() => {
     let startY: number;
@@ -17,18 +15,12 @@ export const Main = observer(() => {
       const threshold = 50; // Минимальный порог свайпа
       if (start - end > threshold) {
         State.plusStep()
-        // console.log(State.getStep())
       } else if (end - start > threshold) {
         State.minusStep()
-        // console.log(State.getStep())
       }
-
     }
 
     const onWheel = (event: WheelEvent): void => {
-      console.log('wheel');
-      // const time = new Date().getTime()
-
       if (State.isAnimation() === false) {
         
         if (event.deltaY > 0) {
@@ -37,7 +29,6 @@ export const Main = observer(() => {
           State.minusStep()
         }
       }
-      // State.setScrollTimer(time)
     }
     if (State.getIsMobile()) {
       document.addEventListener('touchstart', (e) => {
@@ -59,19 +50,29 @@ export const Main = observer(() => {
   }, [])
 
   const clickButton = (top: boolean) => {
-    console.log('button');
+    if (State.getStep() === 0 || State.getStep() >= 9) return
+    if (State.getModalActive()) return
     if (State.isAnimation()) return
     if (!top) State.plusStep()
     else State.minusStep()
   }
-
+  const bottomButton = () => {
+    if (State.getStep() !== 0) return
+    if (State.getModalActive()) return
+    if (State.isAnimation()) return
+    State.plusStep()
+  }
+  const planetSteps = State.getStep() > 0 && State.getStep() < 9;
+  const buttonStyle = planetSteps && State.getModalActive() === false ? 'show-button' : 'hide-button';
+  const bottomButtonStyle = State.getStep() === 0 ? 'show-button' : 'hide-button';
   return (
     <div className="main" id='main' >
       <FirstSection />
       {State.getStep() >= MAX_STEP - 2 ? <SecondSection /> : null}
       {State.getStep() >= MAX_STEP - 1? <ThirdSection /> : null}
-      <div className="button-top" onClick={() => clickButton(true)} />
-      <div className="button-bottom" onClick={() => clickButton(false)}  />
+      <div className={"button-left " + buttonStyle} onClick={() => clickButton(true)} />
+      <div className={"button-right " + buttonStyle} onClick={() => clickButton(false)}  />
+      <div className={"button_bottom " + bottomButtonStyle} onClick={() => bottomButton()}></div>
     </div>
   )
 });

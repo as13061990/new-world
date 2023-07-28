@@ -11,9 +11,28 @@ class App extends React.Component {
     if (platform.os.family === 'iOS' || platform.os.family === 'Android') {
       State.setIsMobile(true);
     }
+    let resize = false;
+    window.addEventListener('resize', () => {
+      if (resize) return;
+      resize = true;
+      window.location.reload();
+    });
   }
   
   render() {
+    const vertical = window.innerHeight > window.innerWidth;
+    if (vertical) return <div style={{
+      color: '#fFFFFF',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0
+    }}>Поверните устройство в горизонтальное положение</div>
+
     return (
       <Main/>
     )

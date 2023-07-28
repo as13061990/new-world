@@ -44,12 +44,8 @@ const positions: IPlanetState[] = [
     rotation: { x: -.35, y: 11.933, z: 0 }
   },
   {
-    position: { x: 0, y: .2, z: 3 },
-    rotation: { x: 0, y: 13.0, z: 0 }
-  },
-  {
     position: { x: 0, y: 3.4, z: 3 },
-    rotation: { x: 0, y: 16.5, z: 0 }
+    rotation: { x: 0, y: 13.0, z: 0 }
   }
 ];
 export default positions;

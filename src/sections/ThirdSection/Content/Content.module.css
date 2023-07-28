@@ -5,129 +5,78 @@
   position: absolute;
   top: 0;
   z-index: 5;
-  padding: 35px 40px;
+  padding: 2% 2%;
   transition: 0.5s all ease;
   overflow: hidden;
 }
-
-.info {
-  display: flex;
-  gap: 27px;
-}
-
-.title {
-  font-family: 'HelveticaNeueMedium', sans-serif;
-  font-weight: 500;
-  font-size: 45px;
-  color: #252525;
-  background: linear-gradient(180deg, #DDEAFC 0%, #FCFCFF 100%);
-  box-shadow: 0px 4px 30px rgba(118, 167, 247, 0.63);
-  border-radius: 30px;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 40px 5px;
-  margin-bottom: 72px;
-}
-
 .info_img_block {
+  margin-top: 2%;
   position: relative;
 }
-
 .info_img {
-  height: 367px;
   width: 100%;
 }
-
-
 .info_block {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 9px;
   flex-basis: 59%;
   font-family: 'Ubuntu', sans-serif;
   font-style: normal;
   font-weight: 400;
 }
-
 .info_title {
   font-family: 'HelveticaNeueMedium', sans-serif;
   font-weight: 500;
-  font-size: 30px;
-  line-height: 37px;
+  font-size: 160%;
+  line-height: 100%;
   color: #FFFFFF;
 }
-
 .info_text {
   font-weight: 400;
-  font-size: 21px;
-  line-height: 26px;
+  font-size: 125%;
+  line-height: 115%;
   color: #BEBEBE;
 }
-
 .info_btn {
   font-family: "Monaco";
-  font-size: 24px;
+  font-size: 130%;
   font-style: normal;
   font-weight: 400;
   text-align: center;
   text-transform: uppercase;
-
   cursor: pointer;
   color: #252525;
-  padding: 15px 0;
-  text-align: center;
-  margin-top: 37px;
-  max-width: 280px;
+  padding: 1% 2%;
+  margin-top: 2%;
+  margin-right: 2%;
+  min-width: 23%;
   background: linear-gradient(180deg, #DDEAFC 0%, #FCFCFF 100%);
   box-shadow: 0px 4px 30px rgba(118, 167, 247, 0.63);
   border-radius: 30px;
 }
-
 .info_btn_ios {
   padding-top: 30px;
 }
-
-@media screen and (max-width: 1332px) {
-  .title {
-    font-size: 32px;
-    line-height: 30px;
-    margin-bottom: 20px;
-    padding: 23px 5px;
-  }
-
-  .info_img_block {
-    display: none;
-  }
-
-  .info {
-    flex-direction: column;
-  }
-
-  .info_btn {
-    margin-top: 8px;
-  }
-
-  .info_text {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 26px;
-    color: #BEBEBE;
-  }
-
-  .content {
-    padding: 15px 20px 0px 20px;
-  }
+.buttons {
+  display: flex;
+  width: 100%;
 }
-
 @media screen and (max-width: 930px) {
-  .title {
-    font-size: 30px;
-    padding: 15px 5px;
+  .info_title {
+    font-family: 'HelveticaNeueMedium', sans-serif;
+    font-weight: 500;
+    font-size: 100%;
+    line-height: 100%;
+    color: #FFFFFF;
   }
   .info_text {
     font-weight: 400;
-    font-size: 18px;
-    line-height: 23px;
+    font-size: 65%;
+    line-height: 115%;
     color: #BEBEBE;
+  }
+  .info_btn {
+    font-size: 65%;
   }
 }

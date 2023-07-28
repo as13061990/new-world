@@ -10,7 +10,6 @@ interface ICountryItemProps {
 }
 
 export const CountryItem = observer(({ img, name, index }: ICountryItemProps) => {
-  
   const clickHandler = () => {
     if (State.getActiveCountryIndex() === index) State.setActiveCountryIndex(content.NO)
     else State.setActiveCountryIndex(index)
@@ -30,12 +29,14 @@ export const CountryItem = observer(({ img, name, index }: ICountryItemProps) =>
     transition: '0.5s all ease',
     zIndex: 10
   } : {}
+  const flip = State.getActiveCountryIndex() === index;
 
   return (
     <div className={styles.country} >
       <div className={styles.img_block} onClick={clickHandler} style={stylesActiveImg}>
         <img src={img} alt={'countrybg'} className={styles.img} />
         <p className={styles.name}>{name}</p>
+        <div className={ flip ? styles.button_content_flip : styles.button_content}></div>
       </div>
     </div>
   )

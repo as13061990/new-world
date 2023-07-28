@@ -8,7 +8,7 @@ import points from '../../../three/points';
 import * as platform from 'platform';
 
 export const Modal = observer(() => {
-  let activeStyle = State.getModalActive() ? styles.active : styles.inactive
+  const activeStyle = State.getModalActive() ? styles.active : styles.inactive
   const modalType = State.getModal()
   
   if (modalType === modal.NO) {
@@ -64,28 +64,20 @@ export const Modal = observer(() => {
     }
   }, [modalType])
 
-
-  
   const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac')
   const padding = checkOS ? styles.btn_back_ios : ''
 
   return (
     <div className={styles.modal_block + ' ' + activeStyle}>
-      <button className={styles.btn_back + ' ' + padding} onClick={onClickBack}>
-        Назад
-      </button>
+      <button className={styles.btn_back + ' ' + padding} onClick={onClickBack}>Назад</button>
       <div className={styles.modal} onClick={onClickModal}>
-        <p className={styles.title}>
-          {title}
-        </p>
-
-        <p className={styles.text}>
-          {content}
-        </p>
+        <p className={styles.title}>{title}</p>
+        <p className={styles.text}>{content}</p>
+        <div className={styles.button_block}>
+          <div style={{width: '57%'}} className={styles.button}>{'Узнать больше о стране'.toUpperCase()}</div>
+          <div style={{flex: 1}}  className={styles.button}>{'Смотреть фильм'.toUpperCase()}</div>
+        </div>
       </div>
-      {/* <div className={styles.btn_down}>
-        <div className={styles.triangle_down}></div>
-      </div> */}
     </div>
   )
 });
