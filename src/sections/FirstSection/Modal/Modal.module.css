@@ -25,18 +25,18 @@
   background: linear-gradient(180deg, rgba(221, 234, 252, 1) 50%, rgba(252, 252, 255, 1) 100%);
   border-radius: 20px;
   width: 90%;
-  padding: 5%;
+  padding: 0 6% 6% 6%;
   margin-top: 4%;
 }
 .title {
   font-family: 'Monaco';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 50px;
   text-align: left;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: 18px;
+  margin: 40px 0 18px 0;
   color: #252525;
 }
 .text {
@@ -70,7 +70,7 @@
   border-radius: 30px;
 }
 .btn_back_ios {
-  /* padding-top: 20px; */
+  padding-top: 5px;
 }
 .btn_down {
   position: absolute;
@@ -126,11 +126,12 @@
   }
   .modal {
     border-radius: 10px;
-    padding: 6%;
+    padding: 0 6% 6% 6%;
   }
   .title {
     font-size: 26px;
-    margin-bottom: 10px;
+    margin: 20px 0 10px 0;
+    font-weight: 500;
   }
   .text {
     font-size: 8px;

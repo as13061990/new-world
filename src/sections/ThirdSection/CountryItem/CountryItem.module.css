@@ -53,7 +53,7 @@
   -ms-filter: fliph;
   filter: fliph;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 930px) {
   .name { 
     font-size: 30px;
     top: 40%
