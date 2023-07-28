@@ -74,8 +74,8 @@ export const Modal = observer(() => {
         <p className={styles.title}>{title}</p>
         <p className={styles.text}>{content}</p>
         <div className={styles.button_block}>
-          <div style={{width: '57%'}} className={styles.button}>{'Узнать больше о стране'.toUpperCase()}</div>
-          <div style={{flex: 1}}  className={styles.button}>{'Смотреть фильм'.toUpperCase()}</div>
+          <div style={{width: '57%'}} className={styles.button} onClick={() => console.log('Узнать больше о стране')}>{'Узнать больше о стране'.toUpperCase()}</div>
+          <div style={{flex: 1}}  className={styles.button} onClick={() => console.log('Смотреть фильм')}>{'Смотреть фильм'.toUpperCase()}</div>
         </div>
       </div>
     </div>
