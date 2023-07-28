@@ -71,6 +71,7 @@ export const Modal = observer(() => {
     <div className={styles.modal_block + ' ' + activeStyle}>
       <button className={styles.btn_back + ' ' + padding} onClick={onClickBack}>Назад</button>
       <div className={styles.modal} onClick={onClickModal}>
+        <div className={styles.space}></div>
         <p className={styles.title}>{title}</p>
         <p className={styles.text}>{content}</p>
         <div className={styles.button_block}>
