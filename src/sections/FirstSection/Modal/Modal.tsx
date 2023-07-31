@@ -64,7 +64,7 @@ export const Modal = observer(() => {
     }
   }, [modalType])
 
-  const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac')
+  const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac') || platform.name.includes('Safari') || platform.name.includes('OS')
   const padding = checkOS ? styles.btn_back_ios : ''
 
   return (

@@ -54,10 +54,12 @@ export const Content = observer(() => {
     }
   }, [index])
 
-  const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac')
+  const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac') || platform.name.includes('Safari') || platform.name.includes('OS')
+
   const padding = checkOS ? styles.info_btn_ios : ''
 
   return (
+
     <div className={styles.content} style={stylesActiveContent}>
       <div className={styles.info}>
         <div className={styles.info_block}>
@@ -69,8 +71,8 @@ export const Content = observer(() => {
           {/* <Hint/> */}
           <img className={styles.info_img} src={BYInfo} alt='country' />
           <div className={styles.buttons}>
-            <div className={styles.info_btn + " " + padding}>Узнать больше о стране</div>
-            <div className={styles.info_btn + " " + padding}>смотреть фильм</div>
+            <div className={styles.info_btn}><span className={padding}>Узнать больше о стране</span></div>
+            <div className={styles.info_btn}><span className={padding}>смотреть фильм</span></div>
           </div>
         </div>
       </div>
