@@ -6,20 +6,24 @@
   right: 0;
   bottom: 0;
   display: flex;
-  align-items: flex-start;;
+  align-items: flex-start;
+  ;
   justify-content: center;
   flex-direction: column;
 }
+
 .active {
   z-index: 11;
   opacity: 1;
   transition: 0.5s all ease;
 }
+
 .inactive {
   z-index: -1;
   opacity: 0;
   transition: 0.5s all ease;
 }
+
 .modal {
   background: rgb(221, 234, 252);
   background: linear-gradient(180deg, rgba(221, 234, 252, 1) 50%, rgba(252, 252, 255, 1) 100%);
@@ -28,6 +32,7 @@
   padding: 0 6% 6% 6%;
   margin-top: 4%;
 }
+
 .title {
   height: 120px;
   padding-top: 20px;
@@ -43,6 +48,7 @@
   text-transform: uppercase;
   color: #252525;
 }
+
 .text {
   font-family: 'Monaco';
   font-style: normal;
@@ -51,6 +57,7 @@
   line-height: 20px;
   color: #252525;
 }
+
 .btn_back {
   display: flex;
   align-items: center;
@@ -73,9 +80,11 @@
   box-shadow: 0px 4px 30px rgba(118, 167, 247, 0.63);
   border-radius: 30px;
 }
+
 .btn_back_ios {
   padding-top: 4px;
 }
+
 .btn_down {
   position: absolute;
   bottom: -60px;
@@ -91,6 +100,7 @@
   box-shadow: 0px 4px 30px rgba(118, 167, 247, 0.63);
   border-radius: 30px;
 }
+
 .triangle_down {
   width: 0;
   height: 0;
@@ -98,12 +108,14 @@
   border-left: 9px solid transparent;
   border-right: 9px solid transparent;
 }
+
 .button_block {
   margin: 30px 0 15px 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
+
 .button {
   display: flex;
   align-items: center;
@@ -112,39 +124,53 @@
   box-sizing: border-box;
   margin-right: 15px;
   border-radius: 35px;
-  background: linear-gradient(180deg, rgba(221,234,252,1) 50%, rgba(252,252,255,1) 100%);
+  background: linear-gradient(180deg, rgba(221, 234, 252, 1) 50%, rgba(252, 252, 255, 1) 100%);
   border: 2px solid #313154;
   color: #252525;
   font-family: 'Monaco';
   font-size: 18px;
   font-weight: 500;
+  transition: all ease 0.3s;
   cursor: pointer;
 }
+
+.button:hover {
+  transition: all ease 0.3s;
+  background: #313154;
+  color: #FFFFFF;
+}
+
 @media screen and (max-width: 930px) {
   .modal_block {
     left: 55%;
   }
+
   .btn_back {
     font-size: 10px;
     height: 25px;
   }
+
   .modal {
     border-radius: 10px;
     padding: 0 6% 6% 6%;
   }
+
   .title {
-    height:70px;
+    height: 70px;
     padding-top: 10px;
     font-size: 26px;
     font-weight: 500;
   }
+
   .text {
     font-size: 8px;
     line-height: 10px;
   }
+
   .button_block {
     margin: 10px 0 5px 0;
   }
+
   .button {
     height: 25px;
     margin-right: 5px;

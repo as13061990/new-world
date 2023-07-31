@@ -22,7 +22,7 @@ export const Main = observer(() => {
 
     const onWheel = (event: WheelEvent): void => {
       if (State.isAnimation() === false) {
-        
+
         if (event.deltaY > 0) {
           State.plusStep()
         } else if (event.deltaY < 0) {
@@ -69,9 +69,19 @@ export const Main = observer(() => {
     <div className="main" id='main' >
       <FirstSection />
       {State.getStep() >= MAX_STEP - 2 ? <SecondSection /> : null}
-      {State.getStep() >= MAX_STEP - 1? <ThirdSection /> : null}
-      <div className={"button-left " + buttonStyle} onClick={() => clickButton(true)} />
-      <div className={"button-right " + buttonStyle} onClick={() => clickButton(false)}  />
+      {State.getStep() >= MAX_STEP - 1 ? <ThirdSection /> : null}
+      <div className={"button-left " + buttonStyle} onClick={() => clickButton(true)}>
+        <div className="dialog-container-left">
+          <p>Покрутить</p>
+        </div>
+      </div>
+
+      <div className={"button-right " + buttonStyle} onClick={() => clickButton(false)}>
+        <div className="dialog-container-right">
+          <p>Покрутить</p>
+        </div>
+      </div>
+
       <div className={"button_bottom " + bottomButtonStyle} onClick={() => bottomButton()}></div>
     </div>
   )
