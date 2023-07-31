@@ -1,8 +1,11 @@
 {
   "files": {
-    "main.css": "./static/css/main.f759de4a.css",
-    "main.js": "./static/js/main.2b500d9c.js",
+    "main.css": "./static/css/main.8183db30.css",
+    "main.js": "./static/js/main.929efb45.js",
+    "static/media/8k_earth_clouds.jpg": "./static/media/8k_earth_clouds.08fcd80007fae8fc7170.jpg",
     "static/media/map.png": "./static/media/map.f63a5d10a14771196295.png",
+    "static/media/8k_earth_specular_map.jpg": "./static/media/8k_earth_specular_map.7b4efa59933b470e3776.jpg",
+    "static/media/section-three-BR-info.png": "./static/media/section-three-BR-info.c27b825c92aa525c35e3.png",
     "static/media/section-two-bg.png": "./static/media/section-two-bg.1d8039956b212c747267.png",
     "static/media/section-three-CS.png": "./static/media/section-three-CS.708e260fec4fe916e188.png",
     "static/media/section-three-CN.png": "./static/media/section-three-CN.5be1d06aa2c26784d563.png",
@@ -10,7 +13,6 @@
     "static/media/section-three-ZA.png": "./static/media/section-three-ZA.1dd6c013a32d5beed561.png",
     "static/media/section-three-BY.png": "./static/media/section-three-BY.06545cf4925eda94946a.png",
     "static/media/section-three-IN.png": "./static/media/section-three-IN.0d4eef216135a0dd2f01.png",
-    "static/media/section-three-BR-info.png": "./static/media/section-three-BR-info.fc0049e7fc3162b4d405.png",
     "static/media/MonacoRegular.ttf": "./static/media/MonacoRegular.58102a1c5cc9b8b664b7.ttf",
     "static/media/china.png": "./static/media/china.64f482feba2d2ab6dc53.png",
     "static/media/brazil.png": "./static/media/brazil.8e52d016c413abce5f28.png",
@@ -21,14 +23,12 @@
     "static/media/HelveticaNeueRegular.otf": "./static/media/HelveticaNeueRegular.84fb498ef9ef3d096f71.otf",
     "static/media/serbia.png": "./static/media/serbia.39e50aa7b5948f081e4f.png",
     "static/media/section-one-stars-1.png": "./static/media/section-one-stars-1.10496b57b8fead3cdbac.png",
-    "static/media/attractions-india-1.png": "./static/media/attractions-india-1.66700afe04e550483803.png",
     "index.html": "./index.html",
-    "static/media/section-one-arrow.svg": "./static/media/section-one-arrow.459545896024926bd36e4f768edc6904.svg",
-    "main.f759de4a.css.map": "./static/css/main.f759de4a.css.map",
-    "main.2b500d9c.js.map": "./static/js/main.2b500d9c.js.map"
+    "main.8183db30.css.map": "./static/css/main.8183db30.css.map",
+    "main.929efb45.js.map": "./static/js/main.929efb45.js.map"
   },
   "entrypoints": [
-    "static/css/main.f759de4a.css",
-    "static/js/main.2b500d9c.js"
+    "static/css/main.8183db30.css",
+    "static/js/main.929efb45.js"
   ]
 }
