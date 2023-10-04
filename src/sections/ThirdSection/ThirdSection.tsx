@@ -27,8 +27,8 @@ export const ThirdSection = observer(() => {
 
   return (<>
     <div className={styles.section + ' ' + sectionActiveClass} id='section3'>
-      <div className={sectionActiveClass === styles.active ? styles.blur_right : ''}></div>
-      <div className={sectionActiveClass === styles.active ? styles.blur_left : ''}></div>
+      <div className={sectionActiveClass === styles.active || sectionActiveClass === styles.activeFooter ? styles.blur_right : ''}></div>
+      <div className={sectionActiveClass === styles.active || sectionActiveClass === styles.activeFooter ? styles.blur_left : ''}></div>
 
       {countries.map((country, i) => {
         return (

@@ -64,6 +64,28 @@ export const Modal = observer(() => {
     }
   }, [modalType])
 
+
+  const link = useMemo((): string => {
+    let modalTypeCheck = State.getModal()
+    if (modalTypeCheck === modal.NO) {
+      modalTypeCheck = State.getModalPrev()
+    }
+    switch (modalTypeCheck) {
+      case (modal.CHINA):
+        return 'https://vk.com/wall-24199209_20083502'
+      case (modal.INDIA):
+        return 'https://vk.com/video-24199209_456303310?t=16s'
+      case (modal.BELARUS):
+        return 'https://vk.com/video-24199209_456303769'
+      case (modal.SERBIA):
+        return 'https://vk.com/wall-24199209_20083502'
+      case (modal.SOUTH_AFRICA):
+        return 'https://vk.com/video-24199209_456302464?t=12s'
+      case (modal.BRAZIL):
+        return 'https://vk.com/video-24199209_456302864?t=47s'
+    }
+  }, [modalType])
+
   const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac') || platform.name.includes('Safari') || platform.name.includes('OS')
   const padding = checkOS ? styles.btn_back_ios : ''
 
@@ -75,7 +97,7 @@ export const Modal = observer(() => {
         <p className={styles.text}>{content}</p>
         <div className={styles.button_block}>
           <div style={{width: '57%'}} className={styles.button + ' ' + padding} onClick={() => console.log('Узнать больше о стране')}>{'Узнать больше о стране'.toUpperCase()}</div>
-          <div style={{flex: 1}}  className={styles.button + ' ' + padding} onClick={() => console.log('Смотреть фильм')}>{'Смотреть фильм'.toUpperCase()}</div>
+          <div style={{flex: 1}}  className={styles.button + ' ' + padding} onClick={() => window.open(link, '_blank').focus()}>{'Смотреть фильм'.toUpperCase()}</div>
         </div>
       </div>
     </div>

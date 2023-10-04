@@ -10,12 +10,12 @@ enum modal {
 
 enum content {
   NO = -1,
-  BELARUS = 0,
+  SOUTH_AFRICA = 0,
   BRAZIL = 1,
   INDIA = 2,
-  CHINA = 3,
+  BELARUS = 3,
   SERBIA = 4,
-  SOUTH_AFRICA = 5,
+  CHINA = 5,
 }
 
 export {
