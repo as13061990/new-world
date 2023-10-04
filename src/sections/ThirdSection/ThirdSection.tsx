@@ -12,22 +12,23 @@ import State, { MAX_STEP } from '../../store/State'
 import { observer } from 'mobx-react-lite'
 
 const countries = [
-  { img: BY, name: "беларусь" },
+  { img: ZA, name: "юар" },
   { img: BR, name: "бразилия" },
   { img: IN, name: "индия" },
-  { img: CN, name: "китай" },
+  { img: BY, name: "беларусь" },
   { img: CS, name: "сербия" },
-  { img: ZA, name: "юар" },
+  { img: CN, name: "китай" },
 ]
 
 export const ThirdSection = observer(() => {
-  let sectionActiveClass = State.getStep() >= MAX_STEP ? 
-  State.getStep() >= MAX_STEP + 1 ? styles.activeFooter : styles.active 
+  let sectionActiveClass = State.getStep() >= MAX_STEP - 1? 
+  State.getStep() >= MAX_STEP ? styles.activeFooter : styles.active 
   : styles.inactive
+
   return (<>
     <div className={styles.section + ' ' + sectionActiveClass} id='section3'>
-      <div className={styles.blur_right}></div>
-      <div className={styles.blur_left}></div>
+      <div className={sectionActiveClass === styles.active ? styles.blur_right : ''}></div>
+      <div className={sectionActiveClass === styles.active ? styles.blur_left : ''}></div>
 
       {countries.map((country, i) => {
         return (

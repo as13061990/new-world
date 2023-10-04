@@ -132,6 +132,8 @@
   font-weight: 500;
   transition: all ease 0.3s;
   cursor: pointer;
+  text-align: center;
+  padding: 5px 0;
 }
 
 .button:hover {

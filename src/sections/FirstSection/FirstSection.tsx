@@ -20,7 +20,7 @@ export const FirstSection = observer(({ innerRef }: any) => {
       <div className={styles.blur_left}></div>
       <div ref={innerRef} className={styles.section} id='section1'>
         <p className={styles.title + ' ' + textClass}>НОВЫЙ МИР</p>
-        <p className={styles.subtitle + ' ' + textClass}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis eros commodo, vehicula turpis eu, posuere diam. Duis et dapibus lacus. Morbi bibendum, nulla sed imperdiet lacinia, diam nibh mattis sapien, non vehicula nulla nisl et nibh. Sed ac tincidunt augue. Suspendisse dictum pulvinar purus sed eleifend. Sed eu suscipit nulla. Sed nec risus eget justo dapibus cursus in et nibh. </p>
+        <p className={styles.subtitle + ' ' + textClass}>Мир изменился. Россия занимает в нём чёткую позицию, выстраивая отношения с державами на всех материках и континентах. Бизнес-корпорации, культурные союзы, исторические подвиги и простая человеческая дружба объединяют россиян с жителями Китая, Индии, Беларуси, Бразилии, Сербии и Южно-Африканской Республики. Мы посетили эти страны, чтобы рассказать вам много интересных и ярких историй, которые позволят по-другому взглянуть на Россию и ее друзей.</p>
       </div>
       <Modal />
       <div id='canvas_three' className={styles.canvas_three}></div>

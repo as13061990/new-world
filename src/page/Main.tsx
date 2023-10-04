@@ -63,13 +63,14 @@ export const Main = observer(() => {
     State.plusStep()
   }
   const planetSteps = State.getStep() > 0 && State.getStep() < 9;
+
   const buttonStyle = planetSteps && State.getModalActive() === false ? 'show-button' : 'hide-button';
   const bottomButtonStyle = State.getStep() === 0 ? 'show-button' : 'hide-button';
   return (
     <div className="main" id='main' >
       <FirstSection />
-      {State.getStep() >= MAX_STEP - 2 ? <SecondSection /> : null}
-      {State.getStep() >= MAX_STEP - 1 ? <ThirdSection /> : null}
+      {/* {State.getStep() >= MAX_STEP - 2 ? <SecondSection /> : null} */}
+      {State.getStep() >= MAX_STEP - 2 ? <ThirdSection /> : null}
       <div className={"button-left " + buttonStyle} onClick={() => clickButton(true)}>
         <div className="dialog-container-left">
           <p>Покрутить</p>

@@ -1,5 +1,5 @@
 .section {
-  height: 118vh;
+  height: 100vh;
   position: relative;
   background-color: rgb(0, 0, 0);
   z-index: 5;
@@ -15,15 +15,15 @@
   background-size: 110% 50%;
 }
 .active {
-  transform: translateY(-200vh);
+  transform: translateY(-100vh);
   transition: 0.8s all ease;
 }
 .activeFooter {
-  transform: translateY(-218vh);
+  transform: translateY(-100vh);
   transition: 0.4s all ease;
 }
 .inactive {
-  transform: translateY(-50vh);
+  transform: translateY(0);
   transition: 0.8s all ease;
 }
 .blur_right {
