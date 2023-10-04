@@ -57,15 +57,20 @@ export const Main = observer(() => {
     else State.minusStep()
   }
   const bottomButton = () => {
-    if (State.getStep() !== 0) return
     if (State.getModalActive()) return
     if (State.isAnimation()) return
-    State.plusStep()
+    if (State.getStep() === 0) {
+      State.plusStep()
+      return
+    } else {
+      State.setStep(MAX_STEP-2)
+      setTimeout(() => { State.setStep(MAX_STEP-1)}, 100)
+    }
   }
   const planetSteps = State.getStep() > 0 && State.getStep() < 9;
 
+  const bottomButtonStyle = State.getStep() === 0 ? 'show-button' : 'show-button';
   const buttonStyle = planetSteps && State.getModalActive() === false ? 'show-button' : 'hide-button';
-  const bottomButtonStyle = State.getStep() === 0 ? 'show-button' : 'hide-button';
   return (
     <div className="main" id='main' >
       <FirstSection />
