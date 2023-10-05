@@ -10,7 +10,7 @@ import * as platform from 'platform';
 export const Modal = observer(() => {
   const activeStyle = State.getModalActive() ? styles.active : styles.inactive
   const modalType = State.getModal()
-  
+
   if (modalType === modal.NO) {
     runInAction(() => {
       State.setModalActive(false)
@@ -49,7 +49,7 @@ export const Modal = observer(() => {
 
   const content = useMemo((): string => {
     let modalTypeCheck = State.getModal()
-    
+
     if (modalTypeCheck === modal.NO) {
       modalTypeCheck = State.getModalPrev()
     }
@@ -96,8 +96,16 @@ export const Modal = observer(() => {
         <p className={styles.title}>{title}</p>
         <p className={styles.text}>{content}</p>
         <div className={styles.button_block}>
-          <div style={{width: '57%'}} className={styles.button + ' ' + padding} onClick={() => console.log('Узнать больше о стране')}>{'Узнать больше о стране'.toUpperCase()}</div>
-          <div style={{flex: 1}}  className={styles.button + ' ' + padding} onClick={() => window.open(link, '_blank').focus()}>{'Смотреть фильм'.toUpperCase()}</div>
+          <div className={styles.button} onClick={() => console.log('Узнать больше о стране')}>
+            <span className={padding}>
+              {'Узнать больше о стране'.toUpperCase()}
+            </span>
+          </div>
+          <div className={styles.button} onClick={() => window.open(link, '_blank').focus()}>
+            <span className={padding}>
+              {'Смотреть фильм'.toUpperCase()}
+            </span>
+          </div>
         </div>
       </div>
     </div>
