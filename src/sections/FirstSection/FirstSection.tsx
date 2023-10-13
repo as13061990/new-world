@@ -13,15 +13,21 @@ export const FirstSection = observer(({ innerRef }: any) => {
       State.setModalActive(true)
     }
   }
-
+  const loadingActive = State.getIsLoaded();
   return (
     <div className={styles.bg + ' ' + canvasThreeClass} onClick={onClickCountry}>
       <div className={styles.blur_right}></div>
       <div className={styles.blur_left}></div>
       <div ref={innerRef} className={styles.section} id='section1'>
-        <p className={styles.title + ' ' + textClass}>НОВЫЙ МИР</p>
-        <p className={styles.subtitle + ' ' + textClass}>Мир изменился. Россия занимает в нём чёткую позицию, выстраивая отношения с державами на всех материках и континентах. Бизнес-корпорации, культурные союзы, исторические подвиги и простая человеческая дружба объединяют россиян с жителями Китая, Индии, Беларуси, Бразилии, Сербии и Южно-Африканской Республики. Мы посетили эти страны, чтобы рассказать вам много интересных и ярких историй, которые позволят по-другому взглянуть на Россию и ее друзей.</p>
+        {loadingActive
+          &&
+          <>
+            <p className={styles.title + ' ' + textClass}>НОВЫЙ МИР</p>
+            <p className={styles.subtitle + ' ' + textClass}>Мир изменился. Россия занимает в нём чёткую позицию, выстраивая отношения с державами на всех материках и континентах. Бизнес-корпорации, культурные союзы, исторические подвиги и простая человеческая дружба объединяют россиян с жителями Китая, Индии, Беларуси, Бразилии, Сербии и Южно-Африканской Республики. Мы посетили эти страны, чтобы рассказать вам много интересных и ярких историй, которые позволят по-другому взглянуть на Россию и ее друзей.</p>
+          </>
+        }
       </div>
+
       <Modal />
       <div id='canvas_three' className={styles.canvas_three}></div>
     </div>

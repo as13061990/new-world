@@ -66,6 +66,11 @@ class Planet {
     light.position.set(-15, 5, 20);
     this._scene.add(light);
 
+    this._load.onProgress = (progress) => {
+      const loadingText = document.getElementById('loading-text');
+      loadingText.innerText = `${progress}%`;
+    };
+
     this._load.image('map', map);
     this._load.image('china', china);
     this._load.image('india', india);
@@ -140,6 +145,9 @@ class Planet {
     this._createPlanet();
     this._createClouds();
     this._createCountry();
+    setTimeout(()=>{
+      State.setIsLoaded(true)
+    },100)
   }
 
   private _createPlanet(): void {

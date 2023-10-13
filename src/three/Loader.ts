@@ -12,9 +12,16 @@ class Loader extends THREE.TextureLoader {
 
   private _textures: Texture[] = [];
   public onComplete: Function = (): void => {};
+  public onProgress: ((progress: number) => void) | null = null;
 
   private _checkProgress(): void {
     const loaded = this._textures.filter(data => data.texture !== null).length;
+
+    const progress = (loaded  / this._textures.length) * 100;
+    if (this.onProgress) {
+      this.onProgress(progress);
+    }
+
     this._textures.length === loaded && this.onComplete();
   }
 

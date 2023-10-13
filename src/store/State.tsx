@@ -20,6 +20,7 @@ class State {
   private _step: number = 0
   private _scrollTimer: number = 0
   private _point: boolean = false;
+  private _isLoaded: boolean = false
   
   private _animation: boolean = false;
   private _iconPosition: string = JSON.stringify({ x: 0, y: 0 });
@@ -27,6 +28,14 @@ class State {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  public getIsLoaded(): boolean {
+    return this._isLoaded
+  }
+
+  public setIsLoaded(load: boolean) {
+    this._isLoaded = load
   }
 
   public getIsMobile(): boolean {
