@@ -6,7 +6,35 @@ import { observer } from "mobx-react-lite";
 import State, { MAX_STEP } from "../store/State";
 import { useEffect } from "react";
 
+import BY from '../assets/images/section-three-BY.jpeg'
+import BR from '../assets/images/section-three-BR.jpeg'
+import IN from '../assets/images/section-three-IN.jpeg'
+import CN from '../assets/images/section-three-CN.jpeg'
+import CS from '../assets/images/section-three-CS.jpeg'
+import ZA from '../assets/images/section-three-ZA.jpeg'
+
+import BYInfo from '../assets/images/section-three-BY-info.jpg'
+import BRInfo from '../assets/images/section-three-BR-info.jpg'
+import INInfo from '../assets/images/section-three-IN-info.jpg'
+import SCInfo from '../assets/images/section-three-SС-info.jpeg'
+import ZAInfo from '../assets/images/section-three-ZA-info.jpeg'
+
+function preloadImages(imageUrls) {
+  imageUrls.forEach((url) => {
+    const img = new Image();
+    img.src = url;
+  });
+}
+
 export const Main = observer(() => {
+
+  useEffect(() => {
+    const imageUrls = [BY, BR, IN, CN, CS, ZA, BYInfo, BRInfo, INInfo, SCInfo, ZAInfo];
+
+    preloadImages(imageUrls);
+  }, []);
+
+
   useEffect(() => {
     let startY: number;
     let endY: number;

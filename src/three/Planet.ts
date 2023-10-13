@@ -79,7 +79,7 @@ class Planet {
     this._load.image('south-africa', southAfrica);
     this._load.image('brazil', brazil);
     this._load.image('point', point);
-
+    
     // this._load.image('EarthDayMap', EarthDayMap);
     // this._load.image('EarthNormalMap', EarthNormalMap);
     this._load.image('specular', EarthSpecularMap);
