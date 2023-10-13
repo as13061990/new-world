@@ -1,10 +1,10 @@
 import styles from './Content.module.css'
 import { observer } from "mobx-react-lite";
-import BYInfo from '../../../assets/images/section-three-BY-info.png'
-import BRInfo from '../../../assets/images/section-three-BR-info.png'
-import INInfo from '../../../assets/images/section-three-IN-info.png'
-import SCInfo from '../../../assets/images/section-three-SС-info.png'
-import ZAInfo from '../../../assets/images/section-three-ZA-info.png'
+import BYInfo from '../../../assets/images/section-three-BY-info.jpg'
+import BRInfo from '../../../assets/images/section-three-BR-info.jpg'
+import INInfo from '../../../assets/images/section-three-IN-info.jpg'
+import SCInfo from '../../../assets/images/section-three-SС-info.jpeg'
+import ZAInfo from '../../../assets/images/section-three-ZA-info.jpeg'
 
 import State from '../../../store/State';
 import { content } from '../../../types/enums';
