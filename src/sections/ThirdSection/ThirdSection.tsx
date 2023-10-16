@@ -10,6 +10,7 @@ import CountryItem from './CountryItem/CountryItem'
 import Content from './Content/Content'
 import State, { MAX_STEP } from '../../store/State'
 import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
 
 const countries = [
   { img: ZA, name: "юар" },
@@ -21,9 +22,14 @@ const countries = [
 ]
 
 export const ThirdSection = observer(() => {
-  let sectionActiveClass = State.getStep() >= MAX_STEP - 1? 
-  State.getStep() >= MAX_STEP ? styles.activeFooter : styles.active 
-  : styles.inactive
+  let sectionActiveClass = State.getStep() >= MAX_STEP - 1 ?
+    State.getStep() >= MAX_STEP ? styles.activeFooter : styles.active
+    : styles.inactive
+
+  useEffect(() => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }, [])
 
   return (<>
     <div className={styles.section + ' ' + sectionActiveClass} id='section3'>

@@ -94,24 +94,26 @@ export const Content = observer(() => {
   return (
 
     <div className={styles.content} style={stylesActiveContent}>
-      <div className={styles.info}>
-        <div className={styles.info_block}>
-          <p className={styles.info_title}>{contentTexts.title}</p>
-          <p className={styles.info_text}>{contentTexts.text}</p>
+      <div className={styles.info_wrapper}>
+        {/* <div className={styles.info}> */}
+          <div className={styles.info_block}>
+            <p className={styles.info_title}>{contentTexts.title}</p>
+            <p className={styles.info_text}>{contentTexts.text}</p>
 
-        </div>
-        <div className={styles.info_img_block}>
-          {/* <Hint/> */}
-          <img className={styles.info_img} src={contentTexts.img} alt='country' />
-          <div className={styles.buttons}>
-            <div className={styles.info_btn}><span className={padding}>Узнать больше о стране</span></div>
-            <a href={contentTexts.link} target='_blank' rel="noreferrer" className={styles.info_btn}>
+          </div>
+          <div className={styles.info_img_block}>
+            {/* <Hint/> */}
+            <img className={styles.info_img} src={contentTexts.img} alt='country' />
+            <div className={styles.buttons}>
+              <div className={styles.info_btn}><span className={padding}>Узнать больше о стране</span></div>
+              <a href={contentTexts.link} target='_blank' rel="noreferrer" className={styles.info_btn}>
                 <span className={padding}>
                   смотреть фильм
                 </span>
-            </a>
+              </a>
+            </div>
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </div>
   )
