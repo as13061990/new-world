@@ -14,7 +14,7 @@ const positions: IPlanetState[] = [
     rotation: { x: 0, y: 8.3, z: 0 }
   },
   {
-    state: modal.CHINA,
+    // state: modal.CHINA, скрыть до того момента как не дадут контент по китаю
     position: { x: 0, y: 0, z: 6 },
     rotation: { x: .3, y: 9.23, z: 0 }
   },

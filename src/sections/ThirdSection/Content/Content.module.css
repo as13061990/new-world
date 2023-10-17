@@ -1,5 +1,5 @@
 .content {
-  width: calc(100% - 100%/6 - 5%);
+  width: calc(100% - 100%/5 - 5%); /* изменить на 6 когда добавят китай*/
   transform: translate(calc(-100%));
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);

@@ -54,7 +54,7 @@ const belarus = {
 export const Content = observer(() => {
   const index = State.getActiveCountryIndex()
   const stylesActiveContent = index !== content.NO ? {
-    transform: 'translate(calc(100%/4.7))',
+    transform: 'translate(calc(100%/3.9))', // вернуть на 4.7
     transition: '0.5s all ease',
     transitionDelay: '0.2s',
     zIndex: 1
@@ -64,6 +64,7 @@ export const Content = observer(() => {
     let contentType = index
 
     if (index === content.NO) {
+      console.log(contentType)
       const history = State.getHistoryCountries()
       if (history.length > 1) {
         contentType = history[history.length - 2]
@@ -71,6 +72,7 @@ export const Content = observer(() => {
         return { title: '', text: '', link: '', img: '' }
       }
     }
+
     switch (contentType) {
       case (content.CHINA):
         return china
@@ -103,7 +105,7 @@ export const Content = observer(() => {
           </div>
           <div className={styles.info_img_block}>
             {/* <Hint/> */}
-            <img className={styles.info_img} src={contentTexts.img} alt='country' />
+            <img className={styles.info_img} src={contentTexts.img} alt='country' key={contentTexts.img} />
             <div className={styles.buttons}>
               <div className={styles.info_btn}><span className={padding}>Узнать больше о стране</span></div>
               <a href={contentTexts.link} target='_blank' rel="noreferrer" className={styles.info_btn}>

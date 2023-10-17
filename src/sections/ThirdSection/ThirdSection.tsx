@@ -18,7 +18,7 @@ const countries = [
   { img: IN, name: "индия" },
   { img: BY, name: "беларусь" },
   { img: CS, name: "сербия" },
-  { img: CN, name: "китай" },
+  // { img: CN, name: "китай" }, вернуть как добавят китай
 ]
 
 export const ThirdSection = observer(() => {

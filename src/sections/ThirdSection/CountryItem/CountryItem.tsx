@@ -25,7 +25,7 @@ export const CountryItem = observer(({ img, name, index }: ICountryItemProps) =>
     transition: '0.5s all ease',
     zIndex: 10
   } : State.getActiveCountryIndex() < index && State.getActiveCountryIndex() !== -1 ? {
-    transform: `translateX(calc(100% * (${6 - State.getActiveCountryIndex()}) - 130%))`,
+    transform: `translateX(calc(100% * (${5 - State.getActiveCountryIndex()}) - 130%))`, // вернуть 6 -
     transition: '0.5s all ease',
     zIndex: 10
   } : {}
@@ -34,7 +34,7 @@ export const CountryItem = observer(({ img, name, index }: ICountryItemProps) =>
   return (
     <div className={styles.country} >
       <div className={styles.img_block} onClick={clickHandler} style={stylesActiveImg}>
-        <img src={img} alt={'countrybg'} className={styles.img} />
+        <img src={img} alt={'countrybg'} className={styles.img}/>
         <p className={styles.name}>{name}</p>
         <div className={ flip ? styles.button_content_flip : styles.button_content}></div>
       </div>

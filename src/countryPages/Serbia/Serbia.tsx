@@ -5,7 +5,7 @@ const Serbia: FC = () => {
   return (
     <div style={{ height: '100vh' }}>
       <iframe
-        src="http://hedu.sychev2.tmweb.ru/serbia/"
+        src='https://timkogas.github.io/NW-serbia/'
         title="Ваш Лендинг"
         width="100%"
         height="100%"

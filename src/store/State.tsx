@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, runInAction } from 'mobx';
 import { content, modal } from '../types/enums';
 import positions from '../three/positions';
 
@@ -70,10 +70,10 @@ class State {
     } else {
       if (!this._isTimer) {
         this._isTimer = true
-        setTimeout(() => {
-          this._isTimer = false
-          this._activeCountryIndex = index
-        }, ANIMATION_DELAY)
+          setTimeout(() => {
+            this._isTimer = false
+            this._activeCountryIndex = index
+          }, ANIMATION_DELAY)
       }
     }
     this._historyCountries.push(index)
