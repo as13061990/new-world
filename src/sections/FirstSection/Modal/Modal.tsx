@@ -6,8 +6,10 @@ import { useMemo } from 'react';
 import { runInAction } from "mobx"
 import points from '../../../three/points';
 import * as platform from 'platform';
+import { useNavigate } from 'react-router-dom';
 
 export const Modal = observer(() => {
+  const navigate = useNavigate()
   const activeStyle = State.getModalActive() ? styles.active : styles.inactive
   const modalType = State.getModal()
 
@@ -86,6 +88,28 @@ export const Modal = observer(() => {
     }
   }, [modalType])
 
+  const page = useMemo((): string => {
+    let modalTypeCheck = State.getModal()
+    if (modalTypeCheck === modal.NO) {
+      modalTypeCheck = State.getModalPrev()
+    }
+    switch (modalTypeCheck) {
+      case (modal.CHINA):
+        return '/africa'
+      case (modal.INDIA):
+        return '/india'
+      case (modal.BELARUS):
+        return '/belarus'
+      case (modal.SERBIA):
+        return '/serbia'
+      case (modal.SOUTH_AFRICA):
+        return '/africa'
+      case (modal.BRAZIL):
+        return 'brazil'
+    }
+  }, [modalType])
+
+
   const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac') || platform.name.includes('Safari') || platform.name.includes('OS')
   const padding = checkOS ? styles.btn_back_ios : ''
 
@@ -96,7 +120,7 @@ export const Modal = observer(() => {
         <p className={styles.title}>{title}</p>
         <p className={styles.text}>{content}</p>
         <div className={styles.button_block}>
-          <div className={styles.button} onClick={() => console.log('Узнать больше о стране')}>
+          <div className={styles.button} onClick={() => navigate(page)}>
             <span className={padding}>
               {'Узнать больше о стране'.toUpperCase()}
             </span>
