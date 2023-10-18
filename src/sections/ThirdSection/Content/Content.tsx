@@ -15,18 +15,21 @@ const brazil = {
   title: 'Бразилия',
   link: 'https://vk.com/video-24199209_456302864?t=47s',
   img: BYInfo,
+  page: '/brazil',
   text: 'Бразилия — страна самбо и самбы, где первое — это название народа, а второе — естественно, танцы. На главном карнавальном шествии в этом году в ритме самбы участники буквально оттанцевали сцены из жизни созвучных потомков индейцев — самбо. Если вы не слышали о них, то точно знаете самых известных их представителей: Уго Чавеса и актера Дуэйна по прозвищу Скала. Насколько различны Бразилия и Россия по своему этническому составу, настолько схожи ментально, культурологически и даже экономически. Бразилия — наш самый западный союзник по БРИКС, но самый близкий по духу. '
 }
 const india = {
   title: 'Индия',
   link: 'https://vk.com/video-24199209_456303310?t=16s',
   img: INInfo,
+  page: '/india',
   text: 'Индия — самая многонаселённая страна мира, обогнавшая Китай, и самая многоязычная страна, говорящая на 400 наречиях. Мало кто знает, что именно по языковому принципу здесь развивается индустрия кино. Да, оказывается, это не только Болливуд, есть еще Толливуд, Колливуд, Сандалвуд, Бходжвуд, Джолливуд, Дхолливуд, Долливуд, Полливуд, Чхолливуд… и ещё много разных «вудов». В целом, Индия является для России отличным рынком по замещению западных товаров. И кто знает, может быть, совсем скоро, у нас появятся Боллинетфликс и Толлизон…'
 }
 const southAfrica = {
   title: 'ЮАР',
   link: 'https://vk.com/video-24199209_456302464?t=12s',
   img: ZAInfo,
+  page: '/africa',
   text: 'ЮАР — самое яркое государство африканского континента. Жители Южной Африки называют себя "радужная нация". \n Здесь 11 официальных языков и люди всех цветов кожи уживаются под одним ярким флагом.\nПри этом мало кто знает, но Россию и Южную Африку объединяют более 100 лет совместной истории и деловых связей.'
 }
 
@@ -34,6 +37,7 @@ const china = {
   title: 'Китай',
   link: 'https://vk.com/video-24199209_456302464?t=12s',
   img: BYInfo,
+  page: '/africa',
   text: 'ЮАР — самое яркое государство африканского континента. Жители Южной Африки называют себя "радужная нация". \n Здесь 11 официальных языков и люди всех цветов кожи уживаются под одним ярким флагом.\nПри этом мало кто знает, но Россию и Южную Африку объединяют более 100 лет совместной истории и деловых связей.'
 }
 
@@ -41,6 +45,7 @@ const serbia = {
   title: 'Сербия',
   link: 'https://vk.com/wall-24199209_20083502',
   img: SCInfo,
+  page: '/serbia',
   text: 'Сербия — страна с яркими и трагичными периодами истории: от завоевания турками в XIV веке до бомбёжек NATO в XX веке. Но, несмотря на испытания, сербы сохранили свою нацию, свой выразительный характер. Жители этой страны считают себя настоящими друзьями России, и она отвечает им тем же, развивая в Сербии энергетику и помогая восстанавливать храмы. Вместе мы насчитываем тысячу лет совместной дружбы — может, поэтому сербы называют себя малыми русскими. '
 }
 
@@ -48,6 +53,7 @@ const belarus = {
   title: 'Республика Беларусь',
   link: 'https://vk.com/video-24199209_456303769',
   img: BRInfo,
+  page: '/belarus',
   text: 'Беларусь — одно из самых молодых государств. На карте Европы оно появилось в 1991 году. Беларусь сохранила почти все промышленные предприятия-гиганты советских лет, что играет немаловажную роль в экономике страны. Сегодня Россия и Беларусь составляют Союзное государство. Уже сейчас в стране разрабатываются десятки проектов как в сфере импортозамещения, так и в сфере прорывных технологий. Белорусская промышленность и российские научные технологии смогут изменить мир.'
 }
 
@@ -60,16 +66,15 @@ export const Content = observer(() => {
     zIndex: 1
   } : {}
 
-  const contentTexts = useMemo((): { title: string, text: string, link: string, img: string } => {
+  const contentTexts = useMemo((): { title: string, text: string, link: string, img: string, page: string } => {
     let contentType = index
 
     if (index === content.NO) {
-      console.log(contentType)
       const history = State.getHistoryCountries()
       if (history.length > 1) {
         contentType = history[history.length - 2]
       } else {
-        return { title: '', text: '', link: '', img: '' }
+        return { title: '', text: '', link: '', img: '', page: '' }
       }
     }
 
@@ -98,23 +103,29 @@ export const Content = observer(() => {
     <div className={styles.content} style={stylesActiveContent}>
       <div className={styles.info_wrapper}>
         {/* <div className={styles.info}> */}
-          <div className={styles.info_block}>
-            <p className={styles.info_title}>{contentTexts.title}</p>
-            <p className={styles.info_text}>{contentTexts.text}</p>
+        <div className={styles.info_block}>
+          <p className={styles.info_title}>{contentTexts.title}</p>
+          <p className={styles.info_text}>{contentTexts.text}</p>
 
+        </div>
+        <div className={styles.info_img_block}>
+          {/* <Hint/> */}
+          <img className={styles.info_img} src={contentTexts.img} alt='country' key={contentTexts.img} />
+          <div className={styles.buttons}>
+
+            <a href={contentTexts.page} className={styles.info_btn}>
+              <span className={padding}>
+                Узнать больше о стране
+              </span>
+            </a>
+
+            <a href={contentTexts.link} target='_blank' rel="noreferrer" className={styles.info_btn}>
+              <span className={padding}>
+                смотреть фильм
+              </span>
+            </a>
           </div>
-          <div className={styles.info_img_block}>
-            {/* <Hint/> */}
-            <img className={styles.info_img} src={contentTexts.img} alt='country' key={contentTexts.img} />
-            <div className={styles.buttons}>
-              <div className={styles.info_btn}><span className={padding}>Узнать больше о стране</span></div>
-              <a href={contentTexts.link} target='_blank' rel="noreferrer" className={styles.info_btn}>
-                <span className={padding}>
-                  смотреть фильм
-                </span>
-              </a>
-            </div>
-          </div>
+        </div>
         {/* </div> */}
       </div>
     </div>

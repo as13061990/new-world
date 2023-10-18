@@ -6,10 +6,8 @@ import { useMemo } from 'react';
 import { runInAction } from "mobx"
 import points from '../../../three/points';
 import * as platform from 'platform';
-import { useNavigate } from 'react-router-dom';
 
 export const Modal = observer(() => {
-  const navigate = useNavigate()
   const activeStyle = State.getModalActive() ? styles.active : styles.inactive
   const modalType = State.getModal()
 
@@ -105,7 +103,7 @@ export const Modal = observer(() => {
       case (modal.SOUTH_AFRICA):
         return '/africa'
       case (modal.BRAZIL):
-        return 'brazil'
+        return '/brazil'
     }
   }, [modalType])
 
@@ -120,10 +118,10 @@ export const Modal = observer(() => {
         <p className={styles.title}>{title}</p>
         <p className={styles.text}>{content}</p>
         <div className={styles.button_block}>
-          <div className={styles.button} onClick={() => navigate(page)}>
-            <span className={padding}>
+          <div className={styles.button}>
+            <a href={page} className={padding + ' ' + styles.link}>
               {'Узнать больше о стране'.toUpperCase()}
-            </span>
+            </a>
           </div>
           <div className={styles.button} onClick={() => window.open(link, '_blank').focus()}>
             <span className={padding}>
