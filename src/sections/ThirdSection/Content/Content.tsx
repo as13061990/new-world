@@ -113,7 +113,7 @@ export const Content = observer(() => {
           <img className={styles.info_img} src={contentTexts.img} alt='country' key={contentTexts.img} />
           <div className={styles.buttons}>
 
-            <a href={contentTexts.page} className={styles.info_btn}>
+            <a href={contentTexts.page} target='_blank' rel="noreferrer"  className={styles.info_btn}>
               <span className={padding}>
                 Узнать больше о стране
               </span>
