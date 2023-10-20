@@ -71,19 +71,20 @@ class Planet {
       loadingText.innerText = `${progress}%`;
     };
 
-    this._load.image('map', map);
-    this._load.image('china', china);
-    this._load.image('india', india);
-    this._load.image('belarus', belarus);
-    this._load.image('serbia', serbia);
-    this._load.image('south-africa', southAfrica);
-    this._load.image('brazil', brazil);
+    // this._load.image('map', map);
+    // this._load.image('china', china);
+    // this._load.image('india', india);
+    // this._load.image('belarus', belarus);
+    // this._load.image('serbia', serbia);
+    // this._load.image('south-africa', southAfrica);
+    // this._load.image('brazil', brazil);
     this._load.image('point', point);
     
     // this._load.image('EarthDayMap', EarthDayMap);
     // this._load.image('EarthNormalMap', EarthNormalMap);
-    this._load.image('specular', EarthSpecularMap);
-    this._load.image('clouds', EarthCloudsMap);
+    
+    // this._load.image('specular', EarthSpecularMap);
+    // this._load.image('clouds', EarthCloudsMap);
 
     this._load.onComplete = this._loadComplete.bind(this);
 
@@ -142,12 +143,12 @@ class Planet {
   }
 
   private _loadComplete(): void {
-    this._createPlanet();
-    this._createClouds();
-    this._createCountry();
-    setTimeout(()=>{
+    // this._createPlanet();
+    // this._createClouds();
+    // this._createCountry();
+    // setTimeout(()=>{
       State.setIsLoaded(true)
-    },100)
+    // },100)
   }
 
   private _createPlanet(): void {
