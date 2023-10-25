@@ -130,7 +130,7 @@ export const Modal = observer(() => {
         <p className={styles.text}>{content}</p>
         <div className={styles.button_block}>
           <div className={styles.button}>
-            <a href={page} className={padding + ' ' + styles.link} target='_blank' rel="noreferrer" onClick={() => { metrikaFilm()}}>
+            <a href={page} className={padding + ' ' + styles.link} target='_blank' rel="noreferrer" onClick={() => { metrikaPage()}}>
               {'Узнать больше о стране'.toUpperCase()}
             </a>
           </div>
