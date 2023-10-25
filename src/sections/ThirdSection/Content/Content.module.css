@@ -8,6 +8,7 @@
   z-index: 5;
   padding: 2% 2%;
   transition: 0.5s transform ease;
+  will-change: transform;
   overflow: auto;
 }
 
