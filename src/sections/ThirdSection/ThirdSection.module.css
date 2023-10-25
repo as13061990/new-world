@@ -16,15 +16,15 @@
 }
 .active {
   transform: translateY(-100vh);
-  transition: 0.8s all ease;
+  transition: 0.8s transform ease;
 }
 .activeFooter {
   transform: translateY(-100vh);
-  transition: 0.4s all ease;
+  transition: 0.4s transform ease;
 }
 .inactive {
   transform: translateY(0);
-  transition: 0.8s all ease;
+  transition: 0.8s transform ease;
 }
 .blur_right {
   overflow: hidden;

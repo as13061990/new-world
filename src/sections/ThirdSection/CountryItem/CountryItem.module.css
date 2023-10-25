@@ -1,7 +1,7 @@
 .country {
   display: inline-block;
   width: calc(100%/5);  /* изменить на 6 когда добавят китай*/
-  transition: 0.5s all ease;
+  transition: 0.5s transform ease;
   cursor: pointer;
 }
 .img {
@@ -11,7 +11,7 @@
 .img_block {
   position: relative;
   z-index: 10;
-  transition: 0.5s all ease;
+  transition: 0.5s transform ease;
 }
 .name {
   font-family: 'HelveticaNeueMedium', sans-serif;

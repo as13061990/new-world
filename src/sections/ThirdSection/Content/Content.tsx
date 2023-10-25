@@ -60,8 +60,8 @@ const belarus = {
 export const Content = observer(() => {
   const index = State.getActiveCountryIndex()
   const stylesActiveContent = index !== content.NO ? {
-    transform: 'translate(calc(100%/3.9))', // вернуть на 4.7
-    transition: '0.5s all ease',
+    transform: 'translate3d(0, 0, 0) translate(calc(100%/3.9))', // вернуть на 4.7
+    transition: '0.5s transform ease',
     transitionDelay: '0.2s',
     zIndex: 1
   } : {}
