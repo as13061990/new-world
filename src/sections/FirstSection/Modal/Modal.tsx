@@ -111,6 +111,17 @@ export const Modal = observer(() => {
   const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac') || platform.name.includes('Safari') || platform.name.includes('OS')
   const padding = checkOS ? styles.btn_back_ios : ''
 
+  const metrikaFilm = () => {
+    //@ts-ignore
+    ym(95340418,'reachGoal','film')
+  }
+
+  const metrikaPage = () => {
+    //@ts-ignore
+    ym(95340418, 'reachGoal', 'statya')
+  }
+
+
   return (
     <div className={styles.modal_block + ' ' + activeStyle}>
       <button className={styles.btn_back + ' ' + padding} onClick={onClickBack}>Назад</button>
@@ -119,18 +130,18 @@ export const Modal = observer(() => {
         <p className={styles.text}>{content}</p>
         <div className={styles.button_block}>
           <div className={styles.button}>
-            <a href={page} className={padding + ' ' + styles.link}  target='_blank' rel="noreferrer">
+            <a href={page} className={padding + ' ' + styles.link} target='_blank' rel="noreferrer" onClick={() => { metrikaFilm()}}>
               {'Узнать больше о стране'.toUpperCase()}
             </a>
           </div>
-          <div className={styles.button} onClick={() => window.open(link, '_blank').focus()}>
+          <div className={styles.button} onClick={() => { metrikaFilm(); window.open(link, '_blank').focus() }}>
             <span className={padding}>
               {'Смотреть фильм'.toUpperCase()}
             </span>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 });
 
