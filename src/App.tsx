@@ -25,12 +25,15 @@ class App extends React.Component {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      textAlign: 'center',
+      width: '100%',
+      height: '100%',
       position: 'absolute',
       left: 0,
       right: 0,
       top: 0,
       bottom: 0
-    }}>Поверните устройство в горизонтальное положение</div>
+    }}><span>Поверните устройство в горизонтальное положение</span></div>
 
     return (<>
           <Main />
