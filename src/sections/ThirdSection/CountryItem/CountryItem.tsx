@@ -17,17 +17,14 @@ export const CountryItem = observer(({ img, name, index }: ICountryItemProps) =>
   }
 
   const stylesActiveImg = State.getActiveCountryIndex() === index ? {
-    transform: `translate3d(0, 0, 0) translateX(calc(100% * ${index} * -1))`,
+    transform: `translateZ(0) translateX(calc(100% * ${index} * -1))`,
     transition: '0.5s transform ease',
-    zIndex: 10
   } : State.getActiveCountryIndex() > index ? {
-    transform: `translate3d(0, 0, 0) translateX(calc(100% * ${index} * -1))`,
+    transform: `translateZ(0) translateX(calc(100% * ${index} * -1))`,
     transition: '0.5s transform ease',
-    zIndex: 10
   } : State.getActiveCountryIndex() < index && State.getActiveCountryIndex() !== -1 ? {
-    transform: `translate3d(0, 0, 0) translateX(calc(100% * (${5 - State.getActiveCountryIndex()}) - 130%))`, // вернуть 6 -
+    transform: `translateZ(0) translateX(calc(100% * (${5 - State.getActiveCountryIndex()}) - 130%))`, // вернуть 6 -
     transition: '0.5s transform ease',
-    zIndex: 10
   } : {}
   const flip = State.getActiveCountryIndex() === index;
 
