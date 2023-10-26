@@ -43,7 +43,7 @@ const china = {
 
 const serbia = {
   title: 'Сербия',
-  link: 'https://vk.com/wall-24199209_20083502',
+  link: 'https://vk.com/video-24199209_456304092',
   img: SCInfo,
   page: '/serbia',
   text: 'Сербия — страна с яркими и трагичными периодами истории: от завоевания турками в XIV веке до бомбёжек NATO в XX веке. Но, несмотря на испытания, сербы сохранили свою нацию, свой выразительный характер. Жители этой страны считают себя настоящими друзьями России, и она отвечает им тем же, развивая в Сербии энергетику и помогая восстанавливать храмы. Вместе мы насчитываем тысячу лет совместной дружбы — может, поэтому сербы называют себя малыми русскими. '
@@ -95,8 +95,8 @@ export const Content = observer(() => {
   }, [index])
 
   const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac') || platform.name.includes('Safari') || platform.name.includes('OS')
-
-  const padding = checkOS ? styles.info_btn_ios : ''
+  //styles.info_btn_ios
+  const padding = checkOS ? "" : ''
 
 
   const metrikaFilm = () => {

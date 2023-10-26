@@ -78,7 +78,7 @@ export const Modal = observer(() => {
       case (modal.BELARUS):
         return 'https://vk.com/video-24199209_456303769'
       case (modal.SERBIA):
-        return 'https://vk.com/wall-24199209_20083502'
+        return 'https://vk.com/video-24199209_456304092'
       case (modal.SOUTH_AFRICA):
         return 'https://vk.com/video-24199209_456302464?t=12s'
       case (modal.BRAZIL):
