@@ -44,6 +44,7 @@ class Planet {
   private _load: Loader = new Loader();
   private _zoom: boolean = false;
   private _time: number = 0;
+  private _flash: AnimeInstance;
 
   private _build(): void {
     this._root = document.querySelector('#canvas_three') as HTMLElement;
@@ -224,6 +225,7 @@ class Planet {
   private _showCountry(country: modal): void {
     State.setModal(country);
     const material = this._country.material as THREE.Material;
+    this._flash?.pause();
 
     if (material.opacity === 0) {
       const texture = this._load.get(country);
@@ -233,7 +235,17 @@ class Planet {
         targets: material,
         opacity: 1,
         easing: EASING,
-        duration: COUNTRY_DURATION
+        duration: COUNTRY_DURATION,
+        complete: (): void => {
+          this._flash = anime({
+            targets: material,
+            opacity: .5,
+            loop: true,
+            easing: EASING,
+            duration: 1000,
+            direction: 'alternate'
+          });
+        }
       });
     } else {
       anime({
@@ -249,7 +261,17 @@ class Planet {
             targets: material,
             opacity: 1,
             easing: EASING,
-            duration: COUNTRY_DURATION / 2
+            duration: COUNTRY_DURATION / 2,
+            complete: (): void => {
+              this._flash = anime({
+                targets: material,
+                opacity: .5,
+                loop: true,
+                easing: EASING,
+                duration: 1000,
+                direction: 'alternate'
+              });
+            }
           });
         }
       });
@@ -258,6 +280,7 @@ class Planet {
 
   private _hideCountry(): void {
     State.setModal(modal.NO);
+    this._flash?.pause();
     anime({
       targets: this._country.material,
       opacity: 0,
