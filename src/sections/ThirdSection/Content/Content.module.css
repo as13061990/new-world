@@ -66,13 +66,14 @@
 
 .info_btn_ios {
   display: block;
-  margin-top: 11px;
+  padding-top: 7px;
 }
 
 .buttons {
   display: flex;
   width: 100%;
 }
+
 @media screen and (max-width: 930px) {
   .info_title {
     font-family: 'HelveticaNeueMedium', sans-serif;

@@ -93,17 +93,17 @@ export const Modal = observer(() => {
     }
     switch (modalTypeCheck) {
       case (modal.CHINA):
-        return '/africa'
+        return '/africa/'
       case (modal.INDIA):
-        return '/india'
+        return '/india/'
       case (modal.BELARUS):
-        return '/belarus'
+        return '/belarus/'
       case (modal.SERBIA):
-        return '/serbia'
+        return '/serbia/'
       case (modal.SOUTH_AFRICA):
-        return '/africa'
+        return '/africa/'
       case (modal.BRAZIL):
-        return '/brazil'
+        return '/brazil/'
     }
   }, [modalType])
 

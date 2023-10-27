@@ -42,14 +42,15 @@
   font-family: 'Monaco';
   font-style: normal;
   font-weight: 600;
-  font-size: 50px;
+  font-size: 40px;
   text-align: left;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #252525;
 
   line-height: 50px;
-  margin-bottom: 10px;
+
+  white-space: nowrap; 
 }
 
 .text {

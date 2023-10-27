@@ -54,13 +54,17 @@
 }
 
 .show-button {
+  visibility: visible;
   opacity: 1;
-  transition: 0.5s all ease;
+
+  transition: 0.5s opacity ease;
 }
 
 .hide-button {
+  visibility: hidden;
   opacity: 0;
-  transition: 0.5s all ease;
+  
+  transition: 0.5s opacity ease, 0s visibility;
 }
 
 .button-right:hover .dialog-container-right,
