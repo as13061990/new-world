@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.c8a4d996.css",
-    "main.js": "./static/js/main.dadbbb59.js",
+    "main.css": "./static/css/main.66e12350.css",
+    "main.js": "./static/js/main.fca13bba.js",
     "static/media/8k_earth_clouds.jpg": "./static/media/8k_earth_clouds.08fcd80007fae8fc7170.jpg",
     "static/media/map.png": "./static/media/map.f63a5d10a14771196295.png",
     "static/media/8k_earth_specular_map.jpg": "./static/media/8k_earth_specular_map.7b4efa59933b470e3776.jpg",
@@ -27,11 +27,11 @@
     "static/media/serbia.png": "./static/media/serbia.f52e10985286a3ca5312.png",
     "static/media/section-one-stars-1.png": "./static/media/section-one-stars-1.10496b57b8fead3cdbac.png",
     "index.html": "./index.html",
-    "main.c8a4d996.css.map": "./static/css/main.c8a4d996.css.map",
-    "main.dadbbb59.js.map": "./static/js/main.dadbbb59.js.map"
+    "main.66e12350.css.map": "./static/css/main.66e12350.css.map",
+    "main.fca13bba.js.map": "./static/js/main.fca13bba.js.map"
   },
   "entrypoints": [
-    "static/css/main.c8a4d996.css",
-    "static/js/main.dadbbb59.js"
+    "static/css/main.66e12350.css",
+    "static/js/main.fca13bba.js"
   ]
 }
