@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "./static/css/main.896b7c2d.css",
+    "main.css": "./static/css/main.1961d7fd.css",
     "main.js": "./static/js/main.8d13a871.js",
     "static/media/8k_earth_clouds.jpg": "./static/media/8k_earth_clouds.08fcd80007fae8fc7170.jpg",
     "static/media/map.png": "./static/media/map.f63a5d10a14771196295.png",
@@ -27,11 +27,11 @@
     "static/media/serbia.png": "./static/media/serbia.f52e10985286a3ca5312.png",
     "static/media/section-one-stars-1.png": "./static/media/section-one-stars-1.10496b57b8fead3cdbac.png",
     "index.html": "./index.html",
-    "main.896b7c2d.css.map": "./static/css/main.896b7c2d.css.map",
+    "main.1961d7fd.css.map": "./static/css/main.1961d7fd.css.map",
     "main.8d13a871.js.map": "./static/js/main.8d13a871.js.map"
   },
   "entrypoints": [
-    "static/css/main.896b7c2d.css",
+    "static/css/main.1961d7fd.css",
     "static/js/main.8d13a871.js"
   ]
 }
