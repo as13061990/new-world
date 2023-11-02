@@ -37,6 +37,7 @@
   filter: blur(400px);
 }
 .blur_left {
+  overflow: hidden;
   position: absolute;
   left: -8%;
   z-index: 0;

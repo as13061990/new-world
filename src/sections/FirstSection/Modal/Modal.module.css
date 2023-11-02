@@ -34,8 +34,7 @@
 }
 
 .title {
-  height: 120px;
-  padding-top: 20px;
+  padding-top: 8%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -49,8 +48,7 @@
   color: #252525;
 
   line-height: 50px;
-
-  white-space: nowrap; 
+  margin-bottom: 5%;
 }
 
 .text {
