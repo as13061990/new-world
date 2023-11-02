@@ -109,11 +109,11 @@ export const Modal = observer(() => {
 
 
   const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac') || platform.name.includes('Safari') || platform.name.includes('OS')
-  const padding = checkOS ? styles.btn_back_ios : ''
+  const padding = checkOS ? '' : ''
 
   const metrikaFilm = () => {
     //@ts-ignore
-    ym(95340418,'reachGoal','film')
+    ym(95340418, 'reachGoal', 'film')
   }
 
   const metrikaPage = () => {
@@ -129,16 +129,16 @@ export const Modal = observer(() => {
         <p className={styles.title}>{title}</p>
         <p className={styles.text}>{content}</p>
         <div className={styles.button_block}>
-          <div className={styles.button}>
-            <a href={page} className={padding + ' ' + styles.link} target='_blank' rel="noreferrer" onClick={() => { metrikaPage()}}>
-              {'Узнать больше о стране'.toUpperCase()}
-            </a>
-          </div>
-          <div className={styles.button} onClick={() => { metrikaFilm(); window.open(link, '_blank').focus() }}>
-            <span className={padding}>
-              {'Смотреть фильм'.toUpperCase()}
-            </span>
-          </div>
+
+          <a href={page} className={styles.button + ' ' + padding} target='_blank' rel="noreferrer" onClick={() => { metrikaPage() }}>
+            Узнать больше о стране
+          </a>
+
+
+          <a href={link} className={styles.button + ' ' + padding} target='_blank' rel="noreferrer" onClick={() => { metrikaFilm() }}>
+            Смотреть фильм
+          </a>
+
         </div>
       </div>
     </div >

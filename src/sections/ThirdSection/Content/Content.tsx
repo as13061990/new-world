@@ -96,7 +96,7 @@ export const Content = observer(() => {
 
   const checkOS = platform.os.family.includes('OS') || platform.os.family.includes('Mac') || platform.name.includes('Safari') || platform.name.includes('OS')
 
-  const padding = checkOS ? styles.info_btn_ios : ''
+  const padding = checkOS ? '' : ''
 
 
   const metrikaFilm = () => {
@@ -124,16 +124,12 @@ export const Content = observer(() => {
           <img className={styles.info_img} src={contentTexts.img} alt='country' key={contentTexts.img} />
           <div className={styles.buttons}>
 
-            <a href={contentTexts.page} target='_blank' rel="noreferrer" className={styles.info_btn} onClick={() => { metrikaPage() }}>
-              <span className={padding}>
+            <a href={contentTexts.page} target='_blank' rel="noreferrer" className={styles.info_btn + " " + padding} onClick={() => { metrikaPage() }}>
                 Узнать больше о стране
-              </span>
             </a>
 
-            <a href={contentTexts.link} target='_blank' rel="noreferrer" className={styles.info_btn} onClick={() => { metrikaFilm() }}>
-              <span className={padding}>
+            <a href={contentTexts.link} target='_blank' rel="noreferrer" className={styles.info_btn + " " + padding} onClick={() => { metrikaFilm() }}>
                 смотреть фильм
-              </span>
             </a>
           </div>
         </div>

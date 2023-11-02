@@ -46,10 +46,8 @@
   color: #BEBEBE;
 }
 .info_btn {
-  font-family: "Monaco";
   font-size: 130%;
   font-style: normal;
-  font-weight: 400;
   text-align: center;
   text-transform: uppercase;
   cursor: pointer;
@@ -89,6 +87,8 @@
     color: #BEBEBE;
   }
   .info_btn {
-    font-size: 65%;
+    font-size: 11px;
+    line-height: 8px;
+    padding: 13px 10px 12px 10px;
   }
 }
