@@ -1,10 +1,11 @@
 {
   "files": {
     "main.css": "./static/css/main.54e7f470.css",
-    "main.js": "./static/js/main.19277f14.js",
+    "main.js": "./static/js/main.de71fc7b.js",
     "static/media/8k_earth_clouds.jpg": "./static/media/8k_earth_clouds.08fcd80007fae8fc7170.jpg",
     "static/media/map.png": "./static/media/map.f63a5d10a14771196295.png",
     "static/media/8k_earth_specular_map.jpg": "./static/media/8k_earth_specular_map.7b4efa59933b470e3776.jpg",
+    "static/media/section-three-CH-info.jpg": "./static/media/section-three-CH-info.94790acedad11fa3fa38.jpg",
     "static/media/section-three-ZA-info.jpeg": "./static/media/section-three-ZA-info.31605e08c61875987e4d.jpeg",
     "static/media/section-three-SС-info.jpeg": "./static/media/section-three-SС-info.a5c1b2b669b0ada663c5.jpeg",
     "static/media/section-three-BY-info.jpg": "./static/media/section-three-BY-info.79102259b307992e9892.jpg",
@@ -28,10 +29,10 @@
     "static/media/section-one-stars-1.png": "./static/media/section-one-stars-1.10496b57b8fead3cdbac.png",
     "index.html": "./index.html",
     "main.54e7f470.css.map": "./static/css/main.54e7f470.css.map",
-    "main.19277f14.js.map": "./static/js/main.19277f14.js.map"
+    "main.de71fc7b.js.map": "./static/js/main.de71fc7b.js.map"
   },
   "entrypoints": [
     "static/css/main.54e7f470.css",
-    "static/js/main.19277f14.js"
+    "static/js/main.de71fc7b.js"
   ]
 }
