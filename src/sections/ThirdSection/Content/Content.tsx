@@ -5,6 +5,7 @@ import BRInfo from '../../../assets/images/section-three-BR-info.jpg'
 import INInfo from '../../../assets/images/section-three-IN-info.jpg'
 import SCInfo from '../../../assets/images/section-three-SС-info.jpeg'
 import ZAInfo from '../../../assets/images/section-three-ZA-info.jpeg'
+import CHInfo from '../../../assets/images/section-three-CH-info.jpg'
 
 import State from '../../../store/State';
 import { content } from '../../../types/enums';
@@ -35,10 +36,10 @@ const southAfrica = {
 
 const china = {
   title: 'Китай',
-  link: 'https://vk.com/video-24199209_456302464?t=12s',
-  img: BYInfo,
-  page: '/africa/',
-  text: 'ЮАР — самое яркое государство африканского континента. Жители Южной Африки называют себя "радужная нация". \n Здесь 11 официальных языков и люди всех цветов кожи уживаются под одним ярким флагом.\nПри этом мало кто знает, но Россию и Южную Африку объединяют более 100 лет совместной истории и деловых связей.'
+  link: 'https://vk.com/video-24199209_456304711',
+  img: CHInfo,
+  page: '/china/',
+  text: 'Китай — самая древняя цивилизация на земле. В каждом китайце 5000 лет истории. А сегодня ещё и вся индустриальная мощь современного мира. В Поднебесной производят всё: от болта до паровоза. И сегодня у России с Китаем невероятно дружеские отношения. Китайцы обожают русскую культуру, восхищаются историей и с удовольствием скупают наши продукты. На международной арене государства придерживаются схожих взглядов и настаивают, что мир должен измениться и стать более справедливым.'
 }
 
 const serbia = {
@@ -60,7 +61,7 @@ const belarus = {
 export const Content = observer(() => {
   const index = State.getActiveCountryIndex()
   const stylesActiveContent = index !== content.NO ? {
-    transform: 'translate3d(0, 0, 0) translate(calc(100%/3.9))', // вернуть на 4.7
+    transform: 'translate3d(0, 0, 0) translate(calc(100%/4.7))',
     transition: '0.5s transform ease',
     transitionDelay: '0.2s',
     zIndex: 1

@@ -1,6 +1,6 @@
 .country {
   display: inline-block;
-  width: calc(100%/5);  /* изменить на 6 когда добавят китай*/
+  width: calc(100%/6);
   cursor: pointer;
 }
 .img {

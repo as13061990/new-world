@@ -72,7 +72,7 @@ export const Modal = observer(() => {
     }
     switch (modalTypeCheck) {
       case (modal.CHINA):
-        return 'https://vk.com/wall-24199209_20083502'
+        return 'https://vk.com/video-24199209_456304711'
       case (modal.INDIA):
         return 'https://vk.com/video-24199209_456303310?t=16s'
       case (modal.BELARUS):
@@ -93,7 +93,7 @@ export const Modal = observer(() => {
     }
     switch (modalTypeCheck) {
       case (modal.CHINA):
-        return '/africa/'
+        return '/china/'
       case (modal.INDIA):
         return '/india/'
       case (modal.BELARUS):
